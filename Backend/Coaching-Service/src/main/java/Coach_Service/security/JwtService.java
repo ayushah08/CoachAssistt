@@ -2,11 +2,7 @@ package Coach_Service.security;
 
 import Coach_Service.entity.Coaching;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,197 +10,64 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
-
-import java.security.Key;
-
 @Service
 public class JwtService {
-
-    @Value("${jwt.secret")
+    @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration")
-    private Long expiration;
+    @Value("${jwt.expiration-ms:3600000}")
+    private long expirationMs;
 
-
-    private Key getSignInKey(){
-        byte[] keyBytes = Decoders.BASE64.decode(secret);
-        return Keys.hmacShaKeyFor(keyBytes);
+    private SecretKey signingKey() {
+        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     }
 
-
-    // generating tokens
-    private String generatedJwtToken(UserDetails userDetails){
-
-        Coaching user = (Coaching) userDetails;
-
+    public String generateToken(Coaching user) {
+        Date now = new Date();
         return Jwts.builder()
-
-                .subject(
-                        user.getUsername()
-                )
-
-                .claim(
-                        "userId",
-                        user.getUserId().toString()
-                )
-
-                .claim(
-                        "role",
-                        user.getRole().name()
-                )
-
-                .issuedAt(
-                        new Date()
-                )
-
-                .expiration(
-                        new Date(
-                                System.currentTimeMillis()
-                                        + expiration
-                        )
-                )
-
-                .signWith(
-                        getSignInKey()
-                )
-
+                .subject(user.getUsername())
+                .claim("userId", user.getUserId())
+                .claim("role", user.getRole().name())
+                .claim("coachingName", user.getCoachingName())
+                .issuedAt(now)
+                .expiration(new Date(now.getTime() + expirationMs))
+                .signWith(signingKey())
                 .compact();
-
-
     }
 
-    public String extractUsername(
-    String token){
-        return extractClaim(token ,  Claims :: getSubject);
+    public String generateAdminToken(String email, Long adminId) {
+        Date now = new Date();
+        return Jwts.builder().subject(email).claim("userId", adminId).claim("role", "ADMIN")
+                .issuedAt(now).expiration(new Date(now.getTime() + expirationMs))
+                .signWith(signingKey()).compact();
     }
 
-
-    public <T> T extractClaim(
-            String token,
-            Function<Claims, T> claimsResolver
-    ) {
-
-        Claims claims =
-                extractAllClaims(token);
-
-        return claimsResolver.apply(
-                claims
-        );
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractUserId(
-            String token
-    ) {
-
-        return extractClaim(
-                token,
-                claims ->
-                        claims.get(
-                                "userId",
-                                String.class
-                        )
-        );
+    public Claims parse(String token) {
+        return Jwts.parser().verifyWith(signingKey()).build()
+                .parseSignedClaims(token).getPayload();
     }
 
-
-    // ==========================
-    // Extract Role
-    // ==========================
-
-    public String extractRole(
-            String token
-    ) {
-
-        return extractClaim(
-                token,
-                claims ->
-                        claims.get(
-                                "role",
-                                String.class
-                        )
-        );
+    public <T> T extractClaim(String token, Function<Claims, T> resolver) {
+        return resolver.apply(Jwts.parser().verifyWith(signingKey()).build()
+                .parseSignedClaims(token).getPayload());
     }
 
-
-    // ==========================
-    // Extract All Claims
-    // ==========================
-
-    private Claims extractAllClaims(
-            String token
-    ) {
-
-        return Jwts.parser()
-
-                .verifyWith(
-                        (SecretKey) getSignInKey()
-                )
-
-                .build()
-
-                .parseSignedClaims(token)
-
-                .getPayload();
-    }
-
-
-    // ==========================
-    // Expiration Check
-    // ==========================
-
-    private boolean isTokenExpired(
-            String token
-    ) {
-
-        return extractExpiration(token)
-                .before(new Date());
-    }
-
-
-    public Date extractExpiration(
-            String token
-    ) {
-
-        return extractClaim(
-                token,
-                Claims::getExpiration
-        );
-    }
-
-    // ==========================
-    // Validate Token
-    // ==========================
-
-    public boolean validateJwtToken(
-            String token,
-            UserDetails userDetails
-    ) {
-
+    public boolean validate(String token, UserDetails user) {
         try {
-
-            String username =
-                    extractUsername(token);
-
-            return username.equals(
-                    userDetails.getUsername()
-            )
-                    && !isTokenExpired(token);
-
-        } catch (
-                ExpiredJwtException |
-                MalformedJwtException |
-                UnsupportedJwtException |
-                SignatureException |
-                IllegalArgumentException e
-        ) {
-
+            Claims claims = Jwts.parser().verifyWith(signingKey()).build()
+                    .parseSignedClaims(token).getPayload();
+            return user.getUsername().equals(claims.getSubject())
+                    && claims.getExpiration() != null
+                    && claims.getExpiration().after(new Date());
+        } catch (RuntimeException exception) {
             return false;
         }
     }
-
 }

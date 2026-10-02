@@ -1,7 +1,6 @@
-package coach_service.security;
+package Coach_Service.security;
 
 import Coach_Service.repository.CoachingRespoitory;
-import coach_service.repository.CoachingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +15,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return coachingRepository.findByCoachingName(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Coaching profile not found with name: " + username));
+        return coachingRepository.findByCoachingEmailIgnoreCase(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Coaching profile not found with email: " + username));
     }
 }

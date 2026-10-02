@@ -1,4 +1,4 @@
-package Student.dto;
+package Parent.dto;
 
 import lombok.Builder;
 import lombok.Getter;

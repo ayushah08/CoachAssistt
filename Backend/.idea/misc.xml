@@ -6,6 +6,10 @@
       <list>
         <option value="$PROJECT_DIR$/Coaching-Service/pom.xml" />
         <option value="$PROJECT_DIR$/Student_Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/ParentService/pom.xml" />
+        <option value="$PROJECT_DIR$/Configuration_Server/pom.xml" />
+        <option value="$PROJECT_DIR$/Api-Gateway/pom.xml" />
       </list>
     </option>
   </component>

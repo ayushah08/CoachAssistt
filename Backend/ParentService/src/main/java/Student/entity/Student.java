@@ -1,9 +1,12 @@
-package Student.entity;
+package Parent.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,6 +16,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "students")
 @Builder
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,6 +32,13 @@ public class Student {
 
 
     private String coachingName;
+
+    @Email
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     private LocalDateTime createdAt;
 

@@ -1,40 +1,40 @@
 package Coach_Service.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Setter
+@Table(name = "coaching", uniqueConstraints = {
+        @UniqueConstraint(name = "uk_coaching_email", columnNames = "coaching_email"),
+        @UniqueConstraint(name = "uk_coaching_name", columnNames = "coaching_name")
+})
 @Getter
-@Table(name = "Coaching")
+@Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Coaching implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long coachingId;
@@ -43,16 +43,17 @@ public class Coaching implements UserDetails {
     private String coachingName;
 
     @NotBlank
-    private String coaching_Address;
+    private String coachingAddress;
 
+    @Email
     @NotBlank
-    private String coaching_Email;
+    private String coachingEmail;
 
     @NotBlank
     private String coachingOwnerName;
 
+    @NotBlank
     private String password;
-
 
     private LocalDateTime dateTime;
 
@@ -61,45 +62,27 @@ public class Coaching implements UserDetails {
 
     private boolean verified;
 
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     @Override
     public String getUsername() {
-        return coachingName;
-    }
-
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+        return coachingEmail;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+    public boolean isAccountNonExpired() { return true; }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+    public boolean isAccountNonLocked() { return true; }
 
     @Override
-    public boolean isEnabled() {
-        return verified;
-    }
+    public boolean isCredentialsNonExpired() { return true; }
 
-    public Long getUserId() {
-        return coachingId;
-    }
+    @Override
+    public boolean isEnabled() { return verified; }
 
-    public UserDetails orElseThrow(Object o) {
-        return null;
-    }
+    public Long getUserId() { return coachingId; }
 }
-

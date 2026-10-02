@@ -7,6 +7,9 @@ import Coach_Service.dto.Register.CoachingRegisterRequest;
 import Coach_Service.dto.Register.CoachingRegisterResponse;
 import Coach_Service.service.CoachingService;
 import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +23,13 @@ public class CoachingController {
     private final CoachingService coachingService;
 
     @PostMapping("/register")
-    public CoachingRegisterResponse register(@RequestBody CoachingRegisterRequest registerRequest){
-
-        return coachingService.register(registerRequest);
+    public ResponseEntity<CoachingRegisterResponse> register(@Valid @RequestBody CoachingRegisterRequest registerRequest){
+        return ResponseEntity.status(HttpStatus.CREATED).body(coachingService.register(registerRequest));
 
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody CoachingLoginRequest loginRequest){
+    public LoginResponse login(@Valid @RequestBody CoachingLoginRequest loginRequest){
 
         return coachingService.login(loginRequest);
     }

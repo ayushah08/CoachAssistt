@@ -1,40 +1,69 @@
-package Student.Service;
+package Parent.Service;
 
-import Student.dto.StudentRequest;
-import Student.dto.StudentResponse;
-import Student.entity.Student;
-import Student.repository.StudentRepository;
+import Parent.dto.AuthResponse;
+import Parent.dto.StudentLoginRequest;
+import Parent.dto.StudentRequest;
+import Parent.dto.StudentResponse;
+import Parent.entity.Student;
+import Parent.repository.StudentRepository;
+import Parent.security.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-
-
     private final StudentRepository studentRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtTokenService tokens;
 
-    public ResponseEntity<StudentResponse> registerStudent(StudentRequest student) {
-
-        Student student1 = Student.builder().name(student.getFirstName()).surname(student.getSurname()).coachingName(student.getCoachingName()).createdAt(LocalDateTime.now()).updatedAt(LocalDateTime.now()).build();
-
-        studentRepository.save(student1);
-
-        StudentResponse studentResponse = StudentResponse.builder().StudentName(student1.getName() + " " +  student1.getSurname()).StudentCode(student1.getStudentId()).build();
-
-        return new ResponseEntity<>(studentResponse, HttpStatus.CREATED);
+    @Transactional
+    public StudentResponse createStudent(StudentRequest request) {
+        if (studentRepository.existsByEmailIgnoreCase(request.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "A student account already uses this email");
+        }
+        Student student = studentRepository.save(Student.builder()
+                .name(request.getFirstName().trim())
+                .surname(request.getSurname().trim())
+                .coachingName(request.getCoachingName().trim())
+                .email(request.getEmail().trim().toLowerCase())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build());
+        return StudentResponse.builder()
+                .StudentName(student.getName() + " " + student.getSurname())
+                .StudentCode(student.getStudentId())
+                .build();
     }
 
-    public ResponseEntity<Void> removeStudent(Long studentCode) {
+    public AuthResponse login(StudentLoginRequest request) {
+        Student student = studentRepository.findByEmailIgnoreCase(request.getEmail())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password"));
+        if (!passwordEncoder.matches(request.getPassword(), student.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
+        }
+        return new AuthResponse("Login successful", tokens.issue(student.getEmail(), student.getStudentId()),
+                student.getStudentId(), "STUDENT");
+    }
 
-        Student student = studentRepository.findById(studentCode)
-                .orElseThrow(() -> new NoSuchElementException("Student not found"));
+    @Transactional
+    public void removeStudent(Long studentId, String coachingName) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
+        if (!student.getCoachingName().equalsIgnoreCase(coachingName)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
+        }
         studentRepository.delete(student);
-        return ResponseEntity.noContent().build();
+    }
+
+    public boolean belongsToCoaching(Long studentId, String coachingName) {
+        return studentRepository.existsByStudentIdAndCoachingNameIgnoreCase(studentId, coachingName);
     }
 }

@@ -1,35 +1,45 @@
 package Parent.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Builder
+@Table(name = "parents")
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Student {
-
+public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long parentId;
+
+    @Column(nullable = false)
     private Long studentId;
 
-    private String name;
-    private String surname;
+    @Column(nullable = false)
+    private String parentName;
 
-
+    private String studentName;
     private String coachingName;
 
-    private LocalDateTime createdAt;
+    @Column(nullable = false, unique = true)
+    private String email;
 
+    @Column(nullable = false)
+    private String password;
+
+    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

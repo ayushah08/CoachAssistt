@@ -1,19 +1,14 @@
 package Coach_Service.dto.Register;
 
 import lombok.Builder;
+import lombok.Getter;
 
-import java.util.UUID;
-
-
+@Getter
 @Builder
 public class CoachingRegisterResponse {
-
-    private String Message;
+    private String message;
     private String coachingName;
-
-    private String coaching_Email;
-
-    private String CoachingOwnerName;
-
+    private String email;
+    private String ownerName;
     private Long coachingId;
 }
