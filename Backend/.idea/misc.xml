@@ -10,6 +10,10 @@
         <option value="$PROJECT_DIR$/ParentService/pom.xml" />
         <option value="$PROJECT_DIR$/Configuration_Server/pom.xml" />
         <option value="$PROJECT_DIR$/Api-Gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Admin/pom.xml" />
+        <option value="$PROJECT_DIR$/Parent/pom.xml" />
+        <option value="$PROJECT_DIR$/Coaching/pom.xml" />
+        <option value="$PROJECT_DIR$/Student/pom.xml" />
       </list>
     </option>
   </component>
