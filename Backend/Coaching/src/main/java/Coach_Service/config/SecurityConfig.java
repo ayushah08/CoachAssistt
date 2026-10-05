@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/coaching/register", "/api/v1/coaching/login",
+                                "api/v1/coaching/health",
                                 "/api/v1/student/login", "/api/v1/parents/login",
                                 "/actuator/health").permitAll()
                         .requestMatchers("/api/v1/parents/register").hasRole("COACHING")
@@ -63,7 +64,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of("http://localhost:5501")
         );
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));

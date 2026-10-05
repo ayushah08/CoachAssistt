@@ -6,14 +6,12 @@ import Coach_Service.dto.Login.LoginResponse;
 import Coach_Service.dto.Register.CoachingRegisterRequest;
 import Coach_Service.dto.Register.CoachingRegisterResponse;
 import Coach_Service.service.CoachingService;
+import jakarta.ws.rs.GET;
 import lombok.RequiredArgsConstructor;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/coaching")
@@ -32,5 +30,10 @@ public class CoachingController {
     public LoginResponse login(@Valid @RequestBody CoachingLoginRequest loginRequest){
 
         return coachingService.login(loginRequest);
+    }
+
+    @GetMapping("/health")
+    public ResponseEntity<String> health(){
+        return ResponseEntity.status(HttpStatus.OK).body("Api's are running Succesfully");
     }
 }
