@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coachly | Student Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #071120;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, .75);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .grid-bg {
+            background:
+                linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+            background-size: 55px 55px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #60A5FA, #38BDF8, #2563EB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+
+</head>
+
+<div class="grid-bg">
+
+    <div class="flex min-h-screen flex-col lg:flex-row">
+
+        <!-- Sidebar -->
+
+        <aside id="sidebar" class="w-full lg:w-72 glass border-b lg:border-b-0 lg:border-r border-white/10
+hidden lg:flex flex-col">
+
+
+            <!-- Logo -->
+
+            <div class="p-8 border-b border-white/10">
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-2xl font-bold">
+
+                        C
+
+                    </div>
+
+                    <div>
+
+                        <h1 class="text-3xl font-extrabold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h1>
+
+                        <p class="text-slate-400 text-sm">
+
+                            Student Dashboard
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="flex-1 p-6 space-y-3">
+
+                <a href="student-dashboard.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl bg-blue-600 text-white font-semibold">
+
+                    🏠 Dashboard
+
+                </a>
+
+                <a href="student-profile.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    👤 My Profile
+
+                </a>
+
+                <a href="student-attendance.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📅 Attendance
+
+                </a>
+
+                <a href="student-marks.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📘 Marks
+
+                </a>
+
+                <a href="student-announcements.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📢 Announcements
+
+                </a>
+
+                <a href="student-settings.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    ⚙️ Settings
+
+                </a>
+
+            </nav>
+            <div class="p-6 border-t border-white/10">
+
+                <button id="logoutBtn"
+                    class="w-full py-4 rounded-2xl bg-red-600 hover:bg-red-700 duration-300 font-semibold">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto p-6 lg:p-8">
+
+                <!-- Top Navbar -->
+
+                <div
+                    class="glass rounded-3xl px-6 py-5 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+
+                    <div class="flex items-center justify-between lg:hidden">
+
+                        <button id="menuBtn"
+                            class="glass w-12 h-12 rounded-xl flex items-center justify-center text-2xl">
+
+                            ☰
+
+                        </button>
+
+                        <h2 class="text-xl font-bold">
+                            Coach<span class="gradient-text">ly</span>
+                        </h2>
+
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold">
+
+                            Welcome Back,
+
+                            <span class="gradient-text">
+
+                                Faizan 👋
+
+                            </span>
+
+                        </h2>
+
+                        <p class="text-slate-400 mt-2">
+
+                            Have a productive day.
+
+                        </p>
+
+                    </div>
+
+                    <div class="flex items-center justify-between lg:justify-end gap-5 w-full lg:w-auto">
+
+                        <button class="w-12 h-12 rounded-2xl glass text-xl">
+
+                            🔔
+
+                        </button>
+
+                        <div class="flex items-center gap-3">
+
+                            <img src="https://i.pravatar.cc/100"
+                                class="w-12 h-12 rounded-full border-2 border-cyan-400">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+
+                                    Faizan
+
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+
+                                    Student
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Stats Cards -->
+
+                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Attendance
+
+                        </p>
+
+                        <h3 class="text-4xl font-bold mt-3">
+
+                            92%
+
+                        </h3>
+
+                    </div>
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Overall Marks
+
+                        </p>
+
+                        <h3 class="text-4xl font-bold mt-3">
+
+                            88%
+
+                        </h3>
+
+                    </div>
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Assignments
+
+                        </p>
+
+                        <h3 class="text-4xl font-bold mt-3">
+
+                            05
+
+                        </h3>
+
+                    </div>
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Announcements
+
+                        </p>
+
+                        <h3 class="text-4xl font-bold mt-3">
+
+                            12
+
+                        </h3>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Attendance + Marks Section -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Attendance Progress -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📅 Attendance Progress
+                    </h2>
+
+                    <div class="mb-5">
+
+                        <div class="flex justify-between mb-2">
+                            <span>Total Attendance</span>
+                            <span class="font-bold">92%</span>
+                        </div>
+
+                        <div class="w-full h-4 bg-slate-700 rounded-full overflow-hidden">
+
+                            <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+                                style="width:92%">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="text-slate-400 mt-4">
+
+                        Excellent attendance this month.
+
+                    </p>
+
+                </div>
+
+                <!-- Recent Marks -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+
+                        📘 Recent Marks
+
+                    </h2>
+
+                    <table class="w-full">
+
+                        <thead>
+
+                            <tr class="text-left border-b border-white/10">
+
+                                <th class="pb-3">Subject</th>
+
+                                <th class="pb-3">Marks</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr class="border-b border-white/5">
+
+                                <td class="py-3">Mathematics</td>
+
+                                <td>89</td>
+
+                            </tr>
+
+                            <tr class="border-b border-white/5">
+
+                                <td class="py-3">Science</td>
+
+                                <td>91</td>
+
+                            </tr>
+
+                            <tr class="border-b border-white/5">
+
+                                <td class="py-3">English</td>
+
+                                <td>85</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="py-3">Computer</td>
+
+                                <td>97</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Announcements + Upcoming Exams -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Latest Announcements -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📢 Latest Announcements
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <div class="p-4 rounded-xl bg-white/5">
+                            <h4 class="font-semibold">
+                                Unit Test
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-1">
+                                Unit Test starts from Monday.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white/5">
+                            <h4 class="font-semibold">
+                                Assignment
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-1">
+                                Submit HTML Assignment before Friday.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-white/5">
+                            <h4 class="font-semibold">
+                                Holiday Notice
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-1">
+                                Coaching will remain closed on Sunday.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Upcoming Exams -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📝 Upcoming Exams
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+                                    Mathematics
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+                                    Chapter 5 & 6
+                                </p>
+
+                            </div>
+
+                            <span class="text-cyan-400 font-bold">
+                                18 Aug
+                            </span>
+
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+                                    Science
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+                                    Physics + Chemistry
+                                </p>
+
+                            </div>
+
+                            <span class="text-cyan-400 font-bold">
+                                22 Aug
+                            </span>
+
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+                                    English
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+                                    Grammar Test
+                                </p>
+
+                            </div>
+
+                            <span class="text-cyan-400 font-bold">
+                                25 Aug
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Homework + Performance -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Homework -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📚 Homework
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+                                    HTML Assignment
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+                                    Submit Landing Page
+                                </p>
+
+                            </div>
+
+                            <span class="text-yellow-400 font-semibold">
+                                Pending
+                            </span>
+
+                        </div>
+
+                        <div class="flex justify-between items-center p-4 rounded-xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+                                    JavaScript
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+                                    DOM Practice
+                                </p>
+
+                            </div>
+
+                            <span class="text-green-400 font-semibold">
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Performance -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📈 Overall Performance
+                    </h2>
+
+                    <div class="space-y-5">
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+                                <span>Academic</span>
+                                <span>88%</span>
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                <div class="h-3 rounded-full bg-blue-500" style="width:88%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+                                <span>Attendance</span>
+                                <span>92%</span>
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                <div class="h-3 rounded-full bg-cyan-400" style="width:92%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+                                <span>Assignments</span>
+                                <span>95%</span>
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                <div class="h-3 rounded-full bg-green-500" style="width:95%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Today's Schedule + Notifications -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Today's Schedule -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📅 Today's Schedule
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <div class="flex justify-between p-4 rounded-xl bg-white/5">
+
+                            <div>
+                                <h4 class="font-semibold">Mathematics</h4>
+                                <p class="text-slate-400 text-sm">Algebra Revision</p>
+                            </div>
+
+                            <span class="text-cyan-400 font-semibold">
+                                09:00 AM
+                            </span>
+
+                        </div>
+
+                        <div class="flex justify-between p-4 rounded-xl bg-white/5">
+
+                            <div>
+                                <h4 class="font-semibold">Science</h4>
+                                <p class="text-slate-400 text-sm">Physics Practical</p>
+                            </div>
+
+                            <span class="text-cyan-400 font-semibold">
+                                11:00 AM
+                            </span>
+
+                        </div>
+
+                        <div class="flex justify-between p-4 rounded-xl bg-white/5">
+
+                            <div>
+                                <h4 class="font-semibold">Computer</h4>
+                                <p class="text-slate-400 text-sm">JavaScript Lab</p>
+                            </div>
+
+                            <span class="text-cyan-400 font-semibold">
+                                02:00 PM
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Notifications -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        🔔 Notifications
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <div class="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
+
+                            <h4 class="font-semibold">
+                                Attendance Updated
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-2">
+                                Your attendance has been updated successfully.
+                            </p>
+
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-green-500/10 border border-green-500/20">
+
+                            <h4 class="font-semibold">
+                                Assignment Checked
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-2">
+                                HTML Assignment has been reviewed.
+                            </p>
+
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20">
+
+                            <h4 class="font-semibold">
+                                New Announcement
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-2">
+                                Weekend Coding Workshop announced.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Analytics Section -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Attendance Chart -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📊 Attendance Analytics
+                    </h2>
+
+                    <canvas id="attendanceChart" height="250"></canvas>
+
+                </div>
+
+                <!-- Marks Chart -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        📈 Marks Analytics
+                    </h2>
+
+                    <canvas id="marksChart" height="250"></canvas>
+
+                </div>
+
+            </div>
+
+            <!-- Student Profile + Goals -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Student Profile -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <div class="flex items-center gap-5">
+
+                        <img src="https://ui-avatars.com/api/?name=Faizan&background=2563EB&color=fff&size=128"
+                            class="w-20 h-20 rounded-full">
+
+                        <div>
+
+                            <h2 class="text-2xl font-bold">
+                                Faizan Chougule
+                            </h2>
+
+                            <p class="text-slate-400">
+                                Student ID : STU1024
+                            </p>
+
+                            <span
+                                class="inline-block mt-2 px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">
+
+                                Active Student
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+
+                        <div class="text-center">
+
+                            <h3 class="text-3xl font-bold text-cyan-400">
+                                92%
+                            </h3>
+
+                            <p class="text-slate-400 text-sm">
+                                Attendance
+                            </p>
+
+                        </div>
+
+                        <div class="text-center">
+
+                            <h3 class="text-3xl font-bold text-blue-400">
+                                A+
+                            </h3>
+
+                            <p class="text-slate-400 text-sm">
+                                Grade
+                            </p>
+
+                        </div>
+
+                        <div class="text-center">
+
+                            <h3 class="text-3xl font-bold text-green-400">
+                                #3
+                            </h3>
+
+                            <p class="text-slate-400 text-sm">
+                                Rank
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Goals -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+
+                        🎯 Monthly Goals
+
+                    </h2>
+
+                    <div class="space-y-5">
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span>Attendance Goal</span>
+
+                                <span>92%</span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                <div class="h-3 bg-cyan-400 rounded-full" style="width:92%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span>Assignments</span>
+
+                                <span>95%</span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                <div class="h-3 bg-green-500 rounded-full" style="width:95%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span>Overall Score</span>
+
+                                <span>89%</span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                <div class="h-3 bg-blue-500 rounded-full" style="width:89%">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Achievements + Learning Streak -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Achievements -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        🏆 Achievements
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-yellow-500/10">
+
+                            <div class="text-3xl">🥇</div>
+
+                            <div>
+                                <h4 class="font-semibold">Top Performer</h4>
+                                <p class="text-slate-400 text-sm">
+                                    Ranked in Top 3 this month.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-green-500/10">
+
+                            <div class="text-3xl">🎯</div>
+
+                            <div>
+                                <h4 class="font-semibold">95% Assignment Completion</h4>
+                                <p class="text-slate-400 text-sm">
+                                    Excellent consistency.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-blue-500/10">
+
+                            <div class="text-3xl">⭐</div>
+
+                            <div>
+                                <h4 class="font-semibold">Attendance Star</h4>
+                                <p class="text-slate-400 text-sm">
+                                    Above 90% attendance.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Learning Streak -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        🔥 Learning Streak
+                    </h2>
+
+                    <div class="text-center">
+
+                        <h1 class="text-6xl font-extrabold text-orange-400">
+                            27
+                        </h1>
+
+                        <p class="text-slate-400 mt-2">
+                            Days Learning Streak
+                        </p>
+
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-7 gap-2">
+
+                        <div class="h-10 rounded bg-green-500"></div>
+                        <div class="h-10 rounded bg-green-500"></div>
+                        <div class="h-10 rounded bg-green-500"></div>
+                        <div class="h-10 rounded bg-green-500"></div>
+                        <div class="h-10 rounded bg-green-500"></div>
+                        <div class="h-10 rounded bg-green-500"></div>
+                        <div class="h-10 rounded bg-green-500"></div>
+
+                    </div>
+
+                    <p class="text-center text-slate-400 mt-6">
+
+                        Keep learning every day 🚀
+
+                    </p>
+
+                </div>
+
+            </div>
+            <!-- Recent Activity + Quick Actions -->
+
+            <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+                <!-- Recent Activity -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        🕒 Recent Activity
+                    </h2>
+
+                    <div class="space-y-5">
+
+                        <div class="border-l-4 border-cyan-400 pl-4">
+                            <h4 class="font-semibold">Assignment Submitted</h4>
+                            <p class="text-slate-400 text-sm">HTML Assignment • Today</p>
+                        </div>
+
+                        <div class="border-l-4 border-green-400 pl-4">
+                            <h4 class="font-semibold">Attendance Updated</h4>
+                            <p class="text-slate-400 text-sm">Present • Yesterday</p>
+                        </div>
+
+                        <div class="border-l-4 border-yellow-400 pl-4">
+                            <h4 class="font-semibold">Science Marks Published</h4>
+                            <p class="text-slate-400 text-sm">91/100</p>
+                        </div>
+
+                        <div class="border-l-4 border-blue-400 pl-4">
+                            <h4 class="font-semibold">New Announcement</h4>
+                            <p class="text-slate-400 text-sm">Coding Workshop Added</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Quick Actions -->
+
+                <div class="glass rounded-3xl p-6">
+
+                    <h2 class="text-2xl font-bold mb-6">
+                        ⚡ Quick Actions
+                    </h2>
+
+                    <div class="grid grid-cols-2 gap-4">
+
+                        <button class="glass rounded-2xl p-5 hover:bg-cyan-500/20 duration-300">
+                            📘<br>
+                            View Marks
+                        </button>
+
+                        <button class="glass rounded-2xl p-5 hover:bg-cyan-500/20 duration-300">
+                            📅<br>
+                            Attendance
+                        </button>
+
+                        <button class="glass rounded-2xl p-5 hover:bg-cyan-500/20 duration-300">
+                            📚<br>
+                            Homework
+                        </button>
+
+                        <button class="glass rounded-2xl p-5 hover:bg-cyan-500/20 duration-300">
+                            👤<br>
+                            Profile
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <footer class="mt-10 glass rounded-3xl p-6 text-center text-slate-400">
+
+                © 2026 Coachly Student Portal
+
+                <br>
+
+                Built with ❤️ using HTML, Tailwind CSS & JavaScript
+
+            </footer>
+        </main>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+    const attendanceChart = new Chart(
+        document.getElementById("attendanceChart"),
+        {
+            type: "line",
+
+            data: {
+                labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+
+                datasets: [{
+
+                    label: "Attendance",
+
+                    data: [90, 92, 91, 95, 93, 96],
+
+                    borderColor: "#38BDF8",
+
+                    backgroundColor: "rgba(56,189,248,.2)",
+
+                    fill: true,
+
+                    tension: .4
+
+                }]
+            },
+
+            options: {
+
+                plugins: {
+
+                    legend: {
+
+                        labels: {
+                            color: "white"
+                        }
+
+                    }
+
+                },
+
+                scales: {
+
+                    x: {
+
+                        ticks: {
+                            color: "white"
+                        },
+
+                        grid: {
+                            color: "#334155"
+                        }
+
+                    },
+
+                    y: {
+
+                        ticks: {
+                            color: "white"
+                        },
+
+                        grid: {
+                            color: "#334155"
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+
+
+    const marksChart = new Chart(
+
+        document.getElementById("marksChart"),
+
+        {
+
+            type: "bar",
+
+            data: {
+
+                labels: ["Math", "Science", "English", "Computer"],
+
+                datasets: [{
+
+                    label: "Marks",
+
+                    data: [89, 91, 85, 97],
+
+                    backgroundColor: [
+                        "#2563EB",
+                        "#38BDF8",
+                        "#22C55E",
+                        "#FACC15"
+                    ]
+
+                }]
+
+            },
+
+            options: {
+
+                plugins: {
+
+                    legend: {
+
+                        labels: {
+                            color: "white"
+                        }
+
+                    }
+
+                },
+
+                scales: {
+
+                    x: {
+
+                        ticks: {
+                            color: "white"
+                        },
+
+                        grid: {
+                            display: false
+                        }
+
+                    },
+
+                    y: {
+
+                        ticks: {
+                            color: "white"
+                        },
+
+                        grid: {
+                            color: "#334155"
+                        }
+
+                    }
+
+                }
+
+            }
+
+        });
+
+
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+
+        sidebar.classList.toggle("hidden");
+
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+
+        const confirmLogout = confirm("Are you sure you want to logout?");
+
+        if (confirmLogout) {
+
+            window.location.href = "student-login.html";
+
+        }
+
+    });
+
+</script>
+</body>
+
+</html>

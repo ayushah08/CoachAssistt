@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Coaching Settings</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f8fafc;
+      }
+
+      .card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 24px;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 18px;
+        border-radius: 16px;
+        transition: 0.3s ease;
+        font-weight: 500;
+        color: #475569;
+      }
+
+      .sidebar-link:hover {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+
+      .sidebar-active {
+        background: #1d4ed8;
+        color: white !important;
+      }
+
+      .input-style {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid #dbe3ee;
+        outline: none;
+      }
+
+      .input-style:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="flex min-h-screen">
+
+<div
+  id="overlay"
+  class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden"
+></div>
+
+      <!-- SIDEBAR -->
+     <aside
+  id="mobileMenu"
+  class="fixed lg:static top-0 left-0 z-50 w-72 min-h-screen bg-white border-r border-slate-200 p-6 hidden lg:flex flex-col"
+>
+
+
+
+<button
+  id="closeBtn"
+  class="lg:hidden bg-red-500 text-white px-3 py-2 rounded-xl mb-6"
+>
+  ✕
+</button>
+
+        <!-- Logo -->
+        <div class="flex items-center gap-4 mb-10">
+          <div
+            class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl font-bold"
+          >
+            C
+          </div>
+
+          <div>
+            <h1 class="text-2xl font-bold text-slate-900">Coachly</h1>
+
+            <p class="text-slate-500 text-sm">Coaching Panel</p>
+          </div>
+        </div>
+
+        <!-- Nav -->
+        <nav class="space-y-3">
+          <a href="dashboard.html" class="sidebar-link"> 📊 Dashboard </a>
+
+          <a href="students.html" class="sidebar-link"> 👨‍🎓 Students </a>
+
+          <a href="attendance.html" class="sidebar-link"> 📅 Attendance </a>
+
+          <a href="marks.html" class="sidebar-link"> 📝 Marks & Tests </a>
+
+          <a href="anouncements.html" class="sidebar-link"> 🔔 Notices </a>
+
+          <a href="settings.html" class="sidebar-link sidebar-active">
+            ⚙ Settings
+          </a>
+        </nav>
+
+        <!-- Bottom -->
+        <div class="mt-auto pt-10">
+          <a
+            href="../../index.html"
+            class="sidebar-link bg-slate-100 hover:bg-red-50 hover:text-red-600"
+          >
+            🚪 Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="flex-1 p-4 md:p-6 lg:p-10">
+        <!-- Mobile Header -->
+        <div class="flex items-center justify-between mb-6 lg:hidden">
+          <h1 class="text-2xl font-bold text-slate-900">Coachly</h1>
+
+         <button
+  id="menuBtn"
+  class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+>
+  ☰
+</button>
+        </div>
+
+        <!-- TOP -->
+        <div>
+          <p
+            class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
+          >
+            Coaching Settings
+          </p>
+
+          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-3">
+            Settings ⚙
+          </h1>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-10">
+          <!-- Coaching Profile -->
+          <div class="card p-5 md:p-8">
+            <div class="mb-8">
+              <p
+                class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
+              >
+                Coaching Profile
+              </p>
+
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+                Institute Details
+              </h2>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  Coaching Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter coaching name"
+                  class="input-style"
+                />
+              </div>
+
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  Owner Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter owner name"
+                  class="input-style"
+                />
+              </div>
+
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  Email Address
+                </label>
+
+                <input
+                  type="email"
+                  placeholder="Enter email address"
+                  class="input-style"
+                />
+              </div>
+
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  Mobile Number
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter mobile number"
+                  class="input-style"
+                />
+              </div>
+
+              <button
+                class="bg-blue-700 hover:bg-blue-800 transition text-white px-6 py-4 rounded-2xl font-semibold w-full md:w-auto"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+
+          <!-- Change Password -->
+          <div class="card p-5 md:p-8">
+            <div class="mb-8">
+              <p
+                class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
+              >
+                Security
+              </p>
+
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+                Change Password
+              </h2>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  Current Password
+                </label>
+
+                <input
+                  type="password"
+                  placeholder="Enter current password"
+                  class="input-style"
+                />
+              </div>
+
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  New Password
+                </label>
+
+                <input
+                  type="password"
+                  placeholder="Enter new password"
+                  class="input-style"
+                />
+              </div>
+
+              <div>
+                <label class="block mb-3 text-slate-600 font-semibold">
+                  Confirm Password
+                </label>
+
+                <input
+                  type="password"
+                  placeholder="Confirm new password"
+                  class="input-style"
+                />
+              </div>
+
+              <button
+                class="bg-blue-700 hover:bg-blue-800 transition text-white px-6 py-4 rounded-2xl font-semibold w-full md:w-auto"
+              >
+                Update Password
+              </button>
+            </div>
+          </div>
+
+          <!-- Notification Settings -->
+          <div class="card p-5 md:p-8">
+            <div class="mb-8">
+              <p
+                class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
+              >
+                Notifications
+              </p>
+
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+                Notification Settings
+              </h2>
+            </div>
+
+            <div class="space-y-5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-slate-900">
+                    Email Notifications
+                  </h3>
+
+                  <p class="text-sm text-slate-500 mt-1">
+                    Receive updates on email
+                  </p>
+                </div>
+
+                <input type="checkbox" checked class="w-5 h-5" />
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-slate-900">Parent Alerts</h3>
+
+                  <p class="text-sm text-slate-500 mt-1">
+                    Send alerts to parents
+                  </p>
+                </div>
+
+                <input type="checkbox" checked class="w-5 h-5" />
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-slate-900">
+                    SMS Notifications
+                  </h3>
+
+                  <p class="text-sm text-slate-500 mt-1">
+                    Enable SMS notifications
+                  </p>
+                </div>
+
+                <input type="checkbox" class="w-5 h-5" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Verification Status -->
+          <div class="card p-5 md:p-8">
+            <div class="mb-8">
+              <p
+                class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold"
+              >
+                Verification
+              </p>
+
+              <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+                Institute Status
+              </h2>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div
+                class="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center text-3xl"
+              >
+                ✅
+              </div>
+
+              <div>
+                <h3 class="text-xl font-bold text-slate-900">Approved</h3>
+
+                <p class="text-slate-500 mt-1">
+                  Your institute is verified by admin.
+                </p>
+              </div>
+            </div>
+
+            <button
+              class="mt-10 bg-red-600 hover:bg-red-700 transition text-white px-6 py-4 rounded-2xl font-semibold w-full md:w-auto"
+            >
+              Logout From Dashboard
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const closeBtn = document.getElementById("closeBtn");
+const overlay = document.getElementById("overlay");
+
+menuBtn.addEventListener("click", () => {
+
+  mobileMenu.classList.remove("hidden");
+  mobileMenu.classList.add("flex");
+
+  overlay.classList.remove("hidden");
+
+});
+
+closeBtn.addEventListener("click", () => {
+
+  mobileMenu.classList.add("hidden");
+  mobileMenu.classList.remove("flex");
+
+  overlay.classList.add("hidden");
+
+});
+
+overlay.addEventListener("click", () => {
+
+  mobileMenu.classList.add("hidden");
+  mobileMenu.classList.remove("flex");
+
+  overlay.classList.add("hidden");
+
+});
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Student Report Card</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f8fafc;
+    }
+
+    .card{
+      background:white;
+      border:1px solid #e2e8f0;
+      border-radius:24px;
+    }
+
+    .sidebar-link{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:14px 18px;
+      border-radius:16px;
+      transition:0.3s ease;
+      font-weight:500;
+      color:#475569;
+    }
+
+    .sidebar-link:hover{
+      background:#eff6ff;
+      color:#2563eb;
+    }
+
+    .sidebar-active{
+      background:#2563eb;
+      color:white !important;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="flex min-h-screen overflow-x-hidden">
+
+  <!-- Sidebar -->
+ <aside
+  id="mobileMenu"
+  class="hidden fixed top-0 left-0 z-50 w-72 min-h-screen bg-white border-r border-slate-200 p-6 flex-col shadow-2xl lg:flex lg:static">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-4 mb-10">
+
+      <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+        P
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">
+          Parent Panel
+        </h1>
+
+        <p class="text-slate-500 text-sm">
+          Student Access
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Nav -->
+    <nav class="space-y-3">
+
+      <a href="dashboard.html" class="sidebar-link">
+        📊 Dashboard
+      </a>
+
+      <a href="attendance.html" class="sidebar-link">
+        📅 Attendance
+      </a>
+
+      <a href="marks.html" class="sidebar-link">
+        📝 Marks
+      </a>
+
+      <a href="notices.html" class="sidebar-link">
+        🔔 Notices
+      </a>
+
+      <a href="report-card.html" class="sidebar-link sidebar-active">
+        📄 Report Card
+      </a>
+
+    </nav>
+
+    <!-- Bottom -->
+    <div class="mt-auto pt-10">
+
+      <a
+        href="../../parent-access.html"
+        class="sidebar-link bg-slate-100 hover:bg-red-50 hover:text-red-600"
+      >
+        🚪 Logout
+      </a>
+
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 w-full overflow-hidden p-4 md:p-6 lg:p-10">
+
+  <!-- MOBILE HEADER -->
+<div class="flex items-center justify-between mb-6 lg:hidden">
+
+  <h1 class="text-2xl font-bold text-slate-900">
+    Parent Panel
+  </h1>
+
+  <button
+    id="menuBtn"
+    class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+  >
+    ☰
+  </button>
+
+</div>
+
+    <!-- Top -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+
+      <div>
+
+        <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+          Academic Report
+        </p>
+
+        <h1 class="text-3xl md:text-5xl break-words font-extrabold text-slate-900 mt-3">
+          Student Report Card 📄
+        </h1>
+
+      </div>
+
+      <!-- Download Button -->
+      <button class="bg-blue-700 hover:bg-blue-800 transition text-white px-6 py-4 rounded-2xl font-semibold shadow-lg w-full md:w-auto">
+        Download PDF
+      </button>
+
+    </div>
+
+    <!-- Student Info -->
+    <div class="card p-6 md:p-8 mt-10">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+        <div>
+
+          <p class="text-slate-500 font-medium">
+            Student Name
+          </p>
+
+          <h2 class="text-2xl font-bold text-slate-900 mt-2">
+            Faizan Khan
+          </h2>
+
+        </div>
+
+        <div>
+
+          <p class="text-slate-500 font-medium">
+            Student Code
+          </p>
+
+          <h2 class="text-2xl font-bold text-blue-700 mt-2">
+            STD-2938
+          </h2>
+
+        </div>
+
+        <div>
+
+          <p class="text-slate-500 font-medium">
+            Class
+          </p>
+
+          <h2 class="text-2xl font-bold text-slate-900 mt-2">
+            Class 12
+          </h2>
+
+        </div>
+
+        <div>
+
+          <p class="text-slate-500 font-medium">
+            Overall Grade
+          </p>
+
+          <h2 class="text-2xl font-bold text-green-600 mt-2">
+            A+
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Table -->
+    <div class="card p-4 md:p-8 mt-10 overflow-x-auto">
+
+      <div class="mb-8">
+
+        <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+          Final Results
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+          Subject-wise Report
+        </h2>
+
+      </div>
+
+      <!-- Table -->
+       <div class="overflow-x-auto">
+      <table class="w-full min-w-[850px]">
+
+        <thead>
+
+          <tr class="border-b border-slate-200 text-left">
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Subject
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Maximum Marks
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Obtained Marks
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Percentage
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Grade
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Status
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody class="divide-y divide-slate-100">
+
+          <!-- Row -->
+          <tr>
+
+            <td class="py-6 font-semibold text-slate-900">
+              Mathematics
+            </td>
+
+            <td class="py-6 text-slate-600">
+              100
+            </td>
+
+            <td class="py-6 font-bold text-blue-700">
+              95
+            </td>
+
+            <td class="py-6 text-slate-600">
+              95%
+            </td>
+
+            <td class="py-6">
+
+              <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                A+
+              </span>
+
+            </td>
+
+            <td class="py-6 text-green-600 font-semibold">
+              Excellent
+            </td>
+
+          </tr>
+
+          <!-- Row -->
+          <tr>
+
+            <td class="py-6 font-semibold text-slate-900">
+              Physics
+            </td>
+
+            <td class="py-6 text-slate-600">
+              100
+            </td>
+
+            <td class="py-6 font-bold text-blue-700">
+              88
+            </td>
+
+            <td class="py-6 text-slate-600">
+              88%
+            </td>
+
+            <td class="py-6">
+
+              <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">
+                A
+              </span>
+
+            </td>
+
+            <td class="py-6 text-blue-600 font-semibold">
+              Good
+            </td>
+
+          </tr>
+
+          <!-- Row -->
+          <tr>
+
+            <td class="py-6 font-semibold text-slate-900">
+              Chemistry
+            </td>
+
+            <td class="py-6 text-slate-600">
+              100
+            </td>
+
+            <td class="py-6 font-bold text-blue-700">
+              78
+            </td>
+
+            <td class="py-6 text-slate-600">
+              78%
+            </td>
+
+            <td class="py-6">
+
+              <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
+                B+
+              </span>
+
+            </td>
+
+            <td class="py-6 text-yellow-600 font-semibold">
+              Average
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+</div>
+    </div>
+
+    <!-- Summary -->
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-10 w-full">
+
+      <!-- Card -->
+      <div class="card p-6">
+
+        <p class="text-slate-500 font-medium">
+          Overall Percentage
+        </p>
+
+        <h2 class="text-5xl font-bold text-blue-700 mt-4">
+          87%
+        </h2>
+
+      </div>
+
+      <!-- Card -->
+      <div class="card p-6">
+
+        <p class="text-slate-500 font-medium">
+          Class Rank
+        </p>
+
+        <h2 class="text-5xl font-bold text-orange-500 mt-4">
+          #5
+        </h2>
+
+      </div>
+
+      <!-- Card -->
+      <div class="card p-6">
+
+        <p class="text-slate-500 font-medium">
+          Attendance
+        </p>
+
+        <h2 class="text-5xl font-bold text-green-600 mt-4">
+          91%
+        </h2>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", function () {
+
+  if (mobileMenu.classList.contains("hidden")) {
+
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+
+  } else {
+
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+
+  }
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Coachly - Coaching Login</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #071120;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(to right,
+          rgba(15, 23, 42, 0.05) 1px,
+          transparent 1px),
+        linear-gradient(to bottom,
+          rgba(15, 23, 42, 0.05) 1px,
+          transparent 1px);
+      background-size: 55px 55px;
+    }
+
+    .input-style {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .05);
+      color: white;
+      outline: none;
+      transition: .3s ease;
+      font-size: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .input-style:focus {
+      border-color: #1d4ed8;
+      box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.08);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: #1d4ed8;
+      color: white;
+      padding: 16px;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      box-shadow: 0 10px 25px rgba(29, 78, 216, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .btn-animate {
+      transition: all 0.3s ease;
+    }
+
+    .btn-animate:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(29, 78, 216, 0.25);
+    }
+
+    .input-style {
+      transition: all 0.3s ease;
+    }
+
+    .input-style:focus {
+      transform: scale(1.01);
+    }
+
+    .glow {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      background: #2563EB;
+      filter: blur(170px);
+      opacity: .15;
+      border-radius: 9999px;
+      z-index: 0;
+    }
+
+    .glow2 {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: #38BDF8;
+      filter: blur(160px);
+      opacity: .12;
+      border-radius: 9999px;
+      z-index: 0;
+    }
+
+
+    .input-style::placeholder {
+      color: #94A3B8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+  <section class="min-h-screen grid lg:grid-cols-2 grid-bg relative overflow-hidden">
+
+    <div class="glow top-0 left-0"></div>
+
+    <div class="glow2 bottom-0 right-0"></div>
+    <!-- LEFT SIDE -->
+    <div class="hidden lg:flex bg-slate-900 p-14 relative overflow-hidden">
+      <!-- Glow -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[120px] opacity-30"></div>
+
+      <div class="relative z-10 flex flex-col justify-between w-full">
+        <!-- Logo -->
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+            C
+          </div>
+
+          <h1 class="text-3xl font-bold text-white">Coachly</h1>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-xl">
+          <div class="mb-6">
+            <span class="uppercase tracking-[4px] text-sm text-blue-200 border-b border-blue-300/30 pb-1 font-semibold">
+              Coaching Login
+            </span>
+          </div>
+
+          <h1 class="text-6xl font-extrabold leading-tight text-white tracking-tight">
+            Welcome back to your coaching dashboard.
+          </h1>
+
+          <p class="mt-8 text-slate-300 text-xl leading-relaxed">
+            Manage students, attendance, fees, test results and announcements from one secure dashboard built for modern
+            coaching institutes.
+          </p>
+
+          <!-- Cards -->
+          <div class="mt-12 space-y-5">
+            <!-- Card -->
+            <div class="glass rounded-3xl p-5 float">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-2xl">
+                  👨‍🎓
+                </div>
+
+                <div>
+                  <h3 class="text-white text-xl font-semibold">
+                    Student Management
+                  </h3>
+
+                  <p class="text-slate-300 mt-2 leading-relaxed">
+                    Manage all students and parent access codes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-white/10 border border-white/10 rounded-3xl p-5 backdrop-blur-md float">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-2xl">
+                  📊
+                </div>
+
+                <div>
+                  <h3 class="text-white text-xl font-semibold">
+                    Attendance Analytics
+                  </h3>
+
+                  <p class="text-slate-300 mt-2 leading-relaxed">
+                    Track attendance trends and test performance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="text-slate-400 text-sm">© 2026 Coachly Platform</div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="flex items-center justify-center px-6 py-14 relative z-10">
+      <!-- Login Card -->
+      <div
+        class="w-full max-w-xl glass rounded-[36px] p-8 md:p-12 shadow-[0_20px_60px_rgba(37,99,235,.25)] border border-white/10">
+        <!-- Mobile Logo -->
+        <div class="flex lg:hidden items-center gap-3 mb-10">
+          <div class="w-12 h-12 rounded-2xl bg-blue-700 flex items-center justify-center text-white font-bold text-xl">
+            C
+          </div>
+
+          <h1 class="text-3xl font-bold">Coachly</h1>
+        </div>
+
+        <!-- Heading -->
+        <div>
+          <div class="mb-5">
+            <span class="uppercase tracking-[4px] text-sm text-slate-500 border-b border-slate-400 pb-1 font-semibold">
+              Coaching • Login
+            </span>
+          </div>
+
+          <h2 class="text-5xl font-extrabold tracking-tight text-white leading-tight">
+            Sign in
+          </h2>
+
+          <p class="mt-5 text-slate-300 text-lg leading-relaxed">
+            Enter your coaching credentials to continue.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form class="mt-10 space-y-6">
+          <!-- Email -->
+          <div>
+            <label class="block mb-3 uppercase tracking-[3px] text-sm font-semibold text-slate-500">
+              Email Address
+            </label>
+
+            <input type="email" placeholder="Enter your email" class="input-style" />
+          </div>
+
+          <!-- Password -->
+
+          <div>
+            <!-- Top -->
+
+            <div class="flex items-center justify-between mb-3">
+              <label class="uppercase tracking-[3px] text-sm font-semibold text-slate-500">
+                Password
+              </label>
+
+              <button type="button" id="forgotBtn" class="text-blue-700 font-medium hover:underline transition">
+                Forgot?
+              </button>
+            </div>
+
+            <!-- Password Input -->
+
+            <div class="relative">
+              <input type="password" id="password" placeholder="Enter password" class="input-style pr-14" />
+
+              <!-- Toggle Button -->
+
+              <button type="button" id="togglePassword"
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-700 transition duration-300">
+                <!-- Eye Icon -->
+
+                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                  stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5
+          c4.478 0 8.268 2.943 9.542 7
+          -1.274 4.057-5.064 7-9.542 7
+          -4.477 0-8.268-2.943-9.542-7z" />
+
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0
+          3 3 0 016 0z" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Reset Password Box -->
+
+            <div id="resetBox" class="hidden mt-4 p-4 rounded-2xl bg-blue-50 border border-blue-100">
+              <input type="password" id="newPassword" placeholder="Enter new password"
+                class="w-full px-4 py-3 rounded-xl border border-slate-300 outline-none focus:border-blue-600" />
+
+              <button type="button" id="savePassword"
+                class="mt-4 w-full bg-blue-700 hover:bg-blue-800 hover:scale-[1.02] transition duration-300 text-white py-3 rounded-xl font-semibold shadow-lg shadow-blue-100">
+                Save New Password
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember -->
+          <div class="flex items-center justify-between">
+            <label class="flex items-center gap-3 text-slate-600">
+              <input type="checkbox" class="w-5 h-5 rounded text-blue-700" />
+
+              Remember me
+            </label>
+          </div>
+
+          <!-- Button -->
+          <a href="admin page/coaching/dashboard.html" class="btn-primary btn-animate flex items-center justify-center">
+            Sign In to Dashboard →
+          </a>
+        </form>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-4 my-8">
+          <div class="flex-1 h-px bg-slate-200"></div>
+
+          <span class="text-slate-400 text-sm"> OR </span>
+
+          <div class="flex-1 h-px bg-slate-200"></div>
+        </div>
+
+        <!-- Register -->
+        <div class="text-center">
+          <p class="text-slate-500 text-lg">
+            New coaching institute?
+
+            <a href="coaching-register.html" class="text-blue-700 font-semibold hover:underline">
+              Register now
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const password = document.getElementById("password");
+
+    const togglePassword = document.getElementById("togglePassword");
+
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    togglePassword.addEventListener("click", function () {
+      if (password.type === "password") {
+        password.type = "text";
+
+        eyeIcon.innerHTML = `
+      <path stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M3 3l18 18" />
+
+      <path stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M10.477 10.489A3 3 0 0012 15
+      a3 3 0 002.51-4.523" />
+
+      <path stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M9.88 5.09A9.953 9.953 0 0112 5
+      c4.478 0 8.268 2.943 9.542 7
+      a9.97 9.97 0 01-4.132 5.411M6.228 6.228
+      A9.956 9.956 0 002.458 12
+      c1.274 4.057 5.064 7 9.542 7
+      a9.953 9.953 0 005.09-1.388" />
+    `;
+      } else {
+        password.type = "password";
+
+        eyeIcon.innerHTML = `
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M2.458 12C3.732 7.943 7.523 5 12 5
+        c4.478 0 8.268 2.943 9.542 7
+        -1.274 4.057-5.064 7-9.542 7
+        -4.477 0-8.268-2.943-9.542-7z"
+      />
+
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15 12a3 3 0 11-6 0
+        3 3 0 016 0z"
+      />
+    `;
+      }
+    });
+
+    const forgotBtn = document.getElementById("forgotBtn");
+
+    const resetBox = document.getElementById("resetBox");
+
+    const savePassword = document.getElementById("savePassword");
+
+    forgotBtn.addEventListener("click", () => {
+      resetBox.classList.toggle("hidden");
+    });
+
+    savePassword.addEventListener("click", () => {
+      const newPassword = document.getElementById("newPassword").value;
+
+      if (newPassword.length < 4) {
+        alert("Password too short 😅");
+      } else {
+        alert("New password saved successfully ✅");
+
+        resetBox.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+
+</html>

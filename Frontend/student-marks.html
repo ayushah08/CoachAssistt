@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coachly | Marks</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #071120 !important;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .grid-bg {
+
+            background-color: #071120 !important;
+
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+
+            background-size: 55px 55px;
+        }
+
+        .glass {
+
+            background: rgba(15, 23, 42, .75);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .gradient-text {
+
+            background: linear-gradient(90deg,
+                    #60A5FA,
+                    #38BDF8,
+                    #2563EB);
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .primary-btn {
+
+            background: linear-gradient(90deg,
+                    #2563EB,
+                    #38BDF8);
+
+            transition: .3s;
+        }
+
+        .primary-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 35px rgba(37, 99, 235, .3);
+        }
+
+        .table-row {
+            transition: .3s;
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, .04);
+        }
+    </style>
+
+</head>
+
+
+<body class="grid-bg">
+
+
+    <!-- ================================================= -->
+    <!-- MAIN LAYOUT -->
+    <!-- ================================================= -->
+
+    <div class="flex min-h-screen">
+
+
+        <!-- ================================================= -->
+        <!-- SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside id="sidebar"
+            class="w-72 glass border-r border-white/10 hidden lg:flex flex-col fixed lg:static inset-y-0 left-0 z-50">
+
+
+            <!-- LOGO -->
+
+            <div class="p-8 border-b border-white/10">
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-2xl font-bold">
+
+                        C
+
+                    </div>
+
+                    <div>
+
+                        <h1 class="text-3xl font-extrabold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h1>
+
+                        <p class="text-slate-400 text-sm">
+
+                            Student Dashboard
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="flex-1 p-6 space-y-3">
+
+                <a href="student-dashboard.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    🏠 Dashboard
+
+                </a>
+
+                <a href="student-profile.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    👤 My Profile
+
+                </a>
+
+                <a href="student-attendance.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📅 Attendance
+
+                </a>
+
+                <!-- ACTIVE MARKS -->
+
+                <a href="student-marks.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl bg-blue-600 text-white font-semibold">
+
+                    📘 Marks
+
+                </a>
+
+                <a href="student-announcements.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📢 Announcements
+
+                </a>
+
+                <a href="student-settings.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    ⚙️ Settings
+
+                </a>
+
+            </nav>
+
+
+            <!-- LOGOUT -->
+
+            <div class="p-6 border-t border-white/10">
+
+                <button id="logoutBtn"
+                    class="w-full py-4 rounded-2xl bg-red-600 hover:bg-red-700 duration-300 font-semibold">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <main class="flex-1 overflow-y-auto bg-[#071120] min-h-screen">
+
+
+            <div class="max-w-7xl mx-auto p-6 lg:p-8 bg-[#071120]">
+
+
+                <!-- ================================================= -->
+                <!-- TOP HEADER -->
+                <!-- ================================================= -->
+
+                <div
+                    class="glass rounded-3xl px-6 py-5 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+
+
+                    <!-- MOBILE MENU -->
+
+                    <div class="flex items-center justify-between lg:hidden">
+
+                        <button id="menuBtn"
+                            class="glass w-12 h-12 rounded-xl flex items-center justify-center text-2xl">
+
+                            ☰
+
+                        </button>
+
+                        <h2 class="text-xl font-bold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h2>
+
+                    </div>
+
+
+                    <!-- PAGE TITLE -->
+
+                    <div>
+
+                        <p class="text-cyan-400 text-sm uppercase tracking-[3px] font-semibold">
+
+                            Student Academics
+
+                        </p>
+
+                        <h2 class="text-3xl font-bold mt-2">
+
+                            My <span class="gradient-text">Marks</span>
+
+                        </h2>
+
+                        <p class="text-slate-400 mt-2">
+
+                            View your academic performance and examination results.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- PROFILE -->
+
+                    <div class="flex items-center gap-4">
+
+                        <img src="https://ui-avatars.com/api/?name=Faizan+Chougule&background=2563EB&color=fff&size=128"
+                            class="w-12 h-12 rounded-full border-2 border-cyan-400">
+
+                        <div>
+
+                            <h4 class="font-semibold">
+
+                                Faizan Chougule
+
+                            </h4>
+
+                            <p class="text-slate-400 text-sm">
+
+                                Student
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- MARKS SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
+
+
+                    <!-- Overall Marks -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Overall Marks
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-cyan-400 mt-3">
+
+                            88%
+
+                        </h3>
+
+                        <p class="text-green-400 text-sm mt-2">
+
+                            Excellent Performance
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Grade -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Current Grade
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-green-400 mt-3">
+
+                            A+
+
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mt-2">
+
+                            Outstanding
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Rank -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Class Rank
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-yellow-400 mt-3">
+
+                            #3
+
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mt-2">
+
+                            Top Performer
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Exams -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Exams Completed
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-blue-400 mt-3">
+
+                            06
+
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mt-2">
+
+                            This Academic Year
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUBJECT PERFORMANCE -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-6 lg:p-8 mt-8">
+
+
+                    <div class="mb-7">
+
+                        <h2 class="text-2xl font-bold">
+
+                            📚 Subject-wise Performance
+
+                        </h2>
+
+                        <p class="text-slate-400 mt-1">
+
+                            Your latest marks across all subjects.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="overflow-x-auto">
+
+                        <table class="w-full min-w-[750px]">
+
+                            <thead>
+
+                                <tr class="text-left border-b border-white/10 text-slate-400">
+
+                                    <th class="pb-4">
+
+                                        Subject
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Total Marks
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Obtained
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Percentage
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Grade
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Performance
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                <!-- Mathematics -->
+
+                                <tr class="table-row border-b border-white/5">
+
+                                    <td class="py-5 font-semibold">
+
+                                        Mathematics
+
+                                    </td>
+
+                                    <td>
+
+                                        100
+
+                                    </td>
+
+                                    <td class="text-cyan-400 font-bold">
+
+                                        89
+
+                                    </td>
+
+                                    <td>
+
+                                        89%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold">
+
+                                            A+
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        Excellent
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Science -->
+
+                                <tr class="table-row border-b border-white/5">
+
+                                    <td class="py-5 font-semibold">
+
+                                        Science
+
+                                    </td>
+
+                                    <td>
+
+                                        100
+
+                                    </td>
+
+                                    <td class="text-cyan-400 font-bold">
+
+                                        91
+
+                                    </td>
+
+                                    <td>
+
+                                        91%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold">
+
+                                            A+
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        Excellent
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- English -->
+
+                                <tr class="table-row border-b border-white/5">
+
+                                    <td class="py-5 font-semibold">
+
+                                        English
+
+                                    </td>
+
+                                    <td>
+
+                                        100
+
+                                    </td>
+
+                                    <td class="text-cyan-400 font-bold">
+
+                                        85
+
+                                    </td>
+
+                                    <td>
+
+                                        85%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm font-semibold">
+
+                                            A
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        Very Good
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Computer -->
+
+                                <tr class="table-row">
+
+                                    <td class="py-5 font-semibold">
+
+                                        Computer
+
+                                    </td>
+
+                                    <td>
+
+                                        100
+
+                                    </td>
+
+                                    <td class="text-cyan-400 font-bold">
+
+                                        97
+
+                                    </td>
+
+                                    <td>
+
+                                        97%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold">
+
+                                            A+
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        Outstanding
+
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUBJECT PROGRESS -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-6 lg:p-8 mt-8">
+
+
+                    <h2 class="text-2xl font-bold mb-7">
+
+                        📊 Subject Progress
+
+                    </h2>
+
+
+                    <div class="grid md:grid-cols-2 gap-7">
+
+
+                        <!-- Mathematics -->
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span class="font-semibold">
+
+                                    Mathematics
+
+                                </span>
+
+                                <span class="text-cyan-400">
+
+                                    89%
+
+                                </span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                    style="width:89%">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Science -->
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span class="font-semibold">
+
+                                    Science
+
+                                </span>
+
+                                <span class="text-cyan-400">
+
+                                    91%
+
+                                </span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                    style="width:91%">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- English -->
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span class="font-semibold">
+
+                                    English
+
+                                </span>
+
+                                <span class="text-cyan-400">
+
+                                    85%
+
+                                </span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                    style="width:85%">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Computer -->
+
+                        <div>
+
+                            <div class="flex justify-between mb-2">
+
+                                <span class="font-semibold">
+
+                                    Computer
+
+                                </span>
+
+                                <span class="text-cyan-400">
+
+                                    97%
+
+                                </span>
+
+                            </div>
+
+                            <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                    style="width:97%">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- EXAMINATION RESULTS -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-6 lg:p-8 mt-8">
+
+
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
+
+                        <div>
+
+                            <h2 class="text-2xl font-bold">
+
+                                📝 Examination Results
+
+                            </h2>
+
+                            <p class="text-slate-400 mt-1">
+
+                                Your recent examination performance.
+
+                            </p>
+
+                        </div>
+
+                        <button id="viewResultsBtn" class="primary-btn px-5 py-3 rounded-xl font-semibold">
+
+                            View All Results
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+
+
+                        <!-- Unit Test -->
+
+                        <div class="p-5 rounded-2xl bg-white/5">
+
+                            <div class="flex justify-between items-start">
+
+                                <div>
+
+                                    <h3 class="font-bold text-lg">
+
+                                        Unit Test 1
+
+                                    </h3>
+
+                                    <p class="text-slate-400 text-sm mt-1">
+
+                                        July 2026
+
+                                    </p>
+
+                                </div>
+
+                                <span class="text-green-400 font-bold">
+
+                                    91%
+
+                                </span>
+
+                            </div>
+
+                            <p class="text-slate-400 text-sm mt-4">
+
+                                Excellent performance across all subjects.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- Mid Term -->
+
+                        <div class="p-5 rounded-2xl bg-white/5">
+
+                            <div class="flex justify-between items-start">
+
+                                <div>
+
+                                    <h3 class="font-bold text-lg">
+
+                                        Mid Term Exam
+
+                                    </h3>
+
+                                    <p class="text-slate-400 text-sm mt-1">
+
+                                        July 2026
+
+                                    </p>
+
+                                </div>
+
+                                <span class="text-cyan-400 font-bold">
+
+                                    88%
+
+                                </span>
+
+                            </div>
+
+                            <p class="text-slate-400 text-sm mt-4">
+
+                                Strong academic performance.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- Unit Test 2 -->
+
+                        <div class="p-5 rounded-2xl bg-white/5">
+
+                            <div class="flex justify-between items-start">
+
+                                <div>
+
+                                    <h3 class="font-bold text-lg">
+
+                                        Unit Test 2
+
+                                    </h3>
+
+                                    <p class="text-slate-400 text-sm mt-1">
+
+                                        August 2026
+
+                                    </p>
+
+                                </div>
+
+                                <span class="text-green-400 font-bold">
+
+                                    90%
+
+                                </span>
+
+                            </div>
+
+                            <p class="text-slate-400 text-sm mt-4">
+
+                                Performance improved from previous test.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- PERFORMANCE SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+
+                    <!-- Performance -->
+
+                    <div class="glass rounded-3xl p-6 lg:p-8">
+
+                        <h2 class="text-2xl font-bold mb-7">
+
+                            🎯 Performance Summary
+
+                        </h2>
+
+
+                        <div class="space-y-6">
+
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span>
+
+                                        Academic Performance
+
+                                    </span>
+
+                                    <span class="text-cyan-400">
+
+                                        88%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                    <div class="h-3 rounded-full bg-blue-500" style="width:88%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span>
+
+                                        Test Performance
+
+                                    </span>
+
+                                    <span class="text-cyan-400">
+
+                                        91%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                    <div class="h-3 rounded-full bg-cyan-400" style="width:91%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span>
+
+                                        Assignment Performance
+
+                                    </span>
+
+                                    <span class="text-green-400">
+
+                                        95%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-700 rounded-full">
+
+                                    <div class="h-3 rounded-full bg-green-500" style="width:95%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Teacher Remarks -->
+
+                    <div class="glass rounded-3xl p-6 lg:p-8">
+
+                        <h2 class="text-2xl font-bold mb-5">
+
+                            👨‍🏫 Teacher Remarks
+
+                        </h2>
+
+                        <div class="p-5 rounded-2xl bg-cyan-500/10 border border-cyan-500/20">
+
+                            <p class="text-slate-300 leading-7">
+
+                                "Faizan is performing very well academically.
+                                His consistency and attendance are excellent.
+                                Continue focusing on English to improve the
+                                overall score."
+
+                            </p>
+
+                            <p class="text-cyan-400 font-semibold mt-4">
+
+                                — Class Teacher
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- TOP SUBJECT -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-6 lg:p-8 mt-8">
+
+
+                    <div class="flex flex-col md:flex-row md:items-center gap-6">
+
+
+                        <div class="w-20 h-20 rounded-2xl bg-green-500/20 flex items-center justify-center text-4xl">
+
+                            🏆
+
+                        </div>
+
+
+                        <div>
+
+                            <p class="text-slate-400 text-sm uppercase tracking-[2px]">
+
+                                Best Performing Subject
+
+                            </p>
+
+                            <h2 class="text-3xl font-extrabold mt-2">
+
+                                Computer Science
+
+                            </h2>
+
+                            <p class="text-slate-400 mt-2">
+
+                                You scored
+
+                                <span class="text-green-400 font-bold">
+
+                                    97%
+
+                                </span>
+
+                                in your latest examination.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FOOTER -->
+                <!-- ================================================= -->
+
+                <footer class="mt-10 glass rounded-3xl p-6 text-center text-slate-400">
+
+                    © 2026 Coachly Student Portal
+
+                    <br>
+
+                    Built with ❤️ using HTML, Tailwind CSS & JavaScript
+
+                </footer>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+
+
+        // =========================
+        // MOBILE MENU
+        // =========================
+
+        const menuBtn = document.getElementById("menuBtn");
+
+        const sidebar = document.getElementById("sidebar");
+
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.toggle("hidden");
+
+        });
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener("click", () => {
+
+
+                const confirmLogout =
+                    confirm("Are you sure you want to logout?");
+
+
+                if (confirmLogout) {
+
+                    window.location.href =
+                        "student-login.html";
+
+                }
+
+            });
+
+
+        // =========================
+        // VIEW ALL RESULTS
+        // =========================
+
+        document
+            .getElementById("viewResultsBtn")
+            .addEventListener("click", () => {
+
+                alert("Complete examination results will be available here.");
+
+            });
+
+
+    </script>
+
+
+</body>
+
+</html>
