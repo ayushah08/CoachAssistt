@@ -32,8 +32,5 @@ public class CoachingController {
         return coachingService.login(loginRequest);
     }
 
-    @GetMapping("/health")
-    public ResponseEntity<String> health(){
-        return ResponseEntity.status(HttpStatus.OK).body("Api's are running Succesfully");
-    }
+
 }
