@@ -1,5 +1,6 @@
 package Api_Gateway.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -11,14 +12,18 @@ import java.util.List;
 @Configuration
 public class GatewayCorsConfig {
 
+    @Value("${FRONTEND_ORIGIN:http://localhost:5501}")
+    private String frontendOrigin;
+
     @Bean
     public CorsWebFilter corsWebFilter() {
 
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-                "http://127.0.0.1:5501",
-                "http://localhost:5501"
+                frontendOrigin,
+                "http://localhost:5501",
+                "http://127.0.0.1:5501"
         ));
 
         config.setAllowedMethods(List.of(
