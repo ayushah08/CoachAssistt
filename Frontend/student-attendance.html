@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coachly | Attendance</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #071120 !important;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .grid-bg {
+
+            background-color: #071120 !important;
+
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+
+            background-size: 55px 55px;
+        }
+
+        .glass {
+
+            background: rgba(15, 23, 42, .75);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .gradient-text {
+
+            background: linear-gradient(90deg,
+                    #60A5FA,
+                    #38BDF8,
+                    #2563EB);
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .primary-btn {
+
+            background: linear-gradient(90deg,
+                    #2563EB,
+                    #38BDF8);
+
+            transition: .3s;
+        }
+
+        .primary-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 35px rgba(37, 99, 235, .3);
+        }
+
+        .attendance-progress {
+
+            background:
+                conic-gradient(#38BDF8 0deg 331deg,
+                    #1e293b 331deg 360deg);
+        }
+
+        .table-row {
+
+            transition: .3s;
+        }
+
+        .table-row:hover {
+
+            background: rgba(255, 255, 255, .04);
+        }
+    </style>
+
+</head>
+
+
+<body class="grid-bg">
+
+
+    <!-- ================================================= -->
+    <!-- MAIN LAYOUT -->
+    <!-- ================================================= -->
+
+    <div class="flex min-h-screen">
+
+
+        <!-- ================================================= -->
+        <!-- SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside id="sidebar"
+            class="w-72 glass border-r border-white/10 hidden lg:flex flex-col fixed lg:static inset-y-0 left-0 z-50">
+
+
+            <!-- LOGO -->
+
+            <div class="p-8 border-b border-white/10">
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-2xl font-bold">
+
+                        C
+
+                    </div>
+
+                    <div>
+
+                        <h1 class="text-3xl font-extrabold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h1>
+
+                        <p class="text-slate-400 text-sm">
+
+                            Student Dashboard
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="flex-1 p-6 space-y-3">
+
+
+                <a href="student-dashboard.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    🏠 Dashboard
+
+                </a>
+
+
+                <a href="student-profile.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    👤 My Profile
+
+                </a>
+
+
+                <!-- ACTIVE -->
+
+                <a href="student-attendance.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl bg-blue-600 text-white font-semibold">
+
+                    📅 Attendance
+
+                </a>
+
+
+                <a href="student-marks.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📘 Marks
+
+                </a>
+
+
+                <a href="student-announcements.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📢 Announcements
+
+                </a>
+
+
+                <a href="student-settings.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    ⚙️ Settings
+
+                </a>
+
+            </nav>
+
+
+            <!-- LOGOUT -->
+
+            <div class="p-6 border-t border-white/10">
+
+                <button id="logoutBtn"
+                    class="w-full py-4 rounded-2xl bg-red-600 hover:bg-red-700 duration-300 font-semibold">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <main class="flex-1 overflow-y-auto bg-[#071120] min-h-screen">
+
+
+            <div class="max-w-7xl mx-auto p-6 lg:p-8 bg-[#071120]">
+
+
+                <!-- ================================================= -->
+                <!-- TOP HEADER -->
+                <!-- ================================================= -->
+
+                <div
+                    class="glass rounded-3xl px-6 py-5 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+
+
+                    <!-- MOBILE MENU -->
+
+                    <div class="flex items-center justify-between lg:hidden">
+
+                        <button id="menuBtn"
+                            class="glass w-12 h-12 rounded-xl flex items-center justify-center text-2xl">
+
+                            ☰
+
+                        </button>
+
+                        <h2 class="text-xl font-bold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h2>
+
+                    </div>
+
+
+                    <!-- TITLE -->
+
+                    <div>
+
+                        <p class="text-cyan-400 text-sm uppercase tracking-[3px] font-semibold">
+
+                            Student Attendance
+
+                        </p>
+
+                        <h2 class="text-3xl font-bold mt-2">
+
+                            Attendance <span class="gradient-text">Overview</span>
+
+                        </h2>
+
+                        <p class="text-slate-400 mt-2">
+
+                            Track your attendance and daily presence.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- PROFILE -->
+
+                    <div class="flex items-center gap-4">
+
+                        <img src="https://ui-avatars.com/api/?name=Faizan+Chougule&background=2563EB&color=fff&size=128"
+                            class="w-12 h-12 rounded-full border-2 border-cyan-400">
+
+                        <div>
+
+                            <h4 class="font-semibold">
+
+                                Faizan Chougule
+
+                            </h4>
+
+                            <p class="text-slate-400 text-sm">
+
+                                Student
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ATTENDANCE SUMMARY -->
+                <!-- ================================================= -->
+
+                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
+
+
+                    <!-- Overall -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Overall Attendance
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-cyan-400 mt-3">
+
+                            92%
+
+                        </h3>
+
+                        <p class="text-green-400 text-sm mt-2">
+
+                            Excellent
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Present -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Total Present
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-green-400 mt-3">
+
+                            46
+
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mt-2">
+
+                            Days Present
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Absent -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Total Absent
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-red-400 mt-3">
+
+                            4
+
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mt-2">
+
+                            Days Absent
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Leave -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Total Leave
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-yellow-400 mt-3">
+
+                            2
+
+                        </h3>
+
+                        <p class="text-slate-400 text-sm mt-2">
+
+                            Approved Leave
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ATTENDANCE MAIN SECTION -->
+                <!-- ================================================= -->
+
+                <div class="grid lg:grid-cols-3 gap-6 mt-8">
+
+
+                    <!-- CIRCLE -->
+
+                    <div class="glass rounded-3xl p-8 flex flex-col items-center justify-center">
+
+
+                        <h2 class="text-2xl font-bold mb-8">
+
+                            Overall Attendance
+
+                        </h2>
+
+
+                        <div class="attendance-progress w-52 h-52 rounded-full flex items-center justify-center">
+
+                            <div class="w-40 h-40 rounded-full bg-[#0f172a] flex flex-col items-center justify-center">
+
+                                <span class="text-5xl font-extrabold text-cyan-400">
+
+                                    92%
+
+                                </span>
+
+                                <span class="text-slate-400 text-sm mt-1">
+
+                                    Attendance
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex items-center gap-5 mt-8">
+
+                            <div class="flex items-center gap-2">
+
+                                <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+
+                                <span class="text-slate-400 text-sm">
+
+                                    Present
+
+                                </span>
+
+                            </div>
+
+                            <div class="flex items-center gap-2">
+
+                                <span class="w-3 h-3 rounded-full bg-slate-700"></span>
+
+                                <span class="text-slate-400 text-sm">
+
+                                    Remaining
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MONTHLY PROGRESS -->
+
+                    <div class="glass rounded-3xl p-8 lg:col-span-2">
+
+                        <h2 class="text-2xl font-bold mb-7">
+
+                            📅 Monthly Attendance
+
+                        </h2>
+
+
+                        <div class="space-y-7">
+
+
+                            <!-- June -->
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span class="font-semibold">
+
+                                        June 2026
+
+                                    </span>
+
+                                    <span class="text-cyan-400 font-bold">
+
+                                        94%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                        style="width:94%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- July -->
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span class="font-semibold">
+
+                                        July 2026
+
+                                    </span>
+
+                                    <span class="text-cyan-400 font-bold">
+
+                                        91%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                        style="width:91%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- August -->
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span class="font-semibold">
+
+                                        August 2026
+
+                                    </span>
+
+                                    <span class="text-cyan-400 font-bold">
+
+                                        92%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-700 rounded-full overflow-hidden">
+
+                                    <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                        style="width:92%">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="mt-8 p-5 rounded-2xl bg-green-500/10 border border-green-500/20">
+
+                            <h4 class="text-green-400 font-semibold">
+
+                                ✓ Excellent Attendance
+
+                            </h4>
+
+                            <p class="text-slate-400 text-sm mt-2">
+
+                                Your attendance is above the recommended 75% requirement.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUBJECT ATTENDANCE -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-6 lg:p-8 mt-8">
+
+
+                    <div class="mb-7">
+
+                        <h2 class="text-2xl font-bold">
+
+                            📚 Subject-wise Attendance
+
+                        </h2>
+
+                        <p class="text-slate-400 mt-1">
+
+                            Attendance performance for each subject.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="overflow-x-auto">
+
+                        <table class="w-full min-w-[700px]">
+
+                            <thead>
+
+                                <tr class="text-left border-b border-white/10 text-slate-400">
+
+                                    <th class="pb-4">
+
+                                        Subject
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Total Classes
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Present
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Absent
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Attendance
+
+                                    </th>
+
+                                    <th class="pb-4">
+
+                                        Status
+
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                <!-- Mathematics -->
+
+                                <tr class="table-row border-b border-white/5">
+
+                                    <td class="py-5 font-semibold">
+
+                                        Mathematics
+
+                                    </td>
+
+                                    <td>
+
+                                        50
+
+                                    </td>
+
+                                    <td class="text-green-400">
+
+                                        47
+
+                                    </td>
+
+                                    <td class="text-red-400">
+
+                                        3
+
+                                    </td>
+
+                                    <td class="font-bold">
+
+                                        94%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">
+
+                                            Excellent
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Science -->
+
+                                <tr class="table-row border-b border-white/5">
+
+                                    <td class="py-5 font-semibold">
+
+                                        Science
+
+                                    </td>
+
+                                    <td>
+
+                                        50
+
+                                    </td>
+
+                                    <td class="text-green-400">
+
+                                        45
+
+                                    </td>
+
+                                    <td class="text-red-400">
+
+                                        5
+
+                                    </td>
+
+                                    <td class="font-bold">
+
+                                        90%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">
+
+                                            Good
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- English -->
+
+                                <tr class="table-row border-b border-white/5">
+
+                                    <td class="py-5 font-semibold">
+
+                                        English
+
+                                    </td>
+
+                                    <td>
+
+                                        45
+
+                                    </td>
+
+                                    <td class="text-green-400">
+
+                                        40
+
+                                    </td>
+
+                                    <td class="text-red-400">
+
+                                        5
+
+                                    </td>
+
+                                    <td class="font-bold">
+
+                                        89%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">
+
+                                            Good
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Computer -->
+
+                                <tr class="table-row">
+
+                                    <td class="py-5 font-semibold">
+
+                                        Computer
+
+                                    </td>
+
+                                    <td>
+
+                                        48
+
+                                    </td>
+
+                                    <td class="text-green-400">
+
+                                        46
+
+                                    </td>
+
+                                    <td class="text-red-400">
+
+                                        2
+
+                                    </td>
+
+                                    <td class="font-bold">
+
+                                        96%
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm">
+
+                                            Excellent
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ATTENDANCE HISTORY -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-6 lg:p-8 mt-8">
+
+
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7">
+
+                        <div>
+
+                            <h2 class="text-2xl font-bold">
+
+                                🕒 Recent Attendance
+
+                            </h2>
+
+                            <p class="text-slate-400 mt-1">
+
+                                Your latest attendance records.
+
+                            </p>
+
+                        </div>
+
+                        <button id="viewAllBtn" class="primary-btn px-5 py-3 rounded-xl font-semibold">
+
+                            View All
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="space-y-3">
+
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-2xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+
+                                    Mathematics
+
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+
+                                    17 August 2026
+
+                                </p>
+
+                            </div>
+
+                            <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-400 font-semibold text-sm">
+
+                                Present
+
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-2xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+
+                                    Science
+
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+
+                                    16 August 2026
+
+                                </p>
+
+                            </div>
+
+                            <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-400 font-semibold text-sm">
+
+                                Present
+
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-2xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+
+                                    English
+
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+
+                                    15 August 2026
+
+                                </p>
+
+                            </div>
+
+                            <span class="px-4 py-2 rounded-full bg-red-500/20 text-red-400 font-semibold text-sm">
+
+                                Absent
+
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-2xl bg-white/5">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+
+                                    Computer
+
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+
+                                    14 August 2026
+
+                                </p>
+
+                            </div>
+
+                            <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-400 font-semibold text-sm">
+
+                                Present
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ATTENDANCE TIPS -->
+                <!-- ================================================= -->
+
+                <div class="grid lg:grid-cols-2 gap-6 mt-8">
+
+
+                    <!-- Status -->
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <h2 class="text-2xl font-bold mb-6">
+
+                            🎯 Attendance Target
+
+                        </h2>
+
+
+                        <div class="flex items-center justify-between mb-3">
+
+                            <span class="text-slate-400">
+
+                                Current
+
+                            </span>
+
+                            <span class="font-bold text-cyan-400">
+
+                                92%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="w-full h-4 bg-slate-700 rounded-full overflow-hidden">
+
+                            <div class="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                                style="width:92%">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex justify-between mt-3 text-sm">
+
+                            <span class="text-slate-500">
+
+                                Minimum: 75%
+
+                            </span>
+
+                            <span class="text-green-400">
+
+                                Target Achieved ✓
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Tip -->
+
+                    <div class="glass rounded-3xl p-6 border border-cyan-500/20">
+
+                        <h2 class="text-2xl font-bold mb-4">
+
+                            💡 Attendance Tip
+
+                        </h2>
+
+                        <p class="text-slate-400 leading-7">
+
+                            Maintain regular attendance to stay updated with
+                            classes, assignments and important coaching
+                            announcements.
+
+                        </p>
+
+
+                        <div class="mt-5 p-4 rounded-2xl bg-cyan-500/10">
+
+                            <p class="text-cyan-300 font-semibold">
+
+                                Keep it up! 🚀
+
+                            </p>
+
+                            <p class="text-slate-400 text-sm mt-1">
+
+                                Your attendance is currently excellent.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FOOTER -->
+                <!-- ================================================= -->
+
+                <footer class="mt-10 glass rounded-3xl p-6 text-center text-slate-400">
+
+                    © 2026 Coachly Student Portal
+
+                    <br>
+
+                    Built with ❤️ using HTML, Tailwind CSS & JavaScript
+
+                </footer>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+
+
+        // =========================
+        // MOBILE MENU
+        // =========================
+
+        const menuBtn = document.getElementById("menuBtn");
+
+        const sidebar = document.getElementById("sidebar");
+
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.toggle("hidden");
+
+        });
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener("click", () => {
+
+
+                const confirmLogout =
+                    confirm("Are you sure you want to logout?");
+
+
+                if (confirmLogout) {
+
+                    window.location.href =
+                        "student-login.html";
+
+                }
+
+            });
+
+
+        // =========================
+        // VIEW ALL
+        // =========================
+
+        document
+            .getElementById("viewAllBtn")
+            .addEventListener("click", () => {
+
+                alert("Full attendance history will be available here.");
+
+            });
+
+
+    </script>
+
+
+</body>
+
+</html>

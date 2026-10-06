@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Coachly - Pending Approval</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f8fafc;
+    }
+
+    .grid-bg{
+      background-image:
+      linear-gradient(to right, rgba(15,23,42,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15,23,42,0.05) 1px, transparent 1px);
+      background-size:55px 55px;
+    }
+
+    .float{
+      animation:float 3s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-8px);
+      }
+
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    .pulse-ring{
+      animation:pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+      0%{
+        transform:scale(1);
+        opacity:1;
+      }
+
+      100%{
+        transform:scale(1.4);
+        opacity:0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Section -->
+  <section class="min-h-screen grid-bg flex items-center justify-center px-4 py-6 md:px-6 md:py-10">
+
+    <!-- Card -->
+    <div class="w-full max-w-7xl bg-white border border-slate-200 rounded-[25px] md:rounded-[40px] overflow-hidden shadow-xl">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+
+        <!-- LEFT SIDE -->
+        <div class="bg-slate-900 p-6 md:p-10 lg:p-14 relative overflow-hidden">
+
+          <!-- Glow -->
+          <div class="absolute top-0 right-0 w-72 h-72 bg-blue-600 rounded-full blur-[120px] opacity-30"></div>
+
+          <!-- Content -->
+          <div class="relative z-10 h-full flex flex-col justify-between">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-4">
+
+              <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white font-bold text-2xl shrink-0">
+                C
+              </div>
+
+              <h1 class="text-2xl md:text-3xl font-bold text-white break-words">
+                Coachly
+              </h1>
+
+            </div>
+
+            <!-- Middle -->
+            <div class="mt-12 md:mt-16">
+
+              <div class="mb-6">
+                <span class="uppercase tracking-[4px] text-xs md:text-sm text-blue-200 border-b border-blue-300/30 pb-1 font-semibold">
+                  Approval Pending
+                </span>
+              </div>
+
+              <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight break-words">
+                Your coaching request
+                is under review.
+              </h1>
+
+              <p class="mt-6 md:mt-8 text-slate-300 text-base md:text-xl leading-relaxed break-words">
+                Our admin team is reviewing your institute details
+                and verification documents.
+              </p>
+
+              <!-- Status Cards -->
+              <div class="mt-10 md:mt-12 space-y-5">
+
+                <!-- Card -->
+                <div class="bg-white/10 border border-white/10 rounded-3xl p-5 backdrop-blur-md float">
+
+                  <div class="flex items-start gap-4">
+
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-2xl shrink-0">
+                      📄
+                    </div>
+
+                    <div class="min-w-0">
+
+                      <h3 class="text-white text-lg md:text-xl font-semibold break-words">
+                        Documents Submitted
+                      </h3>
+
+                      <p class="text-slate-300 mt-2 leading-relaxed text-sm md:text-base break-words">
+                        Your institute details and verification files
+                        were successfully submitted.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <!-- Card -->
+                <div class="bg-white/10 border border-white/10 rounded-3xl p-5 backdrop-blur-md float">
+
+                  <div class="flex items-start gap-4">
+
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-2xl shrink-0">
+                      ⏳
+                    </div>
+
+                    <div class="min-w-0">
+
+                      <h3 class="text-white text-lg md:text-xl font-semibold break-words">
+                        Waiting For Approval
+                      </h3>
+
+                      <p class="text-slate-300 mt-2 leading-relaxed text-sm md:text-base break-words">
+                        You’ll receive access to the coaching dashboard
+                        after admin approval.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Bottom -->
+            <div class="text-slate-400 text-sm mt-10 md:mt-14 break-words">
+              © 2026 Coachly Platform
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="bg-white p-6 md:p-10 lg:p-14">
+
+          <div class="text-center">
+
+            <!-- Success Animation -->
+            <div class="relative w-28 h-28 md:w-40 md:h-40 mx-auto">
+
+              <!-- Ring -->
+              <div class="absolute inset-0 rounded-full bg-blue-100 pulse-ring"></div>
+
+              <!-- Main Circle -->
+              <div class="relative z-10 w-full h-full rounded-full bg-blue-700 flex items-center justify-center shadow-2xl">
+
+                <span class="text-4xl md:text-6xl text-white">
+                  ✓
+                </span>
+
+              </div>
+
+            </div>
+
+            <!-- Heading -->
+            <h2 class="mt-10 md:mt-12 text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight break-words">
+              Request submitted successfully
+            </h2>
+
+            <!-- Description -->
+            <p class="mt-5 md:mt-6 text-slate-500 text-base md:text-xl leading-relaxed max-w-xl mx-auto break-words">
+              Your coaching verification request has been sent to the admin.
+              Please wait while we review your information.
+            </p>
+
+            <!-- Info Box -->
+            <div class="mt-8 md:mt-10 bg-blue-50 border border-blue-100 rounded-3xl p-5 md:p-6 text-left">
+
+              <div class="flex items-start gap-4">
+
+                <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl shrink-0">
+                  🔔
+                </div>
+
+                <div class="min-w-0">
+
+                  <h3 class="text-lg md:text-xl font-bold text-slate-900 break-words">
+                    What happens next?
+                  </h3>
+
+                  <ul class="mt-4 space-y-3 text-slate-600 leading-relaxed text-sm md:text-base break-words">
+
+                    <li>
+                      • Admin reviews your institute details
+                    </li>
+
+                    <li>
+                      • Verification documents are checked
+                    </li>
+
+                    <li>
+                      • Coaching dashboard access gets activated
+                    </li>
+
+                    <li>
+                      • Login access will be available after approval
+                    </li>
+
+                  </ul>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+
+              <!-- Home -->
+              <a
+                href="index.html"
+                class="flex-1 bg-blue-700 hover:bg-blue-800 transition text-white py-4 rounded-2xl font-semibold text-base md:text-lg shadow-lg shadow-blue-100 text-center"
+              >
+                Back to Home
+              </a>
+
+              <!-- Login -->
+              <a
+                href="coaching-login.html"
+                class="flex-1 border border-slate-300 hover:border-slate-400 bg-white py-4 rounded-2xl font-semibold text-base md:text-lg text-slate-700 transition text-center"
+              >
+                Coaching Login
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

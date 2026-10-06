@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coachly | Create Student</title>
+
+
+    <!-- ===================================================== -->
+    <!-- TAILWIND CSS -->
+    <!-- ===================================================== -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- ===================================================== -->
+    <!-- GOOGLE FONT -->
+    <!-- ===================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- ===================================================== -->
+    <!-- CUSTOM CSS -->
+    <!-- ===================================================== -->
+
+    <style>
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: "Inter", sans-serif;
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            background: #071120;
+
+            color: white;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* ===================================================== */
+        /* GRID BACKGROUND */
+        /* ===================================================== */
+
+        .grid-bg {
+
+            background:
+
+                linear-gradient(rgba(255, 255, 255, .03) 1px,
+                    transparent 1px),
+
+                linear-gradient(90deg,
+                    rgba(255, 255, 255, .03) 1px,
+                    transparent 1px);
+
+            background-size: 55px 55px;
+
+        }
+
+
+        /* ===================================================== */
+        /* GLASS */
+        /* ===================================================== */
+
+        .glass {
+
+            background: rgba(15, 23, 42, .75);
+
+            backdrop-filter: blur(22px);
+
+            -webkit-backdrop-filter: blur(22px);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+
+        }
+
+
+        /* ===================================================== */
+        /* GLOW */
+        /* ===================================================== */
+
+        .glow {
+
+            position: absolute;
+
+            width: 480px;
+
+            height: 480px;
+
+            background: #2563EB;
+
+            filter: blur(180px);
+
+            opacity: .16;
+
+            border-radius: 9999px;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        .glow2 {
+
+            position: absolute;
+
+            width: 380px;
+
+            height: 380px;
+
+            background: #38BDF8;
+
+            filter: blur(160px);
+
+            opacity: .13;
+
+            border-radius: 9999px;
+
+            z-index: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        /* ===================================================== */
+        /* GRADIENT TEXT */
+        /* ===================================================== */
+
+        .gradient-text {
+
+            background:
+
+                linear-gradient(90deg,
+                    #60A5FA,
+                    #38BDF8,
+                    #2563EB);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        /* ===================================================== */
+        /* INPUT */
+        /* ===================================================== */
+
+        .input-style {
+
+            width: 100%;
+
+            padding: 16px 18px;
+
+            background: rgba(255, 255, 255, .04);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            border-radius: 16px;
+
+            color: white;
+
+            transition: .3s;
+
+            font-size: 16px;
+
+        }
+
+
+        .input-style::placeholder {
+
+            color: #94A3B8;
+
+        }
+
+
+        .input-style:hover {
+
+            border-color: rgba(56, 189, 248, .45);
+
+        }
+
+
+        .input-style:focus {
+
+            outline: none;
+
+            border-color: #38BDF8;
+
+            box-shadow:
+
+                0 0 0 4px rgba(56, 189, 248, .12);
+
+        }
+
+
+        /* ===================================================== */
+        /* PRIMARY BUTTON */
+        /* ===================================================== */
+
+        .primary-btn {
+
+            background:
+
+                linear-gradient(90deg,
+                    #2563EB,
+                    #38BDF8);
+
+            transition: .35s;
+
+        }
+
+
+        .primary-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+
+                0 20px 45px rgba(37, 99, 235, .35);
+
+        }
+
+
+        .primary-btn:disabled {
+
+            opacity: .7;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* ===================================================== */
+        /* FEATURE CARD */
+        /* ===================================================== */
+
+        .feature-card {
+
+            transition: .35s;
+
+        }
+
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: rgba(56, 189, 248, .35);
+
+            box-shadow:
+
+                0 20px 50px rgba(37, 99, 235, .16);
+
+        }
+
+
+        /* ===================================================== */
+        /* PASSWORD MESSAGE */
+        /* ===================================================== */
+
+        .password-message {
+
+            min-height: 20px;
+
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE */
+        /* ===================================================== */
+
+        @media (max-width: 640px) {
+
+            .glow {
+
+                width: 300px;
+
+                height: 300px;
+
+            }
+
+
+            .glow2 {
+
+                width: 250px;
+
+                height: 250px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN SECTION -->
+    <!-- ===================================================== -->
+
+    <section class="min-h-screen grid-bg relative overflow-hidden px-5 py-10 md:py-14 flex items-center justify-center">
+
+
+        <!-- ================================================= -->
+        <!-- BACKGROUND GLOWS -->
+        <!-- ================================================= -->
+
+        <div class="glow -top-40 -left-32"></div>
+
+        <div class="glow2 bottom-0 right-0"></div>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTAINER -->
+        <!-- ================================================= -->
+
+        <div class="relative z-10 w-full max-w-7xl">
+
+
+            <div class="grid lg:grid-cols-2 glass rounded-[36px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,.45)]">
+
+
+                <!-- ================================================= -->
+                <!-- LEFT SIDE -->
+                <!-- ================================================= -->
+
+                <div class="hidden lg:flex flex-col justify-between p-12 xl:p-14 relative overflow-hidden">
+
+
+                    <!-- LOGO -->
+
+                    <div>
+
+                        <div class="flex items-center gap-4">
+
+
+                            <div
+                                class="w-16 h-16 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-3xl font-bold shadow-xl">
+
+                                C
+
+                            </div>
+
+
+                            <div>
+
+                                <h1 class="text-4xl font-extrabold">
+
+                                    Coach<span class="gradient-text">
+                                        ly
+                                    </span>
+
+                                </h1>
+
+
+                                <p class="text-slate-400">
+
+                                    Coaching Management
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HERO -->
+
+                    <div class="mt-20">
+
+
+                        <span
+                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass text-xs tracking-[3px] uppercase text-cyan-300">
+
+                            👨‍🎓 Student Management
+
+                        </span>
+
+
+                        <h2 class="mt-8 text-6xl font-extrabold leading-tight">
+
+                            Create A
+
+                            <span class="gradient-text">
+
+                                New Student
+
+                            </span>
+
+                        </h2>
+
+
+                        <p class="mt-8 text-slate-300 text-xl leading-9">
+
+                            Add a new student to your coaching institute
+                            and provide secure login credentials for
+                            their Coachly student portal.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- FEATURE CARDS -->
+
+                    <div class="space-y-5 mt-14">
+
+
+                        <!-- PROFILE -->
+
+                        <div class="glass rounded-3xl p-5 feature-card flex gap-5 items-center">
+
+                            <div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center text-3xl">
+
+                                👤
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="font-bold text-xl">
+
+                                    Student Profile
+
+                                </h3>
+
+
+                                <p class="text-slate-400 mt-2">
+
+                                    Store student information securely.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LOGIN -->
+
+                        <div class="glass rounded-3xl p-5 feature-card flex gap-5 items-center">
+
+                            <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-3xl">
+
+                                🔐
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="font-bold text-xl">
+
+                                    Student Login
+
+                                </h3>
+
+
+                                <p class="text-slate-400 mt-2">
+
+                                    Student can access their own dashboard.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- MANAGEMENT -->
+
+                        <div class="glass rounded-3xl p-5 feature-card flex gap-5 items-center">
+
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center text-3xl">
+
+                                📊
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="font-bold text-xl">
+
+                                    Easy Management
+
+                                </h3>
+
+
+                                <p class="text-slate-400 mt-2">
+
+                                    Manage students from your coaching panel.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="mt-12 text-slate-500">
+
+                        © 2026 Coachly
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- RIGHT SIDE -->
+                <!-- ================================================= -->
+
+                <div class="glass p-8 md:p-12 xl:p-14 flex items-center border-l border-white/10">
+
+
+                    <div class="w-full">
+
+
+                        <!-- ================================================= -->
+                        <!-- MOBILE LOGO -->
+                        <!-- ================================================= -->
+
+                        <div class="flex lg:hidden items-center gap-4 mb-10">
+
+
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-xl">
+
+                                C
+
+                            </div>
+
+
+                            <h1 class="text-3xl font-bold">
+
+                                Coachly
+
+                            </h1>
+
+                        </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- BADGE -->
+                        <!-- ================================================= -->
+
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[3px] text-cyan-300">
+
+                            👨‍🎓 Create Student
+
+                        </span>
+
+
+                        <!-- ================================================= -->
+                        <!-- HEADING -->
+                        <!-- ================================================= -->
+
+                        <h2 class="mt-7 text-5xl md:text-6xl font-extrabold leading-tight">
+
+                            Add
+
+                            <span class="gradient-text">
+
+                                Student
+
+                            </span>
+
+                        </h2>
+
+
+                        <p class="mt-5 text-slate-400 text-lg leading-8">
+
+                            Enter the student's details to create
+                            their Coachly account.
+
+                        </p>
+
+
+                        <!-- ================================================= -->
+                        <!-- FORM -->
+                        <!-- ================================================= -->
+
+                        <form id="studentCreateForm" class="mt-10 space-y-7">
+
+
+                            <!-- ================================================= -->
+                            <!-- FIRST NAME -->
+                            <!-- ================================================= -->
+
+                            <div>
+
+
+                                <label for="firstName"
+                                    class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    First Name
+
+                                </label>
+
+
+                                <input id="firstName" type="text" placeholder="Enter first name" class="input-style"
+                                    autocomplete="given-name" required>
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- SURNAME -->
+                            <!-- ================================================= -->
+
+                            <div>
+
+
+                                <label for="surname"
+                                    class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    Surname
+
+                                </label>
+
+
+                                <input id="surname" type="text" placeholder="Enter surname" class="input-style"
+                                    autocomplete="family-name" required>
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- EMAIL -->
+                            <!-- ================================================= -->
+
+                            <div>
+
+
+                                <label for="studentEmail"
+                                    class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    Email Address
+
+                                </label>
+
+
+                                <input id="studentEmail" type="email" placeholder="Enter student email"
+                                    class="input-style" autocomplete="email" required>
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- PASSWORD -->
+                            <!-- ================================================= -->
+
+                            <div>
+
+
+                                <label for="password"
+                                    class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    Password
+
+                                </label>
+
+
+                                <div class="relative">
+
+
+                                    <input id="password" type="password" placeholder="Create password"
+                                        class="input-style pr-14" autocomplete="new-password" required>
+
+
+                                    <!-- PASSWORD TOGGLE -->
+
+                                    <button type="button" id="togglePassword" aria-label="Show password"
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-cyan-400 transition">
+
+
+                                        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"
+                                            class="w-6 h-6">
+
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5
+                                                c4.478 0 8.268 2.943 9.542 7
+                                                -1.274 4.057-5.064 7-9.542 7
+                                                -4.477 0-8.268-2.943-9.542-7z" />
+
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0
+                                                3 3 0 016 0z" />
+
+                                        </svg>
+
+
+                                    </button>
+
+                                </div>
+
+
+                                <p id="passwordMessage" class="password-message text-sm mt-2 text-slate-500"></p>
+
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- CONFIRM PASSWORD -->
+                            <!-- ================================================= -->
+
+                            <div>
+
+
+                                <label for="confirmPassword"
+                                    class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    Confirm Password
+
+                                </label>
+
+
+                                <input id="confirmPassword" type="password" placeholder="Confirm password"
+                                    class="input-style" autocomplete="new-password" required>
+
+
+                                <p id="confirmMessage" class="password-message text-sm mt-2 text-slate-500"></p>
+
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- INFORMATION BOX -->
+                            <!-- ================================================= -->
+
+                            <div class="glass rounded-2xl p-5">
+
+
+                                <h4 class="text-cyan-300 font-semibold">
+
+                                    🔐 Student Account
+
+                                </h4>
+
+
+                                <p class="text-slate-400 mt-2 leading-7 text-sm">
+
+                                    The student's email and password will
+                                    be used to access the Student Portal.
+
+                                </p>
+
+
+                            </div>
+
+
+                            <!-- ================================================= -->
+                            <!-- CREATE BUTTON -->
+                            <!-- ================================================= -->
+
+                            <button id="createStudentBtn" type="submit"
+                                class="primary-btn w-full py-5 rounded-2xl text-lg font-bold text-white flex items-center justify-center gap-3 shadow-xl shadow-blue-600/30 hover:scale-[1.02] duration-300">
+
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4" />
+
+                                </svg>
+
+
+                                Create Student
+
+
+                            </button>
+
+
+                        </form>
+
+
+                        <!-- ================================================= -->
+                        <!-- DIVIDER -->
+                        <!-- ================================================= -->
+
+                        <div class="flex items-center gap-4 my-8">
+
+
+                            <div class="flex-1 h-px bg-white/10"></div>
+
+
+                            <span class="text-slate-500 text-sm">
+
+                                COACHING PANEL
+
+                            </span>
+
+
+                            <div class="flex-1 h-px bg-white/10"></div>
+
+
+                        </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- SECURITY INFO -->
+                        <!-- ================================================= -->
+
+                        <div class="glass rounded-2xl p-5">
+
+
+                            <h4 class="text-green-400 font-semibold">
+
+                                🛡 Secure Student Creation
+
+                            </h4>
+
+
+                            <p class="text-slate-400 mt-3 leading-7 text-sm">
+
+                                Student creation will be connected to the
+                                authenticated Coaching account. Only the
+                                authorized coaching will be able to add
+                                students.
+
+                            </p>
+
+
+                        </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- BACK -->
+                        <!-- ================================================= -->
+
+                        <div class="mt-8 text-center">
+
+
+                            <a href="coaching-dashboard.html" class="text-cyan-400 hover:underline font-semibold">
+
+                                ← Back to Coaching Dashboard
+
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================================== -->
+
+    <script>
+
+
+        // =====================================================
+        // ELEMENTS
+        // =====================================================
+
+        const form =
+            document.getElementById(
+                "studentCreateForm"
+            );
+
+
+        const firstNameInput =
+            document.getElementById(
+                "firstName"
+            );
+
+
+        const surnameInput =
+            document.getElementById(
+                "surname"
+            );
+
+
+        const emailInput =
+            document.getElementById(
+                "studentEmail"
+            );
+
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
+
+        const confirmPasswordInput =
+            document.getElementById(
+                "confirmPassword"
+            );
+
+
+        const createStudentButton =
+            document.getElementById(
+                "createStudentBtn"
+            );
+
+
+        const togglePassword =
+            document.getElementById(
+                "togglePassword"
+            );
+
+
+        const eyeIcon =
+            document.getElementById(
+                "eyeIcon"
+            );
+
+
+        const passwordMessage =
+            document.getElementById(
+                "passwordMessage"
+            );
+
+
+        const confirmMessage =
+            document.getElementById(
+                "confirmMessage"
+            );
+
+
+        // =====================================================
+        // PASSWORD TOGGLE
+        // =====================================================
+
+        togglePassword.addEventListener(
+            "click",
+            function () {
+
+
+                if (
+                    passwordInput.type === "password"
+                ) {
+
+
+                    passwordInput.type =
+                        "text";
+
+
+                    eyeIcon.innerHTML = `
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3 3l18 18"
+                        />
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M10.477 10.489A3 3 0 0012 15
+                            a3 3 0 002.51-4.523"
+                        />
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M9.88 5.09A9.953 9.953 0 0112 5
+                            c4.478 0 8.268 2.943 9.542 7
+                            a9.97 9.97 0 01-4.132 5.411
+                            M6.228 6.228A9.956 9.956 0 002.458 12
+                            c1.274 4.057 5.064 7 9.542 7
+                            a9.953 9.953 0 005.09-1.388"
+                        />
+
+                    `;
+
+
+                    togglePassword.setAttribute(
+                        "aria-label",
+                        "Hide password"
+                    );
+
+                }
+
+
+                else {
+
+
+                    passwordInput.type =
+                        "password";
+
+
+                    eyeIcon.innerHTML = `
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5
+                            c4.478 0 8.268 2.943 9.542 7
+                            -1.274 4.057-5.064 7-9.542 7
+                            -4.477 0-8.268-2.943-9.542-7z"
+                        />
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15 12a3 3 0 11-6 0
+                            3 3 0 016 0z"
+                        />
+
+                    `;
+
+
+                    togglePassword.setAttribute(
+                        "aria-label",
+                        "Show password"
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // PASSWORD VALIDATION
+        // =====================================================
+
+        passwordInput.addEventListener(
+            "input",
+            function () {
+
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!password) {
+
+
+                    passwordMessage.textContent =
+                        "";
+
+
+                    return;
+
+                }
+
+
+                if (password.length < 6) {
+
+
+                    passwordMessage.textContent =
+                        "Password should contain at least 6 characters.";
+
+
+                    passwordMessage.className =
+                        "password-message text-sm mt-2 text-amber-400";
+
+                }
+
+
+                else {
+
+
+                    passwordMessage.textContent =
+                        "Password looks good.";
+
+
+                    passwordMessage.className =
+                        "password-message text-sm mt-2 text-green-400";
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // CONFIRM PASSWORD VALIDATION
+        // =====================================================
+
+        confirmPasswordInput.addEventListener(
+            "input",
+            function () {
+
+
+                const password =
+                    passwordInput.value;
+
+
+                const confirmPassword =
+                    confirmPasswordInput.value;
+
+
+                if (!confirmPassword) {
+
+
+                    confirmMessage.textContent =
+                        "";
+
+
+                    return;
+
+                }
+
+
+                if (
+                    password !== confirmPassword
+                ) {
+
+
+                    confirmMessage.textContent =
+                        "Passwords do not match.";
+
+
+                    confirmMessage.className =
+                        "password-message text-sm mt-2 text-red-400";
+
+                }
+
+
+                else {
+
+
+                    confirmMessage.textContent =
+                        "Passwords match.";
+
+
+                    confirmMessage.className =
+                        "password-message text-sm mt-2 text-green-400";
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // FORM SUBMIT
+        // =====================================================
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+
+                event.preventDefault();
+
+
+                // =================================================
+                // GET VALUES
+                // =================================================
+
+                const firstName =
+                    firstNameInput.value.trim();
+
+
+                const surname =
+                    surnameInput.value.trim();
+
+
+                const email =
+                    emailInput.value.trim();
+
+
+                const password =
+                    passwordInput.value;
+
+
+                const confirmPassword =
+                    confirmPasswordInput.value;
+
+
+                // =================================================
+                // VALIDATION
+                // =================================================
+
+                if (!firstName) {
+
+
+                    alert(
+                        "Please enter the student's first name."
+                    );
+
+
+                    firstNameInput.focus();
+
+
+                    return;
+
+                }
+
+
+                if (!surname) {
+
+
+                    alert(
+                        "Please enter the student's surname."
+                    );
+
+
+                    surnameInput.focus();
+
+
+                    return;
+
+                }
+
+
+                if (!email) {
+
+
+                    alert(
+                        "Please enter the student's email address."
+                    );
+
+
+                    emailInput.focus();
+
+
+                    return;
+
+                }
+
+
+                if (!password) {
+
+
+                    alert(
+                        "Please create a password."
+                    );
+
+
+                    passwordInput.focus();
+
+
+                    return;
+
+                }
+
+
+                if (
+                    password.length < 6
+                ) {
+
+
+                    alert(
+                        "Password should contain at least 6 characters."
+                    );
+
+
+                    passwordInput.focus();
+
+
+                    return;
+
+                }
+
+
+                if (
+                    password !== confirmPassword
+                ) {
+
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+
+                    confirmPasswordInput.focus();
+
+
+                    return;
+
+                }
+
+
+                // =================================================
+                // FRONTEND-ONLY STATUS
+                // =================================================
+
+                console.log(
+                    "Student Create Form Data:",
+                    {
+
+                        firstName:
+                            firstName,
+
+                        surname:
+                            surname,
+
+                        email:
+                            email
+
+                    }
+                );
+
+
+                /*
+                    ================================================
+                    IMPORTANT
+                    ================================================
+
+                    API CONNECTION WILL BE ADDED LATER.
+
+                    Backend endpoint:
+
+                    POST /api/v1/student/create
+
+                    Required authentication:
+
+                    Coaching JWT
+
+                    Request body:
+
+                    {
+                        firstName,
+                        surname,
+                        email,
+                        password
+                    }
+
+                    ================================================
+                */
+
+
+                alert(
+                    "Student form is ready. API connection will be added after Coaching authentication is connected."
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

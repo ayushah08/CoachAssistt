@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coachly | Announcements</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html,
+        body {
+            background: #071120 !important;
+            color: white;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, .75);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .grid-bg {
+            background-color: #071120;
+
+            background-image:
+                linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+
+            background-size: 55px 55px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #60A5FA, #38BDF8, #2563EB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .filter-btn {
+            transition: .3s;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(90deg, #2563EB, #38BDF8);
+            color: white;
+        }
+
+        .announcement-card {
+            transition: .3s;
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, .3);
+        }
+    </style>
+
+</head>
+
+
+<body class="grid-bg bg-[#071120] min-h-screen">
+
+
+    <!-- ================================================= -->
+    <!-- MAIN LAYOUT -->
+    <!-- ================================================= -->
+
+    <div class="flex min-h-screen">
+
+
+        <!-- ================================================= -->
+        <!-- SIDEBAR -->
+        <!-- ================================================= -->
+
+        <aside id="sidebar"
+            class="w-72 glass border-r border-white/10 hidden lg:flex flex-col fixed lg:static inset-y-0 left-0 z-50">
+
+
+            <!-- LOGO -->
+
+            <div class="p-8 border-b border-white/10">
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-2xl font-bold">
+
+                        C
+
+                    </div>
+
+                    <div>
+
+                        <h1 class="text-3xl font-extrabold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h1>
+
+                        <p class="text-slate-400 text-sm">
+
+                            Student Dashboard
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="flex-1 p-6 space-y-3">
+
+                <a href="student-dashboard.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    🏠 Dashboard
+
+                </a>
+
+
+                <a href="student-profile.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    👤 My Profile
+
+                </a>
+
+
+                <a href="student-attendance.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📅 Attendance
+
+                </a>
+
+
+                <a href="student-marks.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    📘 Marks
+
+                </a>
+
+
+                <a href="student-announcements.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl bg-blue-600 text-white font-semibold">
+
+                    📢 Announcements
+
+                </a>
+
+
+                <a href="student-settings.html"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl hover:bg-white/5 duration-300">
+
+                    ⚙️ Settings
+
+                </a>
+
+            </nav>
+
+
+            <!-- LOGOUT -->
+
+            <div class="p-6 border-t border-white/10">
+
+                <button id="logoutBtn"
+                    class="w-full py-4 rounded-2xl bg-red-600 hover:bg-red-700 duration-300 font-semibold">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ================================================= -->
+
+        <main class="flex-1 min-h-screen bg-[#071120]">
+
+            <div class="max-w-7xl mx-auto p-6 lg:p-8 bg-[#071120] min-h-screen">
+
+
+                <!-- ================================================= -->
+                <!-- TOP NAVBAR -->
+                <!-- ================================================= -->
+
+                <div
+                    class="glass rounded-3xl px-6 py-5 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+
+
+                    <!-- MOBILE MENU -->
+
+                    <div class="flex items-center justify-between lg:hidden">
+
+                        <button id="menuBtn"
+                            class="glass w-12 h-12 rounded-xl flex items-center justify-center text-2xl">
+
+                            ☰
+
+                        </button>
+
+                        <h2 class="text-xl font-bold">
+
+                            Coach<span class="gradient-text">ly</span>
+
+                        </h2>
+
+                    </div>
+
+
+                    <!-- PAGE TITLE -->
+
+                    <div>
+
+                        <p class="text-cyan-400 text-sm uppercase tracking-[3px] font-semibold">
+
+                            Student Portal
+
+                        </p>
+
+                        <h2 class="text-3xl font-bold mt-2">
+
+                            <span class="gradient-text">
+                                Announcements
+                            </span>
+
+                        </h2>
+
+                        <p class="text-slate-400 mt-2">
+
+                            Stay updated with the latest coaching announcements.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- PROFILE -->
+
+                    <div class="flex items-center gap-4">
+
+                        <button class="glass w-12 h-12 rounded-2xl text-xl">
+
+                            🔔
+
+                        </button>
+
+                        <div class="flex items-center gap-3">
+
+                            <img src="https://ui-avatars.com/api/?name=Faizan+Chougule&background=2563EB&color=fff&size=128"
+                                class="w-12 h-12 rounded-full border-2 border-cyan-400">
+
+                            <div>
+
+                                <h4 class="font-semibold">
+
+                                    Faizan Chougule
+
+                                </h4>
+
+                                <p class="text-slate-400 text-sm">
+
+                                    Student
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SUMMARY CARDS -->
+                <!-- ================================================= -->
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Total Announcements
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold mt-3">
+
+                            12
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Unread
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-cyan-400 mt-3">
+
+                            04
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            Important
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-red-400 mt-3">
+
+                            03
+
+                        </h3>
+
+                    </div>
+
+
+                    <div class="glass rounded-3xl p-6">
+
+                        <p class="text-slate-400">
+
+                            This Week
+
+                        </p>
+
+                        <h3 class="text-4xl font-extrabold text-green-400 mt-3">
+
+                            05
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- SEARCH + FILTER -->
+                <!-- ================================================= -->
+
+                <div class="glass rounded-3xl p-5 mt-8">
+
+
+                    <div class="flex flex-col lg:flex-row gap-5 lg:items-center lg:justify-between">
+
+
+                        <!-- SEARCH -->
+
+                        <div class="relative flex-1">
+
+                            <input id="searchInput" type="text" placeholder="Search announcements..."
+                                class="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pr-12 text-white outline-none focus:border-cyan-400">
+
+                            <span class="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400">
+
+                                🔍
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- FILTER BUTTONS -->
+
+                        <div class="flex flex-wrap gap-3">
+
+                            <button class="filter-btn active px-5 py-3 rounded-xl glass" data-filter="all">
+
+                                All
+
+                            </button>
+
+                            <button class="filter-btn px-5 py-3 rounded-xl glass" data-filter="academic">
+
+                                Academic
+
+                            </button>
+
+                            <button class="filter-btn px-5 py-3 rounded-xl glass" data-filter="exam">
+
+                                Exams
+
+                            </button>
+
+                            <button class="filter-btn px-5 py-3 rounded-xl glass" data-filter="event">
+
+                                Events
+
+                            </button>
+
+                            <button class="filter-btn px-5 py-3 rounded-xl glass" data-filter="important">
+
+                                Important
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- ANNOUNCEMENTS -->
+                <!-- ================================================= -->
+
+                <div id="announcementList" class="space-y-6 mt-8">
+
+
+                    <!-- ANNOUNCEMENT 1 -->
+
+                    <div class="announcement-card glass rounded-3xl p-6 border-l-4 border-red-500"
+                        data-category="important exam" data-title="Unit Test Schedule">
+
+
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+
+
+                            <div class="flex gap-5">
+
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center text-2xl shrink-0">
+
+                                    🚨
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-bold">
+
+                                            Unit Test Schedule
+
+                                        </h3>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-semibold">
+
+                                            Important
+
+                                        </span>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-semibold">
+
+                                            Exam
+
+                                        </span>
+
+                                    </div>
+
+                                    <p class="text-slate-400 mt-3 leading-7">
+
+                                        Unit Test examinations will begin from Monday.
+                                        Students are requested to prepare according to
+                                        the updated syllabus.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-slate-400 text-sm lg:text-right shrink-0">
+
+                                <p>
+
+                                    17 Aug 2026
+
+                                </p>
+
+                                <p class="mt-1">
+
+                                    10:30 AM
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANNOUNCEMENT 2 -->
+
+                    <div class="announcement-card glass rounded-3xl p-6 border-l-4 border-cyan-400"
+                        data-category="academic" data-title="HTML Assignment">
+
+
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+
+
+                            <div class="flex gap-5">
+
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-2xl shrink-0">
+
+                                    📚
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-bold">
+
+                                            HTML Assignment
+
+                                        </h3>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-semibold">
+
+                                            Academic
+
+                                        </span>
+
+                                    </div>
+
+                                    <p class="text-slate-400 mt-3 leading-7">
+
+                                        Submit the HTML Landing Page assignment
+                                        before Friday. Make sure all required sections
+                                        are completed.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-slate-400 text-sm lg:text-right shrink-0">
+
+                                <p>
+
+                                    16 Aug 2026
+
+                                </p>
+
+                                <p class="mt-1">
+
+                                    02:00 PM
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANNOUNCEMENT 3 -->
+
+                    <div class="announcement-card glass rounded-3xl p-6 border-l-4 border-green-500"
+                        data-category="event" data-title="Coding Workshop">
+
+
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+
+
+                            <div class="flex gap-5">
+
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center text-2xl shrink-0">
+
+                                    💻
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-bold">
+
+                                            Weekend Coding Workshop
+
+                                        </h3>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-semibold">
+
+                                            Event
+
+                                        </span>
+
+                                    </div>
+
+                                    <p class="text-slate-400 mt-3 leading-7">
+
+                                        A special coding workshop will be conducted
+                                        this weekend. Students can learn practical
+                                        web development concepts.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-slate-400 text-sm lg:text-right shrink-0">
+
+                                <p>
+
+                                    15 Aug 2026
+
+                                </p>
+
+                                <p class="mt-1">
+
+                                    11:00 AM
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANNOUNCEMENT 4 -->
+
+                    <div class="announcement-card glass rounded-3xl p-6 border-l-4 border-yellow-400"
+                        data-category="academic" data-title="Science Practical">
+
+
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+
+
+                            <div class="flex gap-5">
+
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center text-2xl shrink-0">
+
+                                    🧪
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-bold">
+
+                                            Science Practical
+
+                                        </h3>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-semibold">
+
+                                            Academic
+
+                                        </span>
+
+                                    </div>
+
+                                    <p class="text-slate-400 mt-3 leading-7">
+
+                                        Science practical sessions will be held
+                                        according to the revised coaching schedule.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-slate-400 text-sm lg:text-right shrink-0">
+
+                                <p>
+
+                                    14 Aug 2026
+
+                                </p>
+
+                                <p class="mt-1">
+
+                                    09:30 AM
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANNOUNCEMENT 5 -->
+
+                    <div class="announcement-card glass rounded-3xl p-6 border-l-4 border-blue-500" data-category="exam"
+                        data-title="Mathematics Exam">
+
+
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+
+
+                            <div class="flex gap-5">
+
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-2xl shrink-0">
+
+                                    📝
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-bold">
+
+                                            Mathematics Examination
+
+                                        </h3>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-semibold">
+
+                                            Exam
+
+                                        </span>
+
+                                    </div>
+
+                                    <p class="text-slate-400 mt-3 leading-7">
+
+                                        Mathematics examination will cover
+                                        Chapter 5 and Chapter 6. Please prepare
+                                        all important concepts.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-slate-400 text-sm lg:text-right shrink-0">
+
+                                <p>
+
+                                    13 Aug 2026
+
+                                </p>
+
+                                <p class="mt-1">
+
+                                    04:00 PM
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANNOUNCEMENT 6 -->
+
+                    <div class="announcement-card glass rounded-3xl p-6 border-l-4 border-purple-500"
+                        data-category="event" data-title="Parent Meeting">
+
+
+                        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
+
+
+                            <div class="flex gap-5">
+
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center text-2xl shrink-0">
+
+                                    👨‍👩‍👦
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-bold">
+
+                                            Parent Meeting
+
+                                        </h3>
+
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-semibold">
+
+                                            Event
+
+                                        </span>
+
+                                    </div>
+
+                                    <p class="text-slate-400 mt-3 leading-7">
+
+                                        Parent-teacher interaction meeting will
+                                        be conducted to discuss student progress
+                                        and academic performance.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="text-slate-400 text-sm lg:text-right shrink-0">
+
+                                <p>
+
+                                    12 Aug 2026
+
+                                </p>
+
+                                <p class="mt-1">
+
+                                    01:00 PM
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NO RESULTS -->
+
+                <div id="noResults" class="hidden glass rounded-3xl p-10 text-center mt-8">
+
+                    <div class="text-5xl mb-4">
+
+                        🔍
+
+                    </div>
+
+                    <h3 class="text-xl font-bold">
+
+                        No Announcements Found
+
+                    </h3>
+
+                    <p class="text-slate-400 mt-2">
+
+                        Try another search or category.
+
+                    </p>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- FOOTER -->
+                <!-- ================================================= -->
+
+                <footer class="mt-10 glass rounded-3xl p-6 text-center text-slate-400">
+
+                    © 2026 Coachly Student Portal
+
+                    <br>
+
+                    Built with ❤️ using HTML, Tailwind CSS & JavaScript
+
+                </footer>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script>
+
+        // =================================================
+        // MOBILE MENU
+        // =================================================
+
+        const menuBtn = document.getElementById("menuBtn");
+
+        const sidebar = document.getElementById("sidebar");
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.toggle("hidden");
+
+        });
+
+
+        // =================================================
+        // ANNOUNCEMENT FILTER
+        // =================================================
+
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+        const announcementCards =
+            document.querySelectorAll(".announcement-card");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const noResults =
+            document.getElementById("noResults");
+
+
+        let currentFilter = "all";
+
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filterButtons.forEach(btn => {
+
+                    btn.classList.remove("active");
+
+                });
+
+                button.classList.add("active");
+
+                currentFilter =
+                    button.dataset.filter;
+
+                filterAnnouncements();
+
+            });
+
+        });
+
+
+        // =================================================
+        // SEARCH
+        // =================================================
+
+        searchInput.addEventListener("input", () => {
+
+            filterAnnouncements();
+
+        });
+
+
+        // =================================================
+        // FILTER FUNCTION
+        // =================================================
+
+        function filterAnnouncements() {
+
+            const searchValue =
+                searchInput.value.toLowerCase().trim();
+
+            let visibleCount = 0;
+
+
+            announcementCards.forEach(card => {
+
+                const category =
+                    card.dataset.category.toLowerCase();
+
+                const title =
+                    card.dataset.title.toLowerCase();
+
+                const content =
+                    card.innerText.toLowerCase();
+
+
+                const matchesFilter =
+                    currentFilter === "all" ||
+                    category.includes(currentFilter);
+
+
+                const matchesSearch =
+                    searchValue === "" ||
+                    title.includes(searchValue) ||
+                    content.includes(searchValue);
+
+
+                if (matchesFilter && matchesSearch) {
+
+                    card.classList.remove("hidden");
+
+                    visibleCount++;
+
+                } else {
+
+                    card.classList.add("hidden");
+
+                }
+
+            });
+
+
+            if (visibleCount === 0) {
+
+                noResults.classList.remove("hidden");
+
+            } else {
+
+                noResults.classList.add("hidden");
+
+            }
+
+        }
+
+
+        // =================================================
+        // LOGOUT
+        // =================================================
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener("click", () => {
+
+                const confirmLogout =
+                    confirm("Are you sure you want to logout?");
+
+
+                if (confirmLogout) {
+
+                    window.location.href =
+                        "student-login.html";
+
+                }
+
+            });
+
+    </script>
+
+</body>
+
+</html>

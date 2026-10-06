@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Active Users</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f8fafc;
+    }
+
+    .card{
+      background:white;
+      border:1px solid #e2e8f0;
+      border-radius:24px;
+      transition:0.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(15,23,42,0.08);
+    }
+
+    .sidebar-link{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:15px 18px;
+      border-radius:16px;
+      transition:0.3s ease;
+      font-weight:500;
+      color:#475569;
+    }
+
+    .sidebar-link:hover{
+      background:#eff6ff;
+      color:#1d4ed8;
+    }
+
+    .sidebar-active{
+      background:#1d4ed8;
+      color:white !important;
+    }
+
+    .status-dot{
+      width:12px;
+      height:12px;
+      border-radius:999px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="flex min-h-screen overflow-x-hidden">
+
+  <!-- SIDEBAR -->
+ <aside
+  id="mobileMenu"
+  class="hidden lg:flex flex-col w-72 bg-white border-r border-slate-200 p-6 fixed lg:static top-0 left-0 z-50 min-h-screen"
+>
+
+<div class="flex justify-end lg:hidden mb-6">
+
+  <button
+    id="closeBtn"
+    class="text-3xl font-bold text-slate-700"
+  >
+    ×
+  </button>
+
+</div>
+    <!-- Logo -->
+    <div class="flex items-center gap-4 mb-10">
+
+      <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+        A
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">
+          Coachly Admin
+        </h1>
+
+        <p class="text-slate-500 text-sm">
+          Admin Panel
+        </p>
+      </div>
+
+    </div>
+
+    <!-- NAV -->
+    <nav class="space-y-3">
+
+      <a href="dashboard.html" class="sidebar-link">
+        📊 Dashboard
+      </a>
+
+      <a href="coachings.html" class="sidebar-link">
+        🏫 Manage Coachings
+      </a>
+
+      <a href="analytics.html" class="sidebar-link">
+        📈 Analytics
+      </a>
+
+      <a href="active-users.html" class="sidebar-link sidebar-active">
+        👥 Active Users
+      </a>
+
+      <a href="settings.html" class="sidebar-link">
+        ⚙ Settings
+      </a>
+
+    </nav>
+
+    <!-- Bottom -->
+    <div class="mt-auto pt-10">
+
+      <a
+        href="../index.html"
+        class="sidebar-link bg-slate-100 hover:bg-red-50 hover:text-red-600"
+      >
+        🚪 Logout
+      </a>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 w-full overflow-hidden p-4 md:p-6 lg:p-10">
+
+    <!-- Mobile Header -->
+<div class="flex items-center justify-between mb-6 lg:hidden">
+
+  <h1 class="text-2xl font-bold text-slate-900">
+    Coachly
+  </h1>
+
+  <button
+    id="menuBtn"
+    class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+  >
+    ☰
+  </button>
+
+</div>
+
+    <!-- TOP -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+      <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+        Platform Monitoring
+      </p>
+
+    <h1 class="text-3xl md:text-5xl break-words font-extrabold text-slate-900 mt-3">
+        Active Users 👥
+      </h1>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-10 w-full">
+
+      <!-- Card -->
+      <div class="card p-6 w-full">
+
+        <p class="text-slate-500 font-medium">
+          Online Coachings
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
+          128
+        </h2>
+
+        <p class="text-green-600 font-semibold mt-4">
+          Currently Active
+        </p>
+
+      </div>
+
+      <!-- Card -->
+      <div class="card p-6">
+
+        <p class="text-slate-500 font-medium">
+          Online Parents
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
+          2.4K
+        </h2>
+
+        <p class="text-green-600 font-semibold mt-4">
+          Live Users
+        </p>
+
+      </div>
+
+      <!-- Card -->
+      <div class="card p-6">
+
+        <p class="text-slate-500 font-medium">
+          Student Sessions
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
+          8.2K
+        </h2>
+
+        <p class="text-green-600 font-semibold mt-4">
+          Today Activity
+        </p>
+
+      </div>
+
+      <!-- Card -->
+      <div class="card p-6">
+
+        <p class="text-slate-500 font-medium">
+          Total Devices
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mt-4">
+          5.1K
+        </h2>
+
+        <p class="text-green-600 font-semibold mt-4">
+          Connected Devices
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- USERS TABLE -->
+    <div class="card p-4 md:p-8 mt-10 overflow-x-auto">
+
+      <div class="mb-8">
+
+        <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+          User Activity
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+          Recent Active Users
+        </h2>
+
+      </div>
+
+      <!-- TABLE -->
+       <div class="overflow-x-auto">
+      <table class="w-full min-w-[850px]">
+
+        <thead>
+
+          <tr class="border-b border-slate-200 text-left">
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              User
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Role
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Status
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Last Active
+            </th>
+
+            <th class="pb-5 text-slate-500 font-semibold">
+              Device
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody class="divide-y divide-slate-100">
+
+          <!-- Row -->
+          <tr>
+
+            <td class="py-6 font-semibold text-slate-900">
+              Bright Minds Academy
+            </td>
+
+            <td class="py-6 text-slate-600">
+              Coaching
+            </td>
+
+            <td class="py-6">
+
+              <div class="flex items-center gap-3">
+
+                <div class="status-dot bg-green-500"></div>
+
+                <span class="font-semibold text-green-600">
+                  Online
+                </span>
+
+              </div>
+
+            </td>
+
+            <td class="py-6 text-slate-600">
+              2 mins ago
+            </td>
+
+            <td class="py-6 text-slate-600">
+              Windows
+            </td>
+
+          </tr>
+
+          <!-- Row -->
+          <tr>
+
+            <td class="py-6 font-semibold text-slate-900">
+              Faizan Khan
+            </td>
+
+            <td class="py-6 text-slate-600">
+              Parent
+            </td>
+
+            <td class="py-6">
+
+              <div class="flex items-center gap-3">
+
+                <div class="status-dot bg-green-500"></div>
+
+                <span class="font-semibold text-green-600">
+                  Online
+                </span>
+
+              </div>
+
+            </td>
+
+            <td class="py-6 text-slate-600">
+              Just now
+            </td>
+
+            <td class="py-6 text-slate-600">
+              Android
+            </td>
+
+          </tr>
+
+          <!-- Row -->
+          <tr>
+
+            <td class="py-6 font-semibold text-slate-900">
+              Scholars Point
+            </td>
+
+            <td class="py-6 text-slate-600">
+              Coaching
+            </td>
+
+            <td class="py-6">
+
+              <div class="flex items-center gap-3">
+
+                <div class="status-dot bg-yellow-500"></div>
+
+                <span class="font-semibold text-yellow-600">
+                  Idle
+                </span>
+
+              </div>
+
+            </td>
+
+            <td class="py-6 text-slate-600">
+              18 mins ago
+            </td>
+
+            <td class="py-6 text-slate-600">
+              MacOS
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+</div>
+    </div>
+
+    <!-- ACTIVITY -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-10">
+
+      <!-- Login Activity -->
+      <div class="card p-6 md:p-8">
+
+        <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+          Login Activity
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+          Recent Logins
+        </h2>
+
+        <div class="mt-8 space-y-5">
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-xl">
+              👨‍💼
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold text-slate-900">
+                Admin Logged In
+              </h3>
+
+              <p class="text-slate-500 text-sm mt-1">
+                Mumbai • Windows Device
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
+              🏫
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold text-slate-900">
+                Coaching Session Active
+              </h3>
+
+              <p class="text-slate-500 text-sm mt-1">
+                Bright Minds Academy is online.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Device Stats -->
+      <div class="card p-6 md:p-8">
+
+        <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+          Devices
+        </p>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+          Device Statistics
+        </h2>
+
+        <div class="mt-8 space-y-6">
+
+          <!-- Windows -->
+          <div>
+
+            <div class="flex items-center justify-between mb-2">
+
+              <p class="font-semibold text-slate-700">
+                Windows
+              </p>
+
+              <p class="text-slate-500">
+                72%
+              </p>
+
+            </div>
+
+            <div class="w-full bg-slate-100 rounded-full h-3">
+              <div class="bg-blue-700 h-3 rounded-full w-[72%]"></div>
+            </div>
+
+          </div>
+
+          <!-- Android -->
+          <div>
+
+            <div class="flex items-center justify-between mb-2">
+
+              <p class="font-semibold text-slate-700">
+                Android
+              </p>
+
+              <p class="text-slate-500">
+                61%
+              </p>
+
+            </div>
+
+            <div class="w-full bg-slate-100 rounded-full h-3">
+              <div class="bg-green-600 h-3 rounded-full w-[61%]"></div>
+            </div>
+
+          </div>
+
+          <!-- MacOS -->
+          <div>
+
+            <div class="flex items-center justify-between mb-2">
+
+              <p class="font-semibold text-slate-700">
+                MacOS
+              </p>
+
+              <p class="text-slate-500">
+                38%
+              </p>
+
+            </div>
+
+            <div class="w-full bg-slate-100 rounded-full h-3">
+              <div class="bg-yellow-500 h-3 rounded-full w-[38%]"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeBtn = document.getElementById("closeBtn");
+
+  menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+  });
+
+  closeBtn.addEventListener("click", function () {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+  });
+</script>
+</body>
+</html>

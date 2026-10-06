@@ -1,0 +1,1523 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Coachly - Register Coaching</title>
+
+
+  <!-- ===================================================== -->
+  <!-- TAILWIND CSS -->
+  <!-- ===================================================== -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- ===================================================== -->
+  <!-- GOOGLE FONT -->
+  <!-- ===================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+
+  <!-- ===================================================== -->
+  <!-- CUSTOM CSS -->
+  <!-- ===================================================== -->
+
+  <style>
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+      scroll-behavior: smooth;
+
+    }
+
+
+    body {
+
+      font-family: 'Inter', sans-serif;
+
+      background: #071120;
+
+      color: #fff;
+
+      overflow-x: hidden;
+
+    }
+
+
+    ::selection {
+
+      background: #2563EB;
+
+      color: #fff;
+
+    }
+
+
+    /* ===================================================== */
+    /* GRID BACKGROUND */
+    /* ===================================================== */
+
+    .grid-bg {
+
+      background:
+
+        linear-gradient(rgba(255, 255, 255, .03) 1px,
+          transparent 1px),
+
+        linear-gradient(90deg,
+          rgba(255, 255, 255, .03) 1px,
+          transparent 1px);
+
+      background-size: 55px 55px;
+
+    }
+
+
+    /* ===================================================== */
+    /* GLOW */
+    /* ===================================================== */
+
+    .glow {
+
+      position: absolute;
+
+      width: 520px;
+
+      height: 520px;
+
+      background: #2563EB;
+
+      filter: blur(180px);
+
+      opacity: .18;
+
+      border-radius: 999px;
+
+      z-index: 0;
+
+    }
+
+
+    .glow2 {
+
+      position: absolute;
+
+      width: 420px;
+
+      height: 420px;
+
+      background: #38BDF8;
+
+      filter: blur(170px);
+
+      opacity: .14;
+
+      border-radius: 999px;
+
+      z-index: 0;
+
+    }
+
+
+    /* ===================================================== */
+    /* GLASS */
+    /* ===================================================== */
+
+    .glass {
+
+      background: rgba(15, 23, 42, .75);
+
+      backdrop-filter: blur(22px);
+
+      -webkit-backdrop-filter: blur(22px);
+
+      border: 1px solid rgba(255, 255, 255, .08);
+
+    }
+
+
+    /* ===================================================== */
+    /* INPUTS */
+    /* ===================================================== */
+
+    .input-style {
+
+      width: 100%;
+
+      padding: 16px 20px;
+
+      background: rgba(255, 255, 255, .03);
+
+      border: 1px solid rgba(255, 255, 255, .08);
+
+      border-radius: 18px;
+
+      color: white;
+
+      transition: .35s;
+
+      font-size: 16px;
+
+    }
+
+
+    .input-style::placeholder {
+
+      color: #94A3B8;
+
+    }
+
+
+    .input-style:focus {
+
+      outline: none;
+
+      border-color: #38BDF8;
+
+      box-shadow:
+
+        0 0 0 4px rgba(56, 189, 248, .12);
+
+    }
+
+
+    .input-style:hover {
+
+      border-color: #38BDF8;
+
+    }
+
+
+    /* ===================================================== */
+    /* BUTTON */
+    /* ===================================================== */
+
+    .primary-btn {
+
+      background:
+
+        linear-gradient(90deg,
+          #2563EB,
+          #38BDF8);
+
+      transition: .35s;
+
+    }
+
+
+    .primary-btn:hover {
+
+      transform: translateY(-4px);
+
+      box-shadow:
+
+        0 20px 45px rgba(37, 99, 235, .35);
+
+    }
+
+
+    .primary-btn:disabled {
+
+      opacity: .7;
+
+      cursor: not-allowed;
+
+      transform: none;
+
+    }
+
+
+    /* ===================================================== */
+    /* SECONDARY */
+    /* ===================================================== */
+
+    .secondary-btn {
+
+      border: 1px solid rgba(255, 255, 255, .12);
+
+      background: rgba(255, 255, 255, .03);
+
+      transition: .35s;
+
+    }
+
+
+    .secondary-btn:hover {
+
+      background: #10203D;
+
+      border-color: #38BDF8;
+
+    }
+
+
+    /* ===================================================== */
+    /* CARD */
+    /* ===================================================== */
+
+    .card-hover {
+
+      transition: .35s;
+
+    }
+
+
+    .card-hover:hover {
+
+      transform: translateY(-8px);
+
+      box-shadow:
+
+        0 25px 60px rgba(37, 99, 235, .25);
+
+    }
+
+
+    /* ===================================================== */
+    /* GRADIENT TEXT */
+    /* ===================================================== */
+
+    .gradient-text {
+
+      background:
+
+        linear-gradient(90deg,
+          #60A5FA,
+          #38BDF8,
+          #2563EB);
+
+      -webkit-background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+    }
+
+
+    /* ===================================================== */
+    /* FLOATING */
+    /* ===================================================== */
+
+    .floating {
+
+      animation:
+
+        float 5s ease-in-out infinite;
+
+    }
+
+
+    @keyframes float {
+
+      0% {
+
+        transform: translateY(0);
+
+      }
+
+      50% {
+
+        transform: translateY(-12px);
+
+      }
+
+      100% {
+
+        transform: translateY(0);
+
+      }
+
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ===================================================== -->
+  <!-- MAIN SECTION -->
+  <!-- ===================================================== -->
+
+  <section class="min-h-screen grid-bg flex items-center justify-center px-5 py-14">
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN CARD -->
+    <!-- ===================================================== -->
+
+    <div
+      class="w-full max-w-7xl grid lg:grid-cols-2 glass rounded-[36px] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,.45)]">
+
+
+      <!-- ================================================= -->
+      <!-- LEFT SIDE -->
+      <!-- ================================================= -->
+
+      <div class="hidden lg:flex flex-col justify-between relative overflow-hidden glass p-12">
+
+
+        <!-- GLOWS -->
+
+        <div class="glow -top-32 -left-24"></div>
+
+        <div class="glow2 bottom-0 right-0"></div>
+
+
+        <!-- LOGO -->
+
+        <div class="relative z-10">
+
+          <div class="flex items-center gap-4">
+
+
+            <div
+              class="w-16 h-16 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-3xl font-bold shadow-xl">
+
+              C
+
+            </div>
+
+
+            <div>
+
+              <h1 class="text-4xl font-extrabold">
+
+                Coach<span class="gradient-text">ly</span>
+
+              </h1>
+
+
+              <p class="text-slate-400">
+
+                Coaching Assistant Platform
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- HEADING -->
+
+        <div class="relative z-10 mt-16">
+
+
+          <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass text-sm uppercase tracking-[3px]">
+
+            🚀 Trusted by Modern Institutes
+
+          </span>
+
+
+          <h2 class="mt-8 text-6xl font-extrabold leading-tight">
+
+            Build Your
+
+            <span class="gradient-text">
+
+              Digital Coaching
+
+            </span>
+
+          </h2>
+
+
+          <p class="mt-8 text-slate-300 text-xl leading-9">
+
+            Register your institute and manage students,
+            attendance, fees, marks, parent communication
+            and announcements from one beautiful dashboard.
+
+          </p>
+
+        </div>
+
+
+        <!-- FEATURE CARDS -->
+
+        <div class="relative z-10 space-y-5 mt-12">
+
+
+          <!-- STUDENTS -->
+
+          <div
+            class="glass rounded-3xl p-5 card-hover hover:border-cyan-400/40 hover:scale-[1.02] duration-300 flex gap-5 items-center">
+
+
+            <div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center text-3xl">
+
+              👨‍🎓
+
+            </div>
+
+
+            <div>
+
+              <h3 class="font-bold text-xl">
+
+                Student Management
+
+              </h3>
+
+
+              <p class="text-slate-400 mt-2">
+
+                Add students and manage your coaching.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- ANALYTICS -->
+
+          <div class="glass rounded-3xl p-5 card-hover flex gap-5 items-center">
+
+
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-3xl">
+
+              📊
+
+            </div>
+
+
+            <div>
+
+              <h3 class="font-bold text-xl">
+
+                Smart Analytics
+
+              </h3>
+
+
+              <p class="text-slate-400 mt-2">
+
+                Attendance, marks and reports in real-time.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="relative z-10 mt-10 text-slate-500">
+
+          © 2026 Coachly
+
+          <div class="text-sm mt-2">
+
+            Built for Modern Coaching Institutes
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- RIGHT SIDE -->
+      <!-- ================================================= -->
+
+      <div class="glass p-8 md:p-14 flex items-center border-l border-white/10">
+
+
+        <div class="w-full relative z-10">
+
+
+          <!-- MOBILE LOGO -->
+
+          <div class="flex lg:hidden items-center gap-4 mb-10">
+
+
+            <div
+              class="w-12 h-12 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-xl">
+
+              C
+
+            </div>
+
+
+            <h1 class="text-3xl font-bold">
+
+              Coachly
+
+            </h1>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- TOP -->
+          <!-- ================================================= -->
+
+          <div>
+
+
+            <span
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[3px] text-cyan-300">
+
+              🚀 Coaching Registration
+
+            </span>
+
+
+            <h2 class="mt-7 text-5xl md:text-6xl font-extrabold leading-tight text-white">
+
+              Create Your
+
+              <span class="gradient-text">
+
+                Coaching Account
+
+              </span>
+
+            </h2>
+
+
+            <p class="mt-6 text-slate-400 text-lg leading-8 max-w-xl">
+
+              Register your coaching institute and unlock student management,
+              attendance tracking, parent dashboard and analytics —
+              all from one modern platform.
+
+            </p>
+
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- FORM -->
+          <!-- ================================================= -->
+
+          <form id="coachingRegisterForm" class="mt-12 space-y-7">
+
+
+            <!-- OWNER NAME -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Your Name
+
+              </label>
+
+
+              <input id="coachingOwnerName" type="text" placeholder="Enter your name" class="input-style"
+                autocomplete="name" required>
+
+
+            </div>
+
+
+            <!-- COACHING NAME -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Coaching / Institute Name
+
+              </label>
+
+
+              <input id="coachingName" type="text" placeholder="Enter coaching name" class="input-style" required>
+
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Address
+
+              </label>
+
+
+              <textarea id="coachingAddress" rows="3" placeholder="Enter coaching address"
+                class="input-style resize-none" required></textarea>
+
+
+            </div>
+
+
+            <!-- PINCODE -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Pincode
+
+              </label>
+
+
+              <input id="pincode" type="text" inputmode="numeric" maxlength="6" placeholder="Enter pincode"
+                class="input-style">
+
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Phone Number
+
+              </label>
+
+
+              <input id="phone" type="tel" placeholder="Enter phone number" class="input-style" autocomplete="tel">
+
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Email Address
+
+              </label>
+
+
+              <input id="coachingEmail" type="email" placeholder="Enter your email" class="input-style"
+                autocomplete="email" required>
+
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Password
+
+              </label>
+
+
+              <div class="relative">
+
+
+                <input id="password" type="password" placeholder="Enter password" class="input-style pr-14"
+                  autocomplete="new-password" required>
+
+
+                <button type="button" id="togglePassword" aria-label="Show password"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400 hover:text-white transition duration-300">
+
+
+                  <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.8" stroke="currentColor" class="w-6 h-6">
+
+
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5
+                      c4.478 0 8.268 2.943 9.542 7
+                      -1.274 4.057-5.064 7-9.542 7
+                      -4.477 0-8.268-2.943-9.542-7z" />
+
+
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0
+                      3 3 0 016 0z" />
+
+
+                  </svg>
+
+
+                </button>
+
+
+              </div>
+
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div>
+
+
+              <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                Confirm Password
+
+              </label>
+
+
+              <input id="confirmPassword" type="password" placeholder="Confirm password" class="input-style"
+                autocomplete="new-password" required>
+
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="flex items-start gap-3">
+
+
+              <input id="termsCheckbox" type="checkbox" class="mt-1 w-5 h-5 rounded accent-cyan-400" required>
+
+
+              <p class="text-slate-300 leading-7 text-sm">
+
+                I agree to the
+
+                <a href="#" class="text-cyan-400 hover:underline">
+
+                  Terms & Conditions
+
+                </a>
+
+                and
+
+                <a href="#" class="text-cyan-400 hover:underline">
+
+                  Privacy Policy
+
+                </a>
+
+                of Coachly.
+
+              </p>
+
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <button id="registerBtn" type="submit"
+              class="primary-btn w-full py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-blue-600/30 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-95 transition-all duration-300">
+
+
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+
+
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+
+
+              </svg>
+
+
+              Create My Coaching Account
+
+
+            </button>
+
+
+          </form>
+
+
+          <!-- ================================================= -->
+          <!-- DIVIDER -->
+          <!-- ================================================= -->
+
+          <div class="flex items-center gap-4 my-8">
+
+
+            <div class="flex-1 h-px bg-white/10">
+            </div>
+
+
+            <span class="text-slate-500 text-sm">
+
+              OR
+
+            </span>
+
+
+            <div class="flex-1 h-px bg-white/10">
+            </div>
+
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- VERIFICATION INFO -->
+          <!-- ================================================= -->
+
+          <div class="glass rounded-2xl p-5 mt-6">
+
+
+            <h4 class="text-cyan-300 font-semibold">
+
+              🛡 Admin Verification Required
+
+            </h4>
+
+
+            <p class="text-slate-400 mt-2 leading-7">
+
+              Your coaching registration will be processed by the
+              Coachly platform.
+
+            </p>
+
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- BOTTOM -->
+          <!-- ================================================= -->
+
+          <div class="mt-8 text-center">
+
+
+            <p class="text-slate-400">
+
+
+              Already have a coaching account?
+
+
+              <a href="coaching-login.html"
+                class="text-cyan-300 hover:text-white duration-300 font-semibold hover:underline">
+
+                Sign In
+
+              </a>
+
+
+            </p>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================== -->
+  <!-- JAVASCRIPT -->
+  <!-- ===================================================== -->
+
+  <script>
+
+
+    // =====================================================
+    // API CONFIGURATION
+    // =====================================================
+
+    const API_BASE_URL =
+      "https://api-gateway-6gmq.onrender.com";
+
+
+    // =====================================================
+    // ELEMENTS
+    // =====================================================
+
+    const form =
+      document.getElementById(
+        "coachingRegisterForm"
+      );
+
+
+    const ownerNameInput =
+      document.getElementById(
+        "coachingOwnerName"
+      );
+
+
+    const coachingNameInput =
+      document.getElementById(
+        "coachingName"
+      );
+
+
+    const addressInput =
+      document.getElementById(
+        "coachingAddress"
+      );
+
+
+    const emailInput =
+      document.getElementById(
+        "coachingEmail"
+      );
+
+
+    const passwordInput =
+      document.getElementById(
+        "password"
+      );
+
+
+    const confirmPasswordInput =
+      document.getElementById(
+        "confirmPassword"
+      );
+
+
+    const termsCheckbox =
+      document.getElementById(
+        "termsCheckbox"
+      );
+
+
+    const registerButton =
+      document.getElementById(
+        "registerBtn"
+      );
+
+
+    const togglePassword =
+      document.getElementById(
+        "togglePassword"
+      );
+
+
+    const eyeIcon =
+      document.getElementById(
+        "eyeIcon"
+      );
+
+
+    // =====================================================
+    // PASSWORD TOGGLE
+    // =====================================================
+
+    togglePassword.addEventListener(
+      "click",
+      function () {
+
+        if (
+          passwordInput.type === "password"
+        ) {
+
+          passwordInput.type = "text";
+
+          eyeIcon.innerHTML = `
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3l18 18"/>
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.477 10.489A3 3 0 0012 15
+              a3 3 0 002.51-4.523"/>
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.88 5.09A9.953 9.953 0 0112 5
+              c4.478 0 8.268 2.943 9.542 7
+              a9.97 9.97 0 01-4.132 5.411
+              M6.228 6.228A9.956 9.956 0 002.458 12
+              c1.274 4.057 5.064 7 9.542 7
+              a9.953 9.953 0 005.09-1.388"/>
+
+          `;
+
+
+          togglePassword.setAttribute(
+            "aria-label",
+            "Hide password"
+          );
+
+        }
+
+        else {
+
+          passwordInput.type =
+            "password";
+
+
+          eyeIcon.innerHTML = `
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5
+              c4.478 0 8.268 2.943 9.542 7
+              -1.274 4.057-5.064 7-9.542 7
+              -4.477 0-8.268-2.943-9.542-7z"/>
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 12a3 3 0 11-6 0
+              3 3 0 016 0z"/>
+
+          `;
+
+
+          togglePassword.setAttribute(
+            "aria-label",
+            "Show password"
+          );
+
+        }
+
+      }
+    );
+
+
+    // =====================================================
+    // FORM SUBMIT
+    // =====================================================
+
+    form.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+
+        // =================================================
+        // GET VALUES
+        // =================================================
+
+        const coachingOwnerName =
+          ownerNameInput.value.trim();
+
+
+        const coachingName =
+          coachingNameInput.value.trim();
+
+
+        const coachingAddress =
+          addressInput.value.trim();
+
+
+        const email =
+          emailInput.value.trim();
+
+
+        const password =
+          passwordInput.value;
+
+
+        const confirmPassword =
+          confirmPasswordInput.value;
+
+
+        // =================================================
+        // VALIDATION
+        // =================================================
+
+        if (!coachingOwnerName) {
+
+          alert(
+            "Please enter the coaching owner name."
+          );
+
+          ownerNameInput.focus();
+
+          return;
+
+        }
+
+
+        if (!coachingName) {
+
+          alert(
+            "Please enter the coaching name."
+          );
+
+          coachingNameInput.focus();
+
+          return;
+
+        }
+
+
+        if (!coachingAddress) {
+
+          alert(
+            "Please enter the coaching address."
+          );
+
+          addressInput.focus();
+
+          return;
+
+        }
+
+
+        if (!email) {
+
+          alert(
+            "Please enter the coaching email."
+          );
+
+          emailInput.focus();
+
+          return;
+
+        }
+
+
+        if (!password.trim()) {
+
+          alert(
+            "Please enter a password."
+          );
+
+          passwordInput.focus();
+
+          return;
+
+        }
+
+
+        if (
+          password !== confirmPassword
+        ) {
+
+          alert(
+            "Passwords do not match."
+          );
+
+          confirmPasswordInput.focus();
+
+          return;
+
+        }
+
+
+        if (
+          !termsCheckbox.checked
+        ) {
+
+          alert(
+            "Please accept the Terms & Conditions and Privacy Policy."
+          );
+
+          return;
+
+        }
+
+
+        // =================================================
+        // LOADING STATE
+        // =================================================
+
+        registerButton.disabled = true;
+
+
+        registerButton.innerHTML = `
+
+          <svg
+            class="animate-spin w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24">
+
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4">
+            </circle>
+
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z">
+            </path>
+
+          </svg>
+
+          Creating Account...
+
+        `;
+
+
+        try {
+
+
+          // =================================================
+          // API REQUEST
+          // =================================================
+
+          const response =
+            await fetch(
+
+              `${API_BASE_URL}/api/v1/coaching/register`,
+
+              {
+
+                method: "POST",
+
+                headers: {
+
+                  "Content-Type":
+                    "application/json"
+
+                },
+
+                body:
+                  JSON.stringify({
+
+                    coachingName:
+                      coachingName,
+
+                    email:
+                      email,
+
+                    coachingAddress:
+                      coachingAddress,
+
+                    coachingOwnerName:
+                      coachingOwnerName,
+
+                    password:
+                      password
+
+                  })
+
+              }
+
+            );
+
+
+          // =================================================
+          // READ RESPONSE
+          // =================================================
+
+          const responseText =
+            await response.text();
+
+
+          let data = null;
+
+
+          try {
+
+            data =
+              responseText
+                ? JSON.parse(responseText)
+                : null;
+
+          }
+
+          catch (jsonError) {
+
+            console.error(
+              "Non-JSON backend response:",
+              responseText
+            );
+
+          }
+
+
+          // =================================================
+          // DEBUG
+          // =================================================
+
+          console.log(
+            "Coaching Registration Status:",
+            response.status
+          );
+
+
+          console.log(
+            "Coaching Registration Response:",
+            data
+          );
+
+
+          // =================================================
+          // ERROR
+          // =================================================
+
+          if (!response.ok) {
+
+            throw new Error(
+
+              (
+                data &&
+                (
+                  data.message ||
+                  data.error
+                )
+              ) ||
+
+              `Coaching registration failed. Status: ${response.status}`
+
+            );
+
+          }
+
+
+          // =================================================
+          // SUCCESS
+          // =================================================
+
+          alert(
+            (
+              data &&
+              data.message
+            ) ||
+            "Coaching account created successfully!"
+          );
+
+
+          // =================================================
+          // SAVE RESPONSE FOR DEBUG / NEXT STEP
+          // =================================================
+
+          if (data) {
+
+            localStorage.setItem(
+              "coachlyCoachingRegisterResponse",
+              JSON.stringify(data)
+            );
+
+          }
+
+
+          // =================================================
+          // GO TO COACHING LOGIN
+          // =================================================
+
+          window.location.href =
+            "coaching-login.html";
+
+
+        }
+
+
+        catch (error) {
+
+
+          console.error(
+            "Coaching Registration Error:",
+            error
+          );
+
+
+          // =================================================
+          // NETWORK / CORS
+          // =================================================
+
+          if (
+            error instanceof TypeError
+          ) {
+
+            alert(
+              "Unable to connect to the server. Please check the API Gateway, backend, or CORS configuration."
+            );
+
+          }
+
+          else {
+
+            alert(
+              error.message ||
+              "Coaching registration failed."
+            );
+
+          }
+
+        }
+
+
+        finally {
+
+
+          // =================================================
+          // RESET BUTTON
+          // =================================================
+
+          registerButton.disabled =
+            false;
+
+
+          registerButton.innerHTML = `
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"/>
+
+            </svg>
+
+            Create My Coaching Account
+
+          `;
+
+        }
+
+      }
+
+    );
+
+  </script>
+
+
+</body>
+
+</html>

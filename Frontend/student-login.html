@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coachly | Student Login</title>
+
+
+    <!-- ===================================================== -->
+    <!-- TAILWIND CSS -->
+    <!-- ===================================================== -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- ===================================================== -->
+    <!-- GOOGLE FONT -->
+    <!-- ===================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- ===================================================== -->
+    <!-- CUSTOM CSS -->
+    <!-- ===================================================== -->
+
+    <style>
+        * {
+
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: 'Inter', sans-serif;
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            background: #071120;
+
+            overflow-x: hidden;
+
+            color: white;
+
+        }
+
+
+        /* ===================================================== */
+        /* GRID BACKGROUND */
+        /* ===================================================== */
+
+        .grid-bg {
+
+            background:
+
+                linear-gradient(rgba(255, 255, 255, .03) 1px,
+                    transparent 1px),
+
+                linear-gradient(90deg,
+                    rgba(255, 255, 255, .03) 1px,
+                    transparent 1px);
+
+            background-size: 55px 55px;
+
+        }
+
+
+        /* ===================================================== */
+        /* GLASS */
+        /* ===================================================== */
+
+        .glass {
+
+            background: rgba(15, 23, 42, .75);
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+
+        }
+
+
+        /* ===================================================== */
+        /* GLOW */
+        /* ===================================================== */
+
+        .glow {
+
+            position: absolute;
+
+            width: 450px;
+
+            height: 450px;
+
+            background: #2563EB;
+
+            filter: blur(170px);
+
+            opacity: .18;
+
+            border-radius: 9999px;
+
+            z-index: 0;
+
+        }
+
+
+        .glow2 {
+
+            position: absolute;
+
+            width: 350px;
+
+            height: 350px;
+
+            background: #38BDF8;
+
+            filter: blur(150px);
+
+            opacity: .15;
+
+            border-radius: 9999px;
+
+            z-index: 0;
+
+        }
+
+
+        /* ===================================================== */
+        /* GRADIENT TEXT */
+        /* ===================================================== */
+
+        .gradient-text {
+
+            background:
+
+                linear-gradient(90deg,
+                    #60A5FA,
+                    #38BDF8,
+                    #2563EB);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        /* ===================================================== */
+        /* INPUT */
+        /* ===================================================== */
+
+        .input-style {
+
+            width: 100%;
+
+            padding: 16px 18px;
+
+            background: rgba(255, 255, 255, .04);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            border-radius: 16px;
+
+            color: white;
+
+            transition: .3s;
+
+        }
+
+
+        .input-style::placeholder {
+
+            color: #94A3B8;
+
+        }
+
+
+        .input-style:focus {
+
+            outline: none;
+
+            border-color: #38BDF8;
+
+            box-shadow:
+
+                0 0 0 4px rgba(56, 189, 248, .12);
+
+        }
+
+
+        /* ===================================================== */
+        /* PRIMARY BUTTON */
+        /* ===================================================== */
+
+        .primary-btn {
+
+            background:
+
+                linear-gradient(90deg,
+                    #2563EB,
+                    #38BDF8);
+
+            transition: .35s;
+
+        }
+
+
+        .primary-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+
+                0 20px 45px rgba(37, 99, 235, .35);
+
+        }
+
+
+        .primary-btn:disabled {
+
+            opacity: .7;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* ===================================================== */
+        /* MOBILE */
+        /* ===================================================== */
+
+        @media (max-width: 640px) {
+
+            .glow {
+
+                width: 300px;
+
+                height: 300px;
+
+            }
+
+
+            .glow2 {
+
+                width: 250px;
+
+                height: 250px;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN SECTION -->
+    <!-- ===================================================== -->
+
+    <section class="min-h-screen grid-bg flex items-center justify-center px-5 py-10 relative overflow-hidden">
+
+
+        <!-- ================================================= -->
+        <!-- BACKGROUND GLOWS -->
+        <!-- ================================================= -->
+
+        <div class="glow -top-32 -left-20"></div>
+
+        <div class="glow2 bottom-0 right-0"></div>
+
+
+        <!-- ================================================= -->
+        <!-- MAIN CONTAINER -->
+        <!-- ================================================= -->
+
+        <div class="relative z-10 w-full max-w-6xl">
+
+
+            <div class="grid lg:grid-cols-2 rounded-[36px] overflow-hidden shadow-2xl glass">
+
+
+                <!-- ================================================= -->
+                <!-- LEFT SIDE -->
+                <!-- ================================================= -->
+
+                <div class="hidden lg:flex flex-col justify-between p-12 relative overflow-hidden">
+
+
+                    <!-- LOGO -->
+
+                    <div>
+
+                        <div class="flex items-center gap-4">
+
+
+                            <div
+                                class="w-16 h-16 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-3xl font-bold">
+
+                                C
+
+                            </div>
+
+
+                            <div>
+
+                                <h1 class="text-4xl font-extrabold">
+
+                                    Coach<span class="gradient-text">
+                                        ly
+                                    </span>
+
+                                </h1>
+
+
+                                <p class="text-slate-400">
+
+                                    Student Portal
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HERO -->
+
+                    <div class="mt-20">
+
+
+                        <span class="inline-flex px-5 py-2 rounded-full glass text-xs tracking-[3px] uppercase">
+
+                            🎓 Student Login
+
+                        </span>
+
+
+                        <h2 class="mt-8 text-6xl font-extrabold leading-tight">
+
+                            Welcome
+
+                            <span class="gradient-text">
+
+                                Back
+
+                            </span>
+
+                        </h2>
+
+
+                        <p class="mt-8 text-slate-300 text-xl leading-9">
+
+                            Login using your Email Address and Password.
+
+                            View attendance, marks, assignments,
+                            announcements and much more.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="space-y-5 mt-16">
+
+
+                        <!-- ATTENDANCE -->
+
+                        <div class="glass rounded-3xl p-5 flex gap-5 items-center">
+
+
+                            <div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center text-3xl">
+
+                                📅
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="font-bold text-xl">
+
+                                    Attendance
+
+                                </h3>
+
+
+                                <p class="text-slate-400 mt-2">
+
+                                    Daily attendance reports.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EXAM RESULTS -->
+
+                        <div class="glass rounded-3xl p-5 flex gap-5 items-center">
+
+
+                            <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-3xl">
+
+                                📘
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="font-bold text-xl">
+
+                                    Exam Results
+
+                                </h3>
+
+
+                                <p class="text-slate-400 mt-2">
+
+                                    View marks instantly.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ANNOUNCEMENTS -->
+
+                        <div class="glass rounded-3xl p-5 flex gap-5 items-center">
+
+
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center text-3xl">
+
+                                📢
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="font-bold text-xl">
+
+                                    Announcements
+
+                                </h3>
+
+
+                                <p class="text-slate-400 mt-2">
+
+                                    Latest coaching updates.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COPYRIGHT -->
+
+                        <div class="mt-12 text-slate-500">
+
+                            © 2026 Coachly Student Portal
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- RIGHT SIDE -->
+                <!-- ================================================= -->
+
+                <div class="glass p-8 md:p-14 flex items-center border-l border-white/10">
+
+
+                    <div class="w-full">
+
+
+                        <!-- ================================================= -->
+                        <!-- MOBILE LOGO -->
+                        <!-- ================================================= -->
+
+                        <div class="flex lg:hidden items-center gap-4 mb-10">
+
+
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-xl">
+
+                                C
+
+                            </div>
+
+
+                            <h1 class="text-3xl font-bold">
+
+                                Coachly
+
+                            </h1>
+
+                        </div>
+
+
+                        <!-- ================================================= -->
+                        <!-- BADGE -->
+                        <!-- ================================================= -->
+
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs uppercase tracking-[3px] text-cyan-300">
+
+                            🎓 Student Login
+
+                        </span>
+
+
+                        <!-- ================================================= -->
+                        <!-- HEADING -->
+                        <!-- ================================================= -->
+
+                        <h2 class="mt-7 text-5xl font-extrabold leading-tight">
+
+                            Login To
+
+                            <span class="gradient-text">
+
+                                Dashboard
+
+                            </span>
+
+                        </h2>
+
+
+                        <p class="mt-5 text-slate-400 text-lg leading-8">
+
+                            Enter your Email Address and Password
+                            to continue.
+
+                        </p>
+
+
+                        <!-- ================================================= -->
+                        <!-- LOGIN FORM -->
+                        <!-- ================================================= -->
+
+                        <form id="studentLoginForm" class="mt-12 space-y-7">
+
+
+                            <!-- EMAIL -->
+
+                            <div>
+
+                                <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    Email Address
+
+                                </label>
+
+
+                                <input id="studentEmail" type="email" placeholder="Enter Email Address"
+                                    class="input-style" autocomplete="email" required>
+
+                            </div>
+
+
+                            <!-- PASSWORD -->
+
+                            <div>
+
+                                <label class="block mb-3 uppercase tracking-[3px] text-xs font-semibold text-slate-300">
+
+                                    Password
+
+                                </label>
+
+
+                                <div class="relative">
+
+
+                                    <input id="password" type="password" placeholder="Enter Password"
+                                        class="input-style pr-14" autocomplete="current-password" required>
+
+
+                                    <!-- PASSWORD TOGGLE -->
+
+                                    <button type="button" id="togglePassword" aria-label="Show password"
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-cyan-400 transition">
+
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.8" stroke="currentColor" class="w-6 h-6">
+
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+
+                                        </svg>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- OPTIONS -->
+
+                            <div class="flex items-center justify-between gap-4">
+
+
+                                <label class="flex items-center gap-3 text-slate-400 cursor-pointer">
+
+                                    <input id="rememberMe" type="checkbox" class="accent-cyan-400">
+
+                                    Remember Me
+
+                                </label>
+
+
+                                <a href="student-forgot-password.html" class="text-cyan-400 hover:underline">
+
+                                    Forgot Password?
+
+                                </a>
+
+                            </div>
+
+
+                            <!-- LOGIN BUTTON -->
+
+                            <button id="loginBtn" type="submit"
+                                class="primary-btn group w-full py-5 rounded-2xl text-lg font-bold text-white flex items-center justify-center gap-3 shadow-xl shadow-blue-600/30 hover:scale-[1.02] duration-300">
+
+
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-6 h-6 group-hover:rotate-12 duration-300" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+
+                                </svg>
+
+
+                                Login To Dashboard →
+
+                            </button>
+
+
+                            <!-- DIVIDER -->
+
+                            <div class="flex items-center gap-4 my-8">
+
+                                <div class="flex-1 h-px bg-white/10">
+                                </div>
+
+                                <span class="text-slate-500 text-sm">
+
+                                    OR
+
+                                </span>
+
+                                <div class="flex-1 h-px bg-white/10">
+                                </div>
+
+                            </div>
+
+
+                            <!-- STUDENT INFORMATION -->
+
+                            <div class="glass rounded-2xl p-5">
+
+                                <h4 class="text-cyan-300 font-semibold">
+
+                                    📚 Student Information
+
+                                </h4>
+
+
+                                <p class="text-slate-400 mt-3 leading-7">
+
+                                    Use the
+
+                                    <span class="text-white font-semibold">
+
+                                        Email Address
+
+                                    </span>
+
+                                    provided during registration along
+                                    with your password to access your
+                                    dashboard.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- SECURITY -->
+
+                            <div class="glass rounded-2xl p-5 mt-5">
+
+                                <h4 class="text-green-400 font-semibold">
+
+                                    🔒 Secure Login
+
+                                </h4>
+
+
+                                <p class="text-slate-400 mt-3 leading-7">
+
+                                    Your login credentials are securely
+                                    protected by the Coachly platform.
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- HELP -->
+
+                            <div class="mt-8 text-center">
+
+                                <p class="text-slate-400">
+
+                                    Need help logging in?
+
+                                    <a href="contact-coaching.html" class="text-cyan-400 font-semibold hover:underline">
+
+                                        Contact Your Coaching
+
+                                    </a>
+
+                                </p>
+
+                            </div>
+
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================================== -->
+
+    <script>
+
+
+        // =====================================================
+        // API CONFIGURATION
+        // =====================================================
+
+        const API_BASE_URL =
+            "https://api-gateway-6gmq.onrender.com";
+
+
+        // =====================================================
+        // PASSWORD TOGGLE
+        // =====================================================
+
+        const passwordInput =
+            document.getElementById("password");
+
+
+        const togglePassword =
+            document.getElementById("togglePassword");
+
+
+        const eyeOpen = `
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+                class="w-6 h-6">
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+
+            </svg>
+
+        `;
+
+
+        const eyeClosed = `
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+                class="w-6 h-6">
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 3l18 18"/>
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.477 10.489A3 3 0 0012 15a3 3 0 002.51-4.523"/>
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.88 5.09A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-4.132 5.411M6.228 6.228A9.956 9.956 0 002.458 12c1.274 4.057 5.064 7 9.542 7a9.953 9.953 0 005.09-1.388"/>
+
+            </svg>
+
+        `;
+
+
+        togglePassword.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    passwordInput.type === "password"
+                ) {
+
+                    passwordInput.type = "text";
+
+                    togglePassword.innerHTML =
+                        eyeClosed;
+
+                    togglePassword.setAttribute(
+                        "aria-label",
+                        "Hide password"
+                    );
+
+                }
+
+                else {
+
+                    passwordInput.type =
+                        "password";
+
+                    togglePassword.innerHTML =
+                        eyeOpen;
+
+                    togglePassword.setAttribute(
+                        "aria-label",
+                        "Show password"
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // LOGIN ELEMENTS
+        // =====================================================
+
+        const form =
+            document.getElementById(
+                "studentLoginForm"
+            );
+
+
+        const studentEmail =
+            document.getElementById(
+                "studentEmail"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginBtn"
+            );
+
+
+        const rememberMe =
+            document.getElementById(
+                "rememberMe"
+            );
+
+
+        // =====================================================
+        // LOGIN SUBMIT
+        // =====================================================
+
+        form.addEventListener(
+            "submit",
+            async function (e) {
+
+                e.preventDefault();
+
+
+                // =================================================
+                // GET VALUES
+                // =================================================
+
+                const email =
+                    studentEmail.value.trim();
+
+
+                const passwordValue =
+                    passwordInput.value;
+
+
+                // =================================================
+                // VALIDATION
+                // =================================================
+
+                if (email === "") {
+
+                    alert(
+                        "Please enter your Email Address."
+                    );
+
+                    studentEmail.focus();
+
+                    return;
+
+                }
+
+
+                if (passwordValue.trim() === "") {
+
+                    alert(
+                        "Please enter your Password."
+                    );
+
+                    passwordInput.focus();
+
+                    return;
+
+                }
+
+
+                // =================================================
+                // LOADING STATE
+                // =================================================
+
+                loginButton.disabled = true;
+
+
+                loginButton.innerHTML = `
+
+                    <svg
+                        class="animate-spin w-6 h-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24">
+
+                        <circle
+                            class="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="4">
+                        </circle>
+
+                        <path
+                            class="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z">
+                        </path>
+
+                    </svg>
+
+                    Logging In...
+
+                `;
+
+
+                try {
+
+
+                    // =================================================
+                    // REAL BACKEND API
+                    // =================================================
+
+                    const response =
+                        await fetch(
+
+                            `${API_BASE_URL}/api/v1/student/login`,
+
+                            {
+
+                                method: "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        email:
+                                            email,
+
+                                        password:
+                                            passwordValue
+
+                                    })
+
+                            }
+
+                        );
+
+
+                    // =================================================
+                    // READ RESPONSE SAFELY
+                    // =================================================
+
+                    const responseText =
+                        await response.text();
+
+
+                    let data = null;
+
+
+                    try {
+
+                        data =
+                            responseText
+                                ? JSON.parse(responseText)
+                                : null;
+
+                    }
+
+                    catch (jsonError) {
+
+                        console.error(
+                            "Backend returned non-JSON response:",
+                            responseText
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // DEBUG RESPONSE
+                    // =================================================
+
+                    console.log(
+                        "Student Login Status:",
+                        response.status
+                    );
+
+
+                    console.log(
+                        "Student Login Response:",
+                        data
+                    );
+
+
+                    // =================================================
+                    // API ERROR
+                    // =================================================
+
+                    if (!response.ok) {
+
+                        throw new Error(
+
+                            (
+                                data &&
+                                (
+                                    data.message ||
+                                    data.error
+                                )
+                            ) ||
+
+                            `Student login failed. Status: ${response.status}`
+
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // SUCCESS RESPONSE CHECK
+                    // =================================================
+
+                    if (!data) {
+
+                        throw new Error(
+                            "Server returned an empty response."
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // SAVE TOKEN
+                    // =================================================
+
+                    if (data.token) {
+
+                        localStorage.setItem(
+                            "coachlyToken",
+                            data.token
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // SAVE STUDENT DATA
+                    // =================================================
+
+                    if (data.student) {
+
+                        localStorage.setItem(
+
+                            "coachlyStudent",
+
+                            JSON.stringify(
+                                data.student
+                            )
+
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // SAVE COMPLETE LOGIN RESPONSE
+                    // =================================================
+
+                    localStorage.setItem(
+
+                        "coachlyLoginResponse",
+
+                        JSON.stringify(data)
+
+                    );
+
+
+                    // =================================================
+                    // LOGIN STATUS
+                    // =================================================
+
+                    localStorage.setItem(
+                        "coachlyLoggedIn",
+                        "true"
+                    );
+
+
+                    // =================================================
+                    // REMEMBER ME
+                    // =================================================
+
+                    if (rememberMe.checked) {
+
+                        localStorage.setItem(
+                            "coachlyRememberMe",
+                            "true"
+                        );
+
+                    }
+
+                    else {
+
+                        localStorage.removeItem(
+                            "coachlyRememberMe"
+                        );
+
+                    }
+
+
+                    // =================================================
+                    // SUCCESS MESSAGE
+                    // =================================================
+
+                    alert(
+                        "Login Successful!"
+                    );
+
+
+                    // =================================================
+                    // DASHBOARD REDIRECT
+                    // =================================================
+
+                    window.location.href =
+                        "student-dashboard.html";
+
+                }
+
+
+                // =====================================================
+                // ERROR
+                // =====================================================
+
+                catch (error) {
+
+                    console.error(
+                        "Student Login Error:",
+                        error
+                    );
+
+
+                    // Network / CORS / server error
+
+                    if (
+                        error instanceof TypeError
+                    ) {
+
+                        alert(
+                            "Unable to connect to the server. Please check the backend, API URL, or CORS configuration."
+                        );
+
+                    }
+
+                    else {
+
+                        alert(
+                            error.message ||
+                            "Student login failed."
+                        );
+
+                    }
+
+                }
+
+
+                // =====================================================
+                // RESET BUTTON
+                // =====================================================
+
+                finally {
+
+                    loginButton.disabled =
+                        false;
+
+
+                    loginButton.innerHTML = `
+
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-6 h-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 13l4 4L19 7"/>
+
+                        </svg>
+
+                        Login To Dashboard →
+
+                    `;
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

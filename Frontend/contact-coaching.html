@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coachly | Contact Coaching</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #071120;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .grid-bg {
+            background:
+                linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+
+            background-size: 55px 55px;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, .75);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .glow {
+
+            position: absolute;
+
+            width: 450px;
+
+            height: 450px;
+
+            background: #2563EB;
+
+            filter: blur(170px);
+
+            opacity: .18;
+
+            border-radius: 9999px;
+
+        }
+
+        .glow2 {
+
+            position: absolute;
+
+            width: 350px;
+
+            height: 350px;
+
+            background: #38BDF8;
+
+            filter: blur(150px);
+
+            opacity: .15;
+
+            border-radius: 9999px;
+
+        }
+
+        .gradient-text {
+
+            background: linear-gradient(90deg, #60A5FA, #38BDF8, #2563EB);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        .primary-btn {
+
+            background: linear-gradient(90deg, #2563EB, #38BDF8);
+
+            transition: .3s;
+
+        }
+
+        .primary-btn:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 20px 45px rgba(37, 99, 235, .35);
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="min-h-screen grid-bg flex items-center justify-center px-5 py-10 relative overflow-hidden">
+
+        <div class="glow -top-32 -left-20"></div>
+
+        <div class="glow2 bottom-0 right-0"></div>
+
+        <div class="relative z-10 w-full max-w-6xl">
+
+            <div class="grid lg:grid-cols-2 rounded-[36px] overflow-hidden shadow-2xl glass">
+
+                <!-- ================= LEFT SIDE ================= -->
+
+                <div class="hidden lg:flex flex-col justify-between p-12">
+
+                    <!-- Logo -->
+
+                    <div>
+
+                        <div class="flex items-center gap-4">
+
+                            <div
+                                class="w-16 h-16 rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-3xl font-bold">
+
+                                C
+
+                            </div>
+
+                            <div>
+
+                                <h1 class="text-4xl font-extrabold">
+
+                                    Coach<span class="gradient-text">ly</span>
+
+                                </h1>
+
+                                <p class="text-slate-400">
+
+                                    Coaching Support Center
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Heading -->
+
+                    <div class="mt-16">
+
+                        <span
+                            class="inline-flex px-5 py-2 rounded-full glass text-xs uppercase tracking-[3px] text-cyan-300">
+
+                            Support
+
+                        </span>
+
+                        <h2 class="mt-8 text-6xl font-extrabold leading-tight">
+
+                            Contact
+
+                            <span class="gradient-text">
+
+                                Your Coaching
+
+                            </span>
+
+                        </h2>
+
+                        <p class="mt-8 text-slate-300 text-xl leading-9">
+
+                            Need help with your Student ID, password or account?
+
+                            Contact your coaching institute directly.
+
+                            They will verify your identity and assist you.
+
+                        </p>
+
+                    </div>
+
+                    <!-- Features -->
+
+                    <div class="space-y-5 mt-12">
+
+                        <div class="glass rounded-3xl p-5">
+
+                            <h3 class="text-xl font-bold">
+
+                                Password Assistance
+
+                            </h3>
+
+                            <p class="text-slate-400 mt-2">
+
+                                Coaching can reset your account password securely.
+
+                            </p>
+
+                        </div>
+
+                        <div class="glass rounded-3xl p-5">
+
+                            <h3 class="text-xl font-bold">
+
+                                Student Verification
+
+                            </h3>
+
+                            <p class="text-slate-400 mt-2">
+
+                                Verify your identity before recovering access.
+
+                            </p>
+
+                        </div>
+
+                        <div class="glass rounded-3xl p-5">
+
+                            <h3 class="text-xl font-bold">
+
+                                Secure Support
+
+                            </h3>
+
+                            <p class="text-slate-400 mt-2">
+
+                                Only your registered coaching can update your account.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-12 text-slate-500">
+
+                        © 2026 Coachly Platform
+
+                    </div>
+
+                </div>
+
+                <!-- ================= RIGHT SIDE ================= -->
+
+                <div class="glass p-8 md:p-14 border-l border-white/10">
+
+                    <!-- Mobile Logo -->
+
+                    <div class="flex lg:hidden items-center gap-4 mb-10">
+
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center text-xl font-bold">
+
+                            C
+
+                        </div>
+
+                        <h1 class="text-3xl font-bold">
+
+                            Coachly
+
+                        </h1>
+
+                    </div>
+
+                    <!-- Heading -->
+
+                    <span
+                        class="inline-flex px-4 py-2 rounded-full glass text-xs uppercase tracking-[3px] text-cyan-300">
+
+                        Coaching Contact
+
+                    </span>
+
+                    <h2 class="mt-7 text-5xl font-extrabold">
+
+                        Contact
+
+                        <span class="gradient-text">
+
+                            Institute
+
+                        </span>
+
+                    </h2>
+
+                    <p class="mt-5 text-slate-400 leading-8">
+
+                        Reach your coaching directly for password recovery,
+                        account verification and Student ID related issues.
+
+                    </p>
+
+                    <!-- NEXT STEP -->
+
+                    <div id="contactCard" class="mt-10">
+                        <div class="glass rounded-3xl p-8 space-y-7">
+
+                            <!-- Coaching Name -->
+
+                            <div>
+
+                                <p class="text-slate-400 text-sm uppercase tracking-[3px]">
+
+                                    Coaching Name
+
+                                </p>
+
+                                <h3 class="text-3xl font-bold mt-2">
+
+                                    Bright Minds Academy
+
+                                </h3>
+
+                            </div>
+
+                            <!-- Contact Person -->
+
+                            <div>
+
+                                <p class="text-slate-400 text-sm uppercase tracking-[3px]">
+
+                                    Contact Person
+
+                                </p>
+
+                                <h4 class="text-xl font-semibold mt-2">
+
+                                    Faizan Chougule
+
+                                </h4>
+
+                            </div>
+
+                            <!-- Phone -->
+
+                            <div>
+
+                                <p class="text-slate-400 text-sm uppercase tracking-[3px]">
+
+                                    Phone Number
+
+                                </p>
+
+                                <a href="tel:+919876543210" class="text-cyan-400 text-xl font-semibold hover:underline">
+
+                                    +91 9326885033
+
+                                </a>
+
+                            </div>
+
+                            <!-- Email -->
+
+                            <div>
+
+                                <p class="text-slate-400 text-sm uppercase tracking-[3px]">
+
+                                    Email Address
+
+                                </p>
+
+                                <a href="mailto:brightminds@gmail.com" class="text-cyan-400 text-lg hover:underline">
+
+                                    brightminds@gmail.com
+
+                                </a>
+
+                            </div>
+
+                            <!-- Address -->
+
+                            <div>
+
+                                <p class="text-slate-400 text-sm uppercase tracking-[3px]">
+
+                                    Address
+
+                                </p>
+
+                                <p class="text-slate-300 mt-2 leading-7">
+
+                                    2nd Floor, Bright Minds Building,
+                                    MG Road,
+                                    Thane,
+                                    Maharashtra - 400601
+
+                                </p>
+
+                            </div>
+
+                            <!-- Timing -->
+
+                            <div>
+
+                                <p class="text-slate-400 text-sm uppercase tracking-[3px]">
+
+                                    Office Timing
+
+                                </p>
+
+                                <p class="text-slate-300 mt-2">
+
+                                    Monday - Saturday
+
+                                    <br>
+
+                                    9:00 AM - 7:00 PM
+
+                                </p>
+
+                            </div>
+
+                            <!-- Buttons -->
+
+                            <div class="grid md:grid-cols-2 gap-4 pt-4">
+
+                                <a href="tel:+919326885033" class="primary-btn rounded-2xl py-4 text-center font-bold">
+
+                                    Call Now
+
+                                </a>
+
+                                <a href="mailto:brightminds@gmail.com"
+                                    class="glass rounded-2xl py-4 text-center border border-white/10 hover:border-cyan-400 transition">
+
+                                    Send Email
+
+                                </a>
+
+                            </div>
+
+                            <!-- Back Button -->
+
+                            <a href="student-login.html" class="block text-center mt-4 text-cyan-400 hover:underline">
+
+                                ← Back To Student Login
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

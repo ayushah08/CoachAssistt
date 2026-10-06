@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Manage Coachings</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    body{
+      font-family:'Inter',sans-serif;
+      background:#f8fafc;
+    }
+
+    .card{
+      background:white;
+      border:1px solid #e2e8f0;
+      border-radius:24px;
+      transition:0.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(15,23,42,0.08);
+    }
+
+    .sidebar-link{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:15px 18px;
+      border-radius:16px;
+      transition:0.3s ease;
+      font-weight:500;
+      color:#475569;
+    }
+
+    .sidebar-link:hover{
+      background:#eff6ff;
+      color:#1d4ed8;
+    }
+
+    .sidebar-active{
+      background:#1d4ed8;
+      color:white !important;
+    }
+
+    .input-style{
+      width:100%;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid #dbe3ee;
+      outline:none;
+    }
+
+    .input-style:focus{
+      border-color:#2563eb;
+      box-shadow:0 0 0 4px rgba(37,99,235,0.08);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+ <aside
+  id="mobileMenu"
+  class="hidden lg:flex flex-col w-72 bg-white border-r border-slate-200 p-6 fixed lg:static top-0 left-0 z-50 min-h-screen"
+>
+
+<div class="flex justify-end lg:hidden mb-6">
+  <button
+    id="closeBtn"
+    class="text-3xl font-bold text-slate-700"
+  >
+    ×
+  </button>
+</div>
+
+    <!-- Logo -->
+    <div class="flex items-center gap-4 mb-10">
+
+      <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+        A
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">
+          Coachly Admin
+        </h1>
+
+        <p class="text-slate-500 text-sm">
+          Admin Panel
+        </p>
+      </div>
+
+    </div>
+
+    <!-- NAV -->
+    <nav class="space-y-3">
+
+      <a href="dashboard.html" class="sidebar-link">
+        📊 Dashboard
+      </a>
+
+      <a href="coachings.html" class="sidebar-link sidebar-active">
+        🏫 Manage Coachings
+      </a>
+
+      <a href="analytics.html" class="sidebar-link">
+        📈 Analytics
+      </a>
+
+      <a href="active-users.html" class="sidebar-link">
+        👥 Active Users
+      </a>
+
+      <a href="settings.html" class="sidebar-link">
+        ⚙ Settings
+      </a>
+
+    </nav>
+
+    <!-- Bottom -->
+    <div class="mt-auto pt-10">
+
+      <a
+        href="../index.html"
+        class="sidebar-link bg-slate-100 hover:bg-red-50 hover:text-red-600"
+      >
+        🚪 Logout
+      </a>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 p-4 md:p-6 lg:p-10">
+
+    <!-- MOBILE TOP -->
+    <div class="flex items-center justify-between mb-6 lg:hidden">
+
+      <h1 class="text-2xl font-bold text-slate-900">
+        Coachly Admin
+      </h1>
+
+     <button
+  id="menuBtn"
+  class="bg-blue-700 text-white px-4 py-2 rounded-xl"
+>
+  ☰
+</button>
+    </div>
+
+    <!-- TOP -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+
+      <div>
+
+        <p class="uppercase tracking-[4px] text-xs md:text-sm text-slate-500 font-semibold">
+          Coaching Verification
+        </p>
+
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 mt-3">
+          Manage Coachings 🏫
+        </h1>
+
+      </div>
+
+      <button class="bg-blue-700 hover:bg-blue-800 transition text-white px-6 py-4 rounded-2xl font-semibold shadow-lg w-full lg:w-auto">
+        + Add Coaching
+      </button>
+
+    </div>
+
+    <!-- SEARCH -->
+    <div class="card p-5 md:p-6 mt-10">
+
+      <div class="flex flex-col md:flex-row gap-4">
+
+        <input
+          type="text"
+          placeholder="Search coaching..."
+          class="input-style"
+        >
+
+        <select class="input-style md:w-72">
+
+          <option>All Status</option>
+          <option>Pending</option>
+          <option>Approved</option>
+          <option>Rejected</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- COACHINGS -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-10">
+
+      <!-- CARD -->
+      <div class="card p-6 md:p-8">
+
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+
+          <div>
+
+            <p class="uppercase tracking-[4px] text-xs text-slate-500 font-semibold">
+              Coaching Request
+            </p>
+
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+              Bright Minds Academy
+            </h2>
+
+          </div>
+
+          <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold">
+            Pending
+          </span>
+
+        </div>
+
+        <!-- DETAILS -->
+        <div class="mt-8 space-y-4">
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Owner Name</p>
+            <p class="font-semibold text-slate-900">Faizan Khan</p>
+          </div>
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Email</p>
+            <p class="font-semibold text-slate-900 break-all">
+              brightminds@gmail.com
+            </p>
+          </div>
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Students</p>
+            <p class="font-semibold text-slate-900">248</p>
+          </div>
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Verification</p>
+            <p class="font-semibold text-green-600">
+              Documents Uploaded
+            </p>
+          </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+
+          <button class="bg-blue-700 hover:bg-blue-800 transition text-white py-3 rounded-2xl font-semibold">
+            View
+          </button>
+
+          <button class="bg-green-600 hover:bg-green-700 transition text-white py-3 rounded-2xl font-semibold">
+            Approve
+          </button>
+
+          <button class="bg-red-600 hover:bg-red-700 transition text-white py-3 rounded-2xl font-semibold">
+            Reject
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card p-6 md:p-8">
+
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+
+          <div>
+
+            <p class="uppercase tracking-[4px] text-xs text-slate-500 font-semibold">
+              Coaching Request
+            </p>
+
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+              Scholars Point
+            </h2>
+
+          </div>
+
+          <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+            Approved
+          </span>
+
+        </div>
+
+        <!-- DETAILS -->
+        <div class="mt-8 space-y-4">
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Owner Name</p>
+            <p class="font-semibold text-slate-900">Arman Sheikh</p>
+          </div>
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Email</p>
+            <p class="font-semibold text-slate-900 break-all">
+              scholars@gmail.com
+            </p>
+          </div>
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Students</p>
+            <p class="font-semibold text-slate-900">520</p>
+          </div>
+
+          <div class="flex justify-between gap-4">
+            <p class="text-slate-500">Verification</p>
+            <p class="font-semibold text-green-600">
+              Verified
+            </p>
+          </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+
+          <button class="bg-slate-900 hover:bg-slate-800 transition text-white py-3 rounded-2xl font-semibold">
+            View Details
+          </button>
+
+          <button class="bg-red-600 hover:bg-red-700 transition text-white py-3 rounded-2xl font-semibold">
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeBtn = document.getElementById("closeBtn");
+
+  menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+  });
+
+  closeBtn.addEventListener("click", function () {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+  });
+</script>
+
+
+
+</body>
+</html>

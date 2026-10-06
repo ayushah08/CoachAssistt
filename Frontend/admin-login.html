@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Coachly - Admin Login</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f8fafc;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(to right,
+          rgba(15, 23, 42, 0.05) 1px,
+          transparent 1px),
+        linear-gradient(to bottom,
+          rgba(15, 23, 42, 0.05) 1px,
+          transparent 1px);
+      background-size: 55px 55px;
+    }
+
+    .input-style {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid #dbe3ee;
+      background: white;
+      outline: none;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+
+    .input-style:focus {
+      border-color: #1d4ed8;
+      box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.08);
+      transform: scale(1.01);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: #1d4ed8;
+      color: white;
+      padding: 16px;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(29, 78, 216, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .btn-animate {
+      transition: all 0.3s ease;
+    }
+
+    .btn-animate:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(29, 78, 216, 0.25);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .error-message {
+      color: #dc2626;
+      font-size: 14px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .success-message {
+      color: #16a34a;
+      font-size: 14px;
+      margin-top: 8px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="min-h-screen grid lg:grid-cols-2">
+
+    <!-- =====================================================
+         LEFT SIDE
+    ====================================================== -->
+
+    <div class="hidden lg:flex bg-slate-900 p-14 relative overflow-hidden">
+
+      <!-- Glow -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[120px] opacity-30">
+      </div>
+
+      <div class="relative z-10 flex flex-col justify-between w-full">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-4">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+            C
+          </div>
+
+          <h1 class="text-3xl font-bold text-white">
+            Coachly
+          </h1>
+
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="max-w-xl">
+
+          <div class="mb-6">
+
+            <span class="uppercase tracking-[4px] text-sm text-blue-200 border-b border-blue-300/30 pb-1 font-semibold">
+              Admin Panel
+            </span>
+
+          </div>
+
+
+          <h1 class="text-6xl font-extrabold leading-tight text-white tracking-tight">
+            Manage the entire coaching platform.
+          </h1>
+
+
+          <p class="mt-8 text-slate-300 text-xl leading-relaxed">
+            Review coaching verification requests, manage institutes and
+            monitor overall platform activity.
+          </p>
+
+
+          <!-- Cards -->
+          <div class="mt-12 space-y-5">
+
+            <!-- Approval -->
+            <div class="bg-white/10 border border-white/10 rounded-3xl p-5 backdrop-blur-md float">
+
+              <div class="flex items-start gap-4">
+
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-2xl">
+                  ✅
+                </div>
+
+                <div>
+
+                  <h3 class="text-white text-xl font-semibold">
+                    Approval Management
+                  </h3>
+
+                  <p class="text-slate-300 mt-2 leading-relaxed">
+                    Approve or reject coaching registrations instantly.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Analytics -->
+            <div class="bg-white/10 border border-white/10 rounded-3xl p-5 backdrop-blur-md float">
+
+              <div class="flex items-start gap-4">
+
+                <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center text-2xl">
+                  📊
+                </div>
+
+                <div>
+
+                  <h3 class="text-white text-xl font-semibold">
+                    Platform Analytics
+                  </h3>
+
+                  <p class="text-slate-300 mt-2 leading-relaxed">
+                    Monitor all institutes and student activities.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="text-slate-400 text-sm">
+          © 2026 Coachly Platform
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         RIGHT SIDE
+    ====================================================== -->
+
+    <div class="grid-bg flex items-center justify-center px-6 py-14">
+
+      <div class="w-full max-w-xl bg-white border border-slate-200 rounded-[36px] p-8 md:p-12 shadow-2xl">
+
+        <!-- Mobile Logo -->
+        <div class="flex lg:hidden items-center gap-3 mb-10">
+
+          <div class="w-12 h-12 rounded-2xl bg-blue-700 flex items-center justify-center text-white font-bold text-xl">
+            C
+          </div>
+
+          <h1 class="text-3xl font-bold">
+            Coachly
+          </h1>
+
+        </div>
+
+
+        <!-- Heading -->
+        <div>
+
+          <div class="mb-5">
+
+            <span class="uppercase tracking-[4px] text-sm text-slate-500 border-b border-slate-400 pb-1 font-semibold">
+              Admin • Login
+            </span>
+
+          </div>
+
+
+          <h2 class="text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Welcome back, Admin
+          </h2>
+
+
+          <p class="mt-5 text-slate-500 text-lg leading-relaxed">
+            Sign in to manage coachings and platform activity.
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             LOGIN FORM
+        ================================================== -->
+
+        <form id="adminLoginForm" class="mt-10 space-y-6" novalidate>
+
+          <!-- Email -->
+          <div>
+
+            <label for="adminEmail" class="block mb-3 uppercase tracking-[3px] text-sm font-semibold text-slate-500">
+              Admin Email
+            </label>
+
+
+            <input type="email" id="adminEmail" name="email" placeholder="Enter admin email" class="input-style"
+              autocomplete="email" required />
+
+          </div>
+
+
+          <!-- Password -->
+          <div>
+
+            <div class="flex items-center justify-between mb-3">
+
+              <label for="password" class="uppercase tracking-[3px] text-sm font-semibold text-slate-500">
+                Password
+              </label>
+
+
+              <button type="button" id="forgotBtn" class="text-blue-700 font-medium hover:underline">
+                Forgot?
+              </button>
+
+            </div>
+
+
+            <div class="relative">
+
+              <input type="password" id="password" name="password" placeholder="Enter password"
+                class="input-style pr-14" autocomplete="current-password" required />
+
+
+              <!-- Password Toggle -->
+              <button type="button" id="togglePassword"
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-700 transition duration-300"
+                aria-label="Show password">
+
+                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+                  stroke="currentColor" class="w-6 h-6">
+
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5
+                    c4.478 0 8.268 2.943 9.542 7
+                    -1.274 4.057-5.064 7-9.542 7
+                    -4.477 0-8.268-2.943-9.542-7z" />
+
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0
+                    3 3 0 016 0z" />
+
+                </svg>
+
+              </button>
+
+            </div>
+
+
+            <!-- Error -->
+            <p id="loginError" class="error-message">
+            </p>
+
+
+            <!-- Success -->
+            <p id="loginSuccess" class="success-message">
+            </p>
+
+          </div>
+
+
+          <!-- Forgot Password -->
+          <div id="resetBox" class="hidden p-4 rounded-2xl bg-blue-50 border border-blue-100">
+
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Admin password reset is not available through the current
+              API documentation. Please contact the platform administrator.
+            </p>
+
+          </div>
+
+
+          <!-- Remember -->
+          <div class="flex items-center justify-between">
+
+            <label class="flex items-center gap-3 text-slate-600 cursor-pointer">
+
+              <input type="checkbox" id="rememberAdmin" class="w-5 h-5 rounded text-blue-700" />
+
+              Remember admin session
+
+            </label>
+
+          </div>
+
+
+          <!-- Login Button -->
+          <button type="submit" id="loginBtn" class="btn-primary btn-animate flex items-center justify-center">
+
+            Login to Admin Panel →
+
+          </button>
+
+        </form>
+
+
+        <!-- Bottom -->
+        <div class="mt-8 text-center">
+
+          <p class="text-slate-500 text-lg">
+
+            Return to
+
+            <a href="index.html" class="text-blue-700 font-semibold hover:underline">
+              Homepage
+            </a>
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    /* =====================================================
+       API CONFIGURATION
+    ====================================================== */
+
+    const API_BASE_URL =
+      "https://api-gateway-6gmq.onrender.com";
+
+    const ADMIN_LOGIN_ENDPOINT =
+      "/api/v1/admin/login";
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const adminLoginForm =
+      document.getElementById("adminLoginForm");
+
+    const adminEmail =
+      document.getElementById("adminEmail");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const loginError =
+      document.getElementById("loginError");
+
+    const loginSuccess =
+      document.getElementById("loginSuccess");
+
+    const togglePassword =
+      document.getElementById("togglePassword");
+
+    const eyeIcon =
+      document.getElementById("eyeIcon");
+
+    const forgotBtn =
+      document.getElementById("forgotBtn");
+
+    const resetBox =
+      document.getElementById("resetBox");
+
+    const rememberAdmin =
+      document.getElementById("rememberAdmin");
+
+
+    /* =====================================================
+       MESSAGE HELPERS
+    ====================================================== */
+
+    function showError(message) {
+
+      loginSuccess.style.display = "none";
+      loginSuccess.textContent = "";
+
+      loginError.textContent = message;
+      loginError.style.display = "block";
+    }
+
+
+    function showSuccess(message) {
+
+      loginError.style.display = "none";
+      loginError.textContent = "";
+
+      loginSuccess.textContent = message;
+      loginSuccess.style.display = "block";
+    }
+
+
+    function clearMessages() {
+
+      loginError.style.display = "none";
+      loginError.textContent = "";
+
+      loginSuccess.style.display = "none";
+      loginSuccess.textContent = "";
+    }
+
+
+    /* =====================================================
+       PASSWORD TOGGLE
+    ====================================================== */
+
+    togglePassword.addEventListener(
+      "click",
+      function () {
+
+        if (passwordInput.type === "password") {
+
+          passwordInput.type = "text";
+
+          togglePassword.setAttribute(
+            "aria-label",
+            "Hide password"
+          );
+
+          eyeIcon.innerHTML = `
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3l18 18"
+            />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.477 10.489A3 3 0 0012 15
+              a3 3 0 002.51-4.523"
+            />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.88 5.09A9.953 9.953 0 0112 5
+              c4.478 0 8.268 2.943 9.542 7
+              a9.97 9.97 0 01-4.132 5.411
+              M6.228 6.228A9.956 9.956 0 002.458 12
+              c1.274 4.057 5.064 7 9.542 7
+              a9.953 9.953 0 005.09-1.388"
+            />
+          `;
+
+        } else {
+
+          passwordInput.type = "password";
+
+          togglePassword.setAttribute(
+            "aria-label",
+            "Show password"
+          );
+
+          eyeIcon.innerHTML = `
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5
+              c4.478 0 8.268 2.943 9.542 7
+              -1.274 4.057-5.064 7-9.542 7
+              -4.477 0-8.268-2.943-9.542-7z"
+            />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 12a3 3 0 11-6 0
+              3 3 0 016 0z"
+            />
+          `;
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       FORGOT PASSWORD
+    ====================================================== */
+
+    forgotBtn.addEventListener(
+      "click",
+      function () {
+
+        resetBox.classList.toggle("hidden");
+
+      }
+    );
+
+
+    /* =====================================================
+       ADMIN LOGIN
+    ====================================================== */
+
+    adminLoginForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+        clearMessages();
+
+
+        /* -------------------------------------------------
+           GET FORM VALUES
+        -------------------------------------------------- */
+
+        const email =
+          adminEmail.value.trim();
+
+        const passwordValue =
+          passwordInput.value;
+
+
+        /* -------------------------------------------------
+           FRONTEND VALIDATION
+        -------------------------------------------------- */
+
+        if (!email) {
+
+          showError(
+            "Please enter your admin email."
+          );
+
+          adminEmail.focus();
+
+          return;
+        }
+
+
+        if (!passwordValue) {
+
+          showError(
+            "Please enter your admin password."
+          );
+
+          passwordInput.focus();
+
+          return;
+        }
+
+
+        /* -------------------------------------------------
+           LOADING STATE
+        -------------------------------------------------- */
+
+        loginBtn.disabled = true;
+
+        loginBtn.textContent =
+          "Signing in...";
+
+
+        try {
+
+          /* -------------------------------------------------
+             API REQUEST
+          -------------------------------------------------- */
+
+          const response = await fetch(
+            `${API_BASE_URL}${ADMIN_LOGIN_ENDPOINT}`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+
+              body: JSON.stringify({
+                email: email,
+                password: passwordValue
+              })
+            }
+          );
+
+
+          /* -------------------------------------------------
+             READ RESPONSE SAFELY
+          -------------------------------------------------- */
+
+          const responseText =
+            await response.text();
+
+          let data = {};
+
+          if (responseText) {
+
+            try {
+
+              data =
+                JSON.parse(responseText);
+
+            } catch (parseError) {
+
+              console.error(
+                "Invalid JSON response:",
+                responseText
+              );
+
+              throw new Error(
+                `Server returned an invalid response (HTTP ${response.status}).`
+              );
+
+            }
+
+          }
+
+
+          console.log(
+            "ADMIN LOGIN STATUS:",
+            response.status
+          );
+
+          console.log(
+            "ADMIN LOGIN RESPONSE:",
+            data
+          );
+
+
+          /* -------------------------------------------------
+             API ERROR
+          -------------------------------------------------- */
+
+          if (!response.ok) {
+
+            throw new Error(
+              data.message ||
+              data.error ||
+              `Admin login failed (HTTP ${response.status}).`
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             TOKEN CHECK
+          -------------------------------------------------- */
+
+          if (!data.token) {
+
+            throw new Error(
+              "Login response received, but no authentication token was returned."
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             ROLE CHECK
+          -------------------------------------------------- */
+
+          if (
+            data.role &&
+            data.role !== "ADMIN"
+          ) {
+
+            throw new Error(
+              "This account does not have ADMIN access."
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             CLEAR OLD ADMIN SESSION
+          -------------------------------------------------- */
+
+          localStorage.removeItem("adminToken");
+          localStorage.removeItem("adminRole");
+          localStorage.removeItem("adminUserId");
+
+          sessionStorage.removeItem("adminToken");
+          sessionStorage.removeItem("adminRole");
+          sessionStorage.removeItem("adminUserId");
+
+
+          /* -------------------------------------------------
+             SAVE ADMIN SESSION
+          -------------------------------------------------- */
+
+          const storage =
+            rememberAdmin.checked
+              ? localStorage
+              : sessionStorage;
+
+
+          storage.setItem(
+            "adminToken",
+            data.token
+          );
+
+          storage.setItem(
+            "adminRole",
+            data.role || "ADMIN"
+          );
+
+
+          /* -------------------------------------------------
+             SAVE USER ID IF AVAILABLE
+          -------------------------------------------------- */
+
+          if (data.userId !== undefined) {
+
+            storage.setItem(
+              "adminUserId",
+              String(data.userId)
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             SUCCESS
+          -------------------------------------------------- */
+
+          showSuccess(
+            "Admin login successful! Redirecting..."
+          );
+
+
+          /* -------------------------------------------------
+             REDIRECT
+          -------------------------------------------------- */
+
+          setTimeout(
+            function () {
+
+              window.location.href =
+                "admin page/dashboard.html";
+
+            },
+            700
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "ADMIN LOGIN ERROR:",
+            error
+          );
+
+
+          /* -------------------------------------------------
+             NETWORK / CORS ERROR
+          -------------------------------------------------- */
+
+          if (
+            error instanceof TypeError &&
+            error.message === "Failed to fetch"
+          ) {
+
+            showError(
+              "Unable to connect to the server. Please check the API URL or CORS configuration."
+            );
+
+          } else {
+
+            showError(
+              error.message ||
+              "Something went wrong during admin login."
+            );
+
+          }
+
+
+          /* -------------------------------------------------
+             RESET BUTTON
+          -------------------------------------------------- */
+
+          loginBtn.disabled = false;
+
+          loginBtn.textContent =
+            "Login to Admin Panel →";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       EXISTING ADMIN SESSION
+    ====================================================== */
+
+    window.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const existingToken =
+          localStorage.getItem("adminToken") ||
+          sessionStorage.getItem("adminToken");
+
+
+        if (existingToken) {
+
+          console.log(
+            "Existing admin session found."
+          );
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

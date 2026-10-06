@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coachly - Coaching Assistant Platform</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #071120;
+      color: #F8FAFC;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: #2563EB;
+      color: white;
+    }
+
+    .grid-bg {
+      background:
+        linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+      background-size: 55px 55px;
+    }
+
+    .glow {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      background: #2563EB;
+      filter: blur(170px);
+      opacity: .15;
+      border-radius: 9999px;
+      z-index: 0;
+    }
+
+    .glow2 {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: #38BDF8;
+      filter: blur(160px);
+      opacity: .12;
+      border-radius: 9999px;
+      z-index: 0;
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, .75);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .card {
+      transition: .35s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(37, 99, 235, .25);
+      border-color: rgba(96, 165, 250, .4);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #60A5FA, #38BDF8, #2563EB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-blur {
+      background: rgba(7, 17, 32, .75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .primary-btn {
+      background: linear-gradient(90deg, #2563EB, #3B82F6);
+      transition: .3s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px rgba(37, 99, 235, .4);
+    }
+
+    .secondary-btn {
+      border: 1px solid rgba(255, 255, 255, .15);
+      transition: .3s;
+    }
+
+    .secondary-btn:hover {
+      background: #0F1B33;
+      border-color: #3B82F6;
+    }
+
+    .floating {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+
+    }
+
+    .floating:hover {
+      transform: translateY(-10px) scale(1.02);
+      transition: .4s;
+    }
+
+    .primary-btn:active {
+      transform: scale(.96);
+    }
+
+    .secondary-btn:active {
+      transform: scale(.96);
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden text-white">
+  <!-- ================= NAVBAR START ================= -->
+
+  <nav class="nav-blur sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- Logo -->
+
+        <a href="index.html" class="flex items-center gap-4">
+
+          <div
+            class="w-12 h-12 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-400 flex items-center justify-center font-extrabold text-xl shadow-lg shadow-blue-700/30">
+
+            C
+
+          </div>
+
+          <div>
+
+            <h1 class="text-2xl font-bold text-white">
+              Coach<span class="gradient-text">ly</span>
+            </h1>
+
+            <p class="text-xs text-slate-400">
+              Coaching Assistant Platform
+            </p>
+
+          </div>
+
+        </a>
+
+        <!-- Desktop Menu -->
+
+        <div class="hidden lg:flex items-center gap-10">
+
+          <a href="index.html" class="text-slate-300 hover:text-blue-400 transition text-cyan-400 font-semibold">
+            Home
+          </a>
+
+          <a href="admin-login.html" class="text-slate-300 hover:text-blue-400 transition">
+            Admin
+          </a>
+
+          <a href="coaching-login.html" class="text-slate-300 hover:text-blue-400 transition">
+            Coaching
+          </a>
+
+          <a href="admin page/parent-access.html" class="text-slate-300 hover:text-blue-400 transition">
+            Parent
+          </a>
+
+        </div>
+
+        <!-- Right Buttons -->
+
+        <div class="hidden lg:flex items-center gap-4">
+
+          <!-- Login Dropdown -->
+
+          <div class="relative">
+
+            <button id="loginBtn" class="secondary-btn px-5 py-3 rounded-xl text-white flex items-center gap-2">
+
+              Login
+
+              ▼
+
+            </button>
+
+            <div id="loginMenu"
+              class="hidden absolute right-0 mt-3 w-64 glass rounded-2xl border border-white/10 overflow-hidden">
+
+              <a href="admin-login.html"
+                class="block px-5 py-4 hover:bg-blue-600/20 hover:pl-7 duration-300 transition">
+
+                👨‍💼 Admin Login
+
+              </a>
+
+              <a href="coaching-login.html"
+                class="block px-5 py-4 hover:bg-blue-600/20 hover:pl-7 duration-300 transition">
+
+                🏫 Coaching Login
+
+              </a>
+
+              <a href="student-login.html"
+                class="block px-5 py-4 hover:bg-blue-600/20 hover:pl-7 duration-300 transition">
+
+                🎓 Student Login
+
+              </a>
+
+              <a href="./admin page/parent-access.html"
+                class="block px-5 py-4 hover:bg-blue-600/20 hover:pl-7 duration-300 transition">
+
+                👨‍👩‍👦 Parent Login
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <!-- Signup -->
+
+          <a href="coaching-register.html">
+
+            <button class="primary-btn px-6 py-3 rounded-xl font-semibold text-white">
+
+              Register Coaching
+
+            </button>
+
+          </a>
+
+        </div>
+
+        <!-- Mobile Button -->
+
+        <button id="menuBtn" class="lg:hidden text-white">
+
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+          </svg>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- ================= NAVBAR END ================= -->
+
+
+  <div id="mobileMenu" class="hidden lg:hidden nav-blur border-t border-white/10 fixed top-20 left-0 w-full z-[9999]">
+
+    <div class="px-6 py-6 flex flex-col gap-5">
+
+      <a href="index.html" class="text-slate-300 hover:text-blue-400">
+        Home
+      </a>
+
+      <a href="admin-login.html" class="text-slate-300 hover:text-blue-400">
+        Admin Login
+      </a>
+
+      <a href="coaching-login.html" class="text-slate-300 hover:text-blue-400">
+        Coaching Login
+      </a>
+
+
+      <a href="student-login.html" class="text-slate-300 hover:text-blue-400">
+        Student Login
+      </a>
+
+      <a href="./admin page/parent-access.html" class="text-slate-300 hover:text-blue-400">
+        Parent Login
+      </a>
+
+      <a href="coaching-register.html"
+        class="primary-btn mt-3 w-full py-3 rounded-xl text-white font-semibold flex items-center justify-center">
+        Get Started
+      </a>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Hero Section -->
+  <section class="grid-bg min-h-screen">
+
+    <div class="glow top-0 left-0"></div>
+
+    <div class="glow2 bottom-0 right-0"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+
+        <!-- Left Content -->
+        <div class="relative z-10">
+
+          <!-- Badge -->
+
+          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass mb-8">
+
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+
+            <span class="uppercase tracking-[3px] text-xs text-slate-300 font-semibold">
+
+              India's Smart Coaching Platform
+
+            </span>
+
+          </div>
+
+          <!-- Heading -->
+          <h1 class="text-5xl md:text-6xl xl:text-7xl font-extrabold leading-tight">
+
+            Manage Your
+
+            <br>
+
+            <span class="gradient-text">
+
+              Coaching
+
+            </span>
+
+            <br>
+
+            Management Platform
+
+          </h1>
+
+          <!-- Description -->
+
+          <p class="mt-8 text-lg text-slate-400 leading-9 max-w-xl">
+
+            Manage students, attendance, test results, fees, announcements and parent communication from one powerful
+            dashboard built for modern coaching institutes.
+
+          </p>
+
+          <!-- Buttons -->
+
+          <div class="flex flex-col sm:flex-row gap-5 mt-10">
+
+            <a href="coaching-register.html"
+              class="primary-btn rounded-2xl px-8 py-4 text-white font-semibold inline-flex items-center justify-center">
+              Register Coaching →
+            </a>
+
+            <a href="admin page/parent-access.html">
+
+              <button class="secondary-btn rounded-2xl px-8 py-4 text-white">
+
+                Parent Login →
+
+              </button>
+
+            </a>
+
+          </div>
+
+          <!-- Stats -->
+
+          <div class="grid grid-cols-3 gap-8 mt-14">
+
+            <div class="transition duration-300 hover:-translate-y-2 cursor-pointer">
+
+              <h2 class="text-4xl font-bold gradient-text">
+
+                500+
+
+              </h2>
+
+              <p class="text-slate-400 mt-2">
+
+                Institutes
+
+              </p>
+
+            </div>
+
+            <div class="transition duration-300 hover:-translate-y-2 cursor-pointer">
+
+              <h2 class="text-4xl font-bold gradient-text">
+
+                20K+
+
+              </h2>
+
+              <p class="text-slate-400 mt-2">
+
+                Students
+
+              </p>
+
+            </div>
+
+            <div class="transition duration-300 hover:-translate-y-2 cursor-pointer">
+
+              <h2 class="text-4xl font-bold gradient-text">
+
+                99%
+
+              </h2>
+
+              <p class="text-slate-400 mt-2">
+
+                Accuracy
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Right Dashboard Preview -->
+        <div class="relative">
+          <!-- Dashboard Card -->
+          <div
+            class="glass rounded-[32px] p-8 shadow-[0_20px_60px_rgba(37,99,235,.25)] overflow-hidden border border-white/10 floating">
+            <!-- Top -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8">
+              <div>
+                <p
+                  class="uppercase tracking-[3px] sm:tracking-[4px] text-xs sm:text-sm text-slate-300 font-semibold border-b border-slate-300 inline-block pb-1">
+                  Coaching Panel
+                </p>
+
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-4 break-words">
+                  Bright Minds Academy
+                </h2>
+              </div>
+
+              <div
+                class="hidden md:flex w-16 h-16 rounded-2xl glass border border-white/10 items-center justify-center">
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Coaching Code -->
+            <div
+              class="glass border border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-center justify-between mb-8">
+              <div>
+                <p class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-300 font-semibold">
+                  Coaching Code
+                </p>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-extrabold  text-cyan-400 tracking-wider break-all">
+                CO-TDCQ37
+              </h3>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <!-- Card -->
+              <div class="glass rounded-3xl p-5 sm:p-6 card border border-white/10">
+                <p
+                  class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-300 font-semibold border-b border-slate-300 inline-block pb-1">
+                  Total Students
+                </p>
+
+                <div class="mt-5 flex items-center justify-between">
+                  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                    248
+                  </h2>
+
+                  <div
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800 border border-white/10 flex items-center justify-center">
+                    👨‍🎓
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card -->
+              <div class="glass rounded-3xl p-5 sm:p-6 card border border-white/10">
+                <p
+                  class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-300 font-semibold border-b border-slate-300 inline-block pb-1">
+                  Present Today
+                </p>
+
+                <div class="mt-5 flex items-center justify-between">
+                  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                    219
+                  </h2>
+
+                  <div
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800 border border-white/10 flex items-center justify-center">
+                    📅
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card -->
+              <div class="glass rounded-3xl p-5 sm:p-6 card border border-white/10">
+                <p
+                  class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-300 font-semibold border-b border-slate-300 inline-block pb-1">
+                  Attendance
+                </p>
+
+                <div class="mt-5">
+                  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                    91%
+                  </h2>
+
+                  <p class="mt-2 text-sm sm:text-base text-slate-400">
+                    Rolling monthly average
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card -->
+              <div class="glass rounded-3xl p-5 sm:p-6 card border border-white/10">
+                <p
+                  class="uppercase text-xs sm:text-sm tracking-[3px] sm:tracking-[4px] text-slate-300 font-semibold border-b border-slate-300 inline-block pb-1">
+                  Tests Uploaded
+                </p>
+
+                <div class="mt-5 flex items-center justify-between">
+                  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                    18
+                  </h2>
+
+                  <div
+                    class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-800 border border-white/10 flex items-center justify-center">
+                    📘
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuBtn.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+        mobileMenu.classList.toggle("hidden");
+
+      });
+
+      const mobileLinks = mobileMenu.querySelectorAll("a");
+
+      mobileLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          mobileMenu.classList.add("hidden");
+
+        });
+
+      });
+
+      document.addEventListener("click", (e) => {
+
+        if (
+          !mobileMenu.contains(e.target) &&
+          !menuBtn.contains(e.target)
+        ) {
+          mobileMenu.classList.add("hidden");
+        }
+
+      });
+
+    });
+
+    const loginBtn = document.getElementById("loginBtn");
+    const loginMenu = document.getElementById("loginMenu");
+
+    loginBtn.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      loginMenu.classList.toggle("hidden");
+
+    });
+
+    loginMenu.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+    });
+
+    document.addEventListener("click", () => {
+
+      loginMenu.classList.add("hidden");
+
+    });
+  </script>
+
+</body>
+
+</html>
