@@ -27,11 +27,11 @@ public class StudentController {
     @PostMapping("/create")
     public ResponseEntity<StudentResponse> create(@Valid @RequestBody StudentRequest request,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createStudent(request, authorization));
+        return studentService.createStudent(request, authorization);
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@Valid @RequestBody CoachingLoginRequest request) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody CoachingLoginRequest request) {
         return studentService.login(request);
     }
 

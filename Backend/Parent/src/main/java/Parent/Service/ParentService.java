@@ -1,5 +1,6 @@
 package Parent.Service;
 
+import Parent.Exception.GlobalExceptionHandler;
 import Parent.dto.LoginRequest;
 import Parent.dto.Request;
 import Parent.dto.Response;
@@ -9,6 +10,7 @@ import Parent.repository.ParentRepository;
 import Parent.security.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -26,21 +28,23 @@ public class ParentService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenService tokens;
     private final RestClient restClient;
-    @Value("${app.student-service-url:http://localhost:8082}")
+    @Value("${app.student-service-url:https://student-gzyr.onrender.com}")
     private String studentServiceUrl;
 
     @Transactional
-    public Response register(Request request, String authorization) {
+    public ResponseEntity<Response> register(Request request, String authorization) {
         Boolean linked = restClient.get()
                 .uri(studentServiceUrl + "/student/{id}/belongs-to-coaching?coachingName={name}",
                         request.getStudentId(), request.getCoachingName())
                 .header("Authorization", authorization)
                 .retrieve().body(Boolean.class);
+
         if (!Boolean.TRUE.equals(linked)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Student does not belong to this coaching");
+            throw new GlobalExceptionHandler.ResourceNotFoundException("Student does not belong to this coaching");
         }
+
         if (parentRepository.existsByEmailIgnoreCase(request.getEmail())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "A parent account already uses this email");
+            throw new GlobalExceptionHandler.BadRequestException( "A parent account already uses this email");
         }
         Parent parent = parentRepository.save(Parent.builder()
                 .studentId(request.getStudentId())
@@ -52,27 +56,30 @@ public class ParentService {
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build());
-        return Response.builder().message("Parent account created successfully")
+        return new ResponseEntity<>(Response.builder().message("Parent account created successfully")
                 .parentId(parent.getParentId()).studentId(parent.getStudentId())
-                .parentName(parent.getParentName()).role("PARENT").build();
+                .parentName(parent.getParentName()).role("PARENT").build() , HttpStatus.CREATED);
     }
 
-    public Response login(LoginRequest request) {
+    public ResponseEntity<Response> login(LoginRequest request) {
+
         Parent parent = parentRepository.findByEmailIgnoreCase(request.getEmail())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password"));
+                .orElseThrow(() -> new GlobalExceptionHandler.BadRequestException("Invalid email"));
+
         if (!passwordEncoder.matches(request.getPassword(), parent.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
+            throw new GlobalExceptionHandler.BadRequestException( "Invalid  password");
         }
-        return Response.builder().message("Login successful")
+        return new ResponseEntity<>(Response.builder().message("Login successful")
                 .parentId(parent.getParentId()).studentId(parent.getStudentId())
                 .parentName(parent.getParentName())
                 .token(tokens.issue(parent.getEmail(), parent.getParentId(), parent.getStudentId()))
-                .role("PARENT").build();
+                .role("PARENT").build() , HttpStatus.FOUND);
     }
 
-    public List<ParentRecipientView> recipients(Long studentId, String coachingName) {
-        return parentRepository.findAllByStudentIdAndCoachingNameIgnoreCaseOrderByParentNameAsc(studentId, coachingName)
+    public ResponseEntity<List<ParentRecipientView> >recipients(Long studentId, String coachingName) {
+
+        return new ResponseEntity<>(parentRepository.findAllByStudentIdAndCoachingNameIgnoreCaseOrderByParentNameAsc(studentId, coachingName)
                 .stream().map(p -> new ParentRecipientView(p.getParentId(), p.getStudentId(),
-                        p.getParentName(), p.getEmail())).toList();
+                        p.getParentName(), p.getEmail())).toList() , HttpStatus.FOUND);
     }
 }

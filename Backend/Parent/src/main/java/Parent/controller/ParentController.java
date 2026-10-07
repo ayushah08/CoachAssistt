@@ -1,5 +1,6 @@
 package Parent.controller;
 
+import Parent.Exception.GlobalExceptionHandler;
 import Parent.Service.ParentService;
 import Parent.dto.LoginRequest;
 import Parent.dto.Request;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.security.core.Authentication;
 import io.jsonwebtoken.Claims;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/parent")
 @RequiredArgsConstructor
@@ -27,14 +30,18 @@ public class ParentController {
     private final ParentService parentService;
 
     @GetMapping("/students/{studentId}/recipients")
-    public java.util.List<ParentRecipientView> recipients(@PathVariable Long studentId,
-            Authentication authentication) {
+    public ResponseEntity<List<ParentRecipientView>> recipients(@PathVariable Long studentId,
+                                                Authentication authentication) {
+
         if (authentication == null || !(authentication.getDetails() instanceof Claims claims)
                 || !"COACHING".equals(claims.get("role", String.class))) {
+
             throw new org.springframework.web.server.ResponseStatusException(HttpStatus.FORBIDDEN, "Coaching identity is required");
         }
+
         String coachingName = claims.get("coachingName", String.class);
         if (coachingName == null || coachingName.isBlank())
+
             throw new org.springframework.web.server.ResponseStatusException(HttpStatus.FORBIDDEN, "Coaching identity is missing");
         return parentService.recipients(studentId, coachingName);
     }
@@ -42,18 +49,21 @@ public class ParentController {
     @PostMapping("/register")
     public ResponseEntity<Response> register(@Valid @RequestBody Request request,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization, Authentication authentication) {
+
         if (authentication == null || !(authentication.getDetails() instanceof Claims claims)
                 || claims.get("role", String.class) == null
-                || !"COACHING".equals(claims.get("role", String.class))) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                    HttpStatus.FORBIDDEN, "Coaching identity is required");
+                || !"COACHING".equals(claims.get("role", String.class)))
+        {
+            throw new GlobalExceptionHandler.BadRequestException(
+                     "Coaching identity is required");
         }
         request.setCoachingName(claims.get("coachingName", String.class));
-        return ResponseEntity.status(HttpStatus.CREATED).body(parentService.register(request, authorization));
+
+        return parentService.register(request, authorization);
     }
 
     @PostMapping("/login")
-    public Response login(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<Response> login(@Valid @RequestBody LoginRequest request) {
         return parentService.login(request);
     }
 }

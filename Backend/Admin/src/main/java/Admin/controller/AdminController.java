@@ -17,17 +17,18 @@ public class AdminController {
     private final AdminService service;
 
     @PostMapping("/login")
-    public AdminLoginResponse login(@Valid @RequestBody AdminLoginRequest request) { return service.login(request); }
+    public ResponseEntity<AdminLoginResponse> login(@Valid @RequestBody AdminLoginRequest request) { 
+        return service.login(request); }
     @GetMapping("/coaching/requests")
-    public List<CoachingAdminView> requests() { return service.pendingCoachings(); }
+    public ResponseEntity<List<CoachingAdminView>> requests() { return service.pendingCoachings(); }
     @GetMapping("/coachings")
-    public List<CoachingAdminView> coachings() { return service.coachings(); }
+    public ResponseEntity<List<CoachingAdminView>> coachings() { return (ResponseEntity<List<CoachingAdminView>>) service.coachings(); }
     @PostMapping("/coaching/{id}/approve")
     public CoachingAdminView approve(@PathVariable Long id) { return service.approve(id); }
     @DeleteMapping("/coaching/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) { service.deleteCoaching(id); return ResponseEntity.noContent().build(); }
+    public ResponseEntity<String> delete(@PathVariable Long id) {  return  service.deleteCoaching(id); }
     @GetMapping("/students")
-    public List<StudentAdminView> students(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) { return service.students(auth); }
+    public ResponseEntity<List<StudentAdminView>> students(@RequestHeader(HttpHeaders.AUTHORIZATION) String auth) { return service.students(auth); }
     @GetMapping("/students/{id}")
-    public StudentAdminView student(@PathVariable Long id, @RequestHeader(HttpHeaders.AUTHORIZATION) String auth) { return service.student(id, auth); }
+    public ResponseEntity<StudentAdminView> student(@PathVariable Long id, @RequestHeader(HttpHeaders.AUTHORIZATION) String auth) { return service.student(id, auth); }
 }

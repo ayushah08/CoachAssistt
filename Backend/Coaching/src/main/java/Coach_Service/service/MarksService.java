@@ -13,7 +13,8 @@ import java.util.List;
 @Service @RequiredArgsConstructor
 public class MarksService {
     private final RestClient restClient;
-    @Value("${app.student-service-url}") private String studentServiceUrl;
+    @Value("${app.student-service-url}")
+    private String studentServiceUrl;
 
     public List<MarksSummary> students(String authorization) {
         MarksSummary[] rows = restClient.get().uri(studentServiceUrl + "/marks/students")
