@@ -41,8 +41,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                     return;
                 }
-                var authentication = new UsernamePasswordAuthenticationToken(claims.getSubject(), null,
-                        List.of(new SimpleGrantedAuthority("ROLE_" + role)));
+
+                String authorityName = role.startsWith("ROLE_") ? role : "ROLE_" + role;
+
+                var authentication = new UsernamePasswordAuthenticationToken(
+                        claims.getSubject(),
+                        null,
+                        List.of(new SimpleGrantedAuthority(authorityName))
+                );
                 authentication.setDetails(claims);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (RuntimeException exception) {

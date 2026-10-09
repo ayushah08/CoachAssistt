@@ -1,11 +1,6 @@
 package Student.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
@@ -32,6 +27,9 @@ public class Student {
 
 
     private String coachingName;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Email
     @Column(nullable = false, unique = true)

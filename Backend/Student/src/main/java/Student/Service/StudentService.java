@@ -5,6 +5,7 @@ import Student.dto.AuthResponse;
 import Student.dto.StudentLoginRequest;
 import Student.dto.StudentRequest;
 import Student.dto.StudentResponse;
+import Student.entity.Role;
 import Student.entity.Student;
 import Student.repository.StudentRepository;
 import Student.security.JwtTokenService;
@@ -34,6 +35,7 @@ public class StudentService {
                 .name(request.getFirstName().trim())
                 .surname(request.getSurname().trim())
                 .coachingName(request.getCoachingName().trim())
+                .role(Role.STUDENT)
                 .email(request.getEmail().trim().toLowerCase())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .createdAt(LocalDateTime.now())
@@ -44,16 +46,16 @@ public class StudentService {
         return new ResponseEntity<>(StudentResponse.builder()
                 .studentName(student.getName() + " " + student.getSurname())
                 .studentCode(student.getStudentId())
-                .build() , HttpStatus.CREATED);
+                .build(), HttpStatus.CREATED);
     }
 
     public ResponseEntity<AuthResponse> login(StudentLoginRequest request) {
 
         Student student = studentRepository.findByEmailIgnoreCase(request.getEmail())
-                .orElseThrow(() -> new GlobalExceptionHandler.BadRequestException( "Invalid email or password"));
+                .orElseThrow(() -> new GlobalExceptionHandler.BadRequestException("Invalid email or password"));
 
         if (!passwordEncoder.matches(request.getPassword(), student.getPassword())) {
-            throw new GlobalExceptionHandler.BadRequestException( "Invalid email or password");
+            throw new GlobalExceptionHandler.BadRequestException("Invalid email or password");
         }
 
         return new ResponseEntity<>(new AuthResponse("Login successful", tokens.issue(student.getEmail(), student.getStudentId()),
@@ -64,10 +66,10 @@ public class StudentService {
     public void removeStudent(Long studentId, String coachingName) {
 
         Student student = studentRepository.findById(studentId)
-                .orElseThrow(() -> new GlobalExceptionHandler.ResourceNotFoundException( "Student not found with id " + studentId));
+                .orElseThrow(() -> new GlobalExceptionHandler.ResourceNotFoundException("Student not found with id " + studentId));
 
         if (!student.getCoachingName().equalsIgnoreCase(coachingName)) {
-            throw new GlobalExceptionHandler.ResourceNotFoundException( "Student not found with id " + studentId);
+            throw new GlobalExceptionHandler.ResourceNotFoundException("Student not found with id " + studentId);
         }
 
         studentRepository.delete(student);

@@ -6,6 +6,7 @@ import Parent.dto.Request;
 import Parent.dto.Response;
 import Parent.dto.ParentRecipientView;
 import Parent.entity.Parent;
+import Parent.entity.Role;
 import Parent.repository.ParentRepository;
 import Parent.security.JwtTokenService;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,7 @@ public class ParentService {
                 .parentName(request.getName().trim())
                 .studentName(request.getStudentName())
                 .coachingName(request.getCoachingName())
+                        .role(Role.PARENT)
                 .email(request.getEmail().trim().toLowerCase())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .createdAt(LocalDateTime.now())

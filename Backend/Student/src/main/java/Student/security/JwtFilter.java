@@ -28,14 +28,22 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 Claims claims = tokens.parse(header.substring(7));
                 String role = claims.get("role", String.class);
-                if (role == null || claims.getExpiration() == null || claims.getExpiration().before(new java.util.Date())) {
+                if (role == null || claims.getExpiration() == null
+                        || claims.getExpiration().before(new java.util.Date())) {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                     return;
                 }
-                var auth = new UsernamePasswordAuthenticationToken(claims.getSubject(), null,
-                        List.of(new SimpleGrantedAuthority("ROLE_" + role)));
-                auth.setDetails(claims);
-                SecurityContextHolder.getContext().setAuthentication(auth);
+
+// Ensure "ROLE_" is only prepended if not already present
+                String authorityName = role.startsWith("ROLE_") ? role : "ROLE_" + role;
+
+                var authentication = new UsernamePasswordAuthenticationToken(
+                        claims.getSubject(),
+                        null,
+                        List.of(new SimpleGrantedAuthority(authorityName))
+                );
+                authentication.setDetails(claims);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (RuntimeException ex) {
                 SecurityContextHolder.clearContext();
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);

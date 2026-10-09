@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/student/login", "/actuator/health").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/student/create").hasRole("COACHING")
                         .requestMatchers("/student/admin/students/**").hasRole("ADMIN")
                         .requestMatchers("/student/**").hasRole("COACHING")
                         .requestMatchers("/marks/me").hasAnyRole("STUDENT", "PARENT")
