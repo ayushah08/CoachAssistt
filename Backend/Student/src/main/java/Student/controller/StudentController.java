@@ -44,7 +44,7 @@ public class StudentController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<StudentResponse> registerStudent(@Valid @RequestBody StudentRequest student,
+    public ResponseEntity<StudentResponse> registerStudent(@RequestBody StudentRequest student,
             Authentication authentication) {
 
         student.setCoachingName(coachingName(authentication));
