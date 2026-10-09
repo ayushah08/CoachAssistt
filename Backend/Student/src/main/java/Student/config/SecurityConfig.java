@@ -4,6 +4,7 @@ import Student.security.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,6 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
+@EnableMethodSecurity // <--- Prevents DB execution if authorization fails
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtFilter jwtFilter;
@@ -32,7 +34,7 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/student/login", "/actuator/health").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/student/create").hasRole("COACHING")
+                        .requestMatchers(HttpMethod.POST, "/student/register").hasRole("COACHING") // <--- Fixed path
                         .requestMatchers("/student/admin/students/**").hasRole("ADMIN")
                         .requestMatchers("/student/**").hasRole("COACHING")
                         .requestMatchers("/marks/me").hasAnyRole("STUDENT", "PARENT")

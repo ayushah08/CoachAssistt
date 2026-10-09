@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import io.jsonwebtoken.Claims;
@@ -44,6 +45,7 @@ public class StudentController {
     }
 
     @PostMapping("/register")
+    @PreAuthorize("hasRole('COACHING')")
     public ResponseEntity<StudentResponse> registerStudent(@RequestBody StudentRequest student,
             Authentication authentication) {
 
