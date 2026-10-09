@@ -27,7 +27,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 || path.equals("/api/v1/student/login") || path.equals("/api/v1/parents/login")
                 || path.equals("/actuator/health");
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -42,12 +41,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     return;
                 }
 
-                String authorityName = role.startsWith("ROLE_") ? role : "ROLE_" + role;
+                // Ensure "ROLE_" is prefixed cleanly exactly once
+                String authority = role.startsWith("ROLE_") ? role : "ROLE_" + role;
 
                 var authentication = new UsernamePasswordAuthenticationToken(
                         claims.getSubject(),
                         null,
-                        List.of(new SimpleGrantedAuthority(authorityName))
+                        List.of(new SimpleGrantedAuthority(authority))
                 );
                 authentication.setDetails(claims);
                 SecurityContextHolder.getContext().setAuthentication(authentication);

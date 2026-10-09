@@ -1,16 +1,16 @@
 package Coach_Service.config;
 
-
 import Coach_Service.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -20,6 +20,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
+@EnableMethodSecurity // <--- Enables @PreAuthorize checks and prevents DB writes on security failure
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -37,23 +38,36 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/coaching/register", "/api/v1/coaching/login",
-                                "/api/v1/student/login", "/api/v1/parents/login",
-                                "/actuator/health").permitAll()
+                        // 1. Explicitly permit public authentication endpoints first
+                        .requestMatchers(
+                                "/api/v1/coaching/register",
+                                "/api/v1/coaching/login",
+                                "/api/v1/student/login",
+                                "/api/v1/parents/login",
+                                "/actuator/health"
+                        ).permitAll()
+
+                        // 2. Role-restricted specific endpoints
                         .requestMatchers("/api/v1/parents/register").hasRole("COACHING")
                         .requestMatchers("/api/v1/parents/students/**").hasRole("COACHING")
-                        .requestMatchers("/api/v1/student/create").hasRole("COACHING")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/student/create").hasRole("COACHING")
+
+                        // 3. General wildcard endpoint rules for student path
                         .requestMatchers("/api/v1/student/**").hasRole("COACHING")
+
+                        // 4. Attendance, Marks, and Notice endpoints
                         .requestMatchers(HttpMethod.POST, "/api/v1/attendance/students/**").hasRole("COACHING")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/attendance/me")
-                                .hasAnyRole("STUDENT", "PARENT")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/attendance/me").hasAnyRole("STUDENT", "PARENT")
                         .requestMatchers("/api/v1/attendance/**").denyAll()
+
                         .requestMatchers(HttpMethod.GET, "/api/v1/marks/me").hasAnyRole("STUDENT", "PARENT")
                         .requestMatchers("/api/v1/marks/students/**").hasRole("COACHING")
                         .requestMatchers("/api/v1/marks/**").denyAll()
+
                         .requestMatchers(HttpMethod.GET, "/api/v1/notices/me").hasAnyRole("STUDENT", "PARENT")
                         .requestMatchers("/api/v1/notices", "/api/v1/notices/**").hasRole("COACHING")
                         .requestMatchers("/api/v1/notices/**").denyAll()
+
                         .anyRequest().authenticated())
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -69,20 +83,14 @@ public class SecurityConfig {
                 "http://localhost:3000"
         ));
 
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
-
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
-
         configuration.setExposedHeaders(List.of("Authorization"));
-
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
     }
-
-
 }
