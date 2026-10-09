@@ -44,7 +44,7 @@ public class StudentService {
 
 
         return new ResponseEntity<>(StudentResponse.builder()
-                .studentName(student.getName() + " " + student.getSurname())
+                .studentName(student.getUsername())
                 .studentCode(student.getStudentId())
                 .build(), HttpStatus.CREATED);
     }
@@ -52,10 +52,10 @@ public class StudentService {
     public ResponseEntity<AuthResponse> login(StudentLoginRequest request) {
 
         Student student = studentRepository.findByEmailIgnoreCase(request.getEmail())
-                .orElseThrow(() -> new GlobalExceptionHandler.BadRequestException("Invalid email or password"));
+                .orElseThrow(() -> new GlobalExceptionHandler.BadRequestException("Invalid email"));
 
         if (!passwordEncoder.matches(request.getPassword(), student.getPassword())) {
-            throw new GlobalExceptionHandler.BadRequestException("Invalid email or password");
+            throw new GlobalExceptionHandler.BadRequestException("Invalid password");
         }
 
         return new ResponseEntity<>(new AuthResponse("Login successful", tokens.issue(student.getEmail(), student.getStudentId()),
