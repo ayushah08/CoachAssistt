@@ -25,7 +25,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping("/create")
-    public ResponseEntity<StudentResponse> create(@Valid @RequestBody StudentRequest request,
+    public ResponseEntity<StudentResponse> create( @RequestBody StudentRequest request,
             @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) {
         return studentService.createStudent(request, authorization);
     }
