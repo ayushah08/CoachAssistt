@@ -44,7 +44,7 @@ public class StudentService {
 
 
         return new ResponseEntity<>(StudentResponse.builder()
-                .studentName(student.getUsername())
+                .studentName(student.getName()+ student.getSurname())
                 .studentCode(student.getStudentId())
                 .build(), HttpStatus.CREATED);
     }
