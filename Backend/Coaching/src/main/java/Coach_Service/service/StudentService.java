@@ -1,6 +1,5 @@
 package Coach_Service.service;
 
-import Coach_Service.Exception.Global;
 import Coach_Service.dto.Login.CoachingLoginRequest;
 import Coach_Service.dto.Login.LoginResponse;
 import Coach_Service.dto.student.StudentRequest;

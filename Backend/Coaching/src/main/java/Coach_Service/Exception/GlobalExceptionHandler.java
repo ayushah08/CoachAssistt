@@ -4,13 +4,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 
-@RestControllerAdvice // <--- THIS WAS MISSING!
-public class Global {
+@RestControllerAdvice
+public class GlobalExceptionHandler {
 
-    @ExceptionHandler(HttpClientErrorException.class)
-    public ResponseEntity<String> HttpClientErrorException(HttpClientErrorException ex) {
+    // Catch both 4xx (HttpClientErrorException) and 5xx (HttpServerErrorException) from RestClient
+    @ExceptionHandler(HttpStatusCodeException.class)
+    public ResponseEntity<String> handleRestClientException(HttpStatusCodeException ex) {
         return ResponseEntity
                 .status(ex.getStatusCode())
                 .contentType(MediaType.APPLICATION_JSON)

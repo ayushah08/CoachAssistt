@@ -32,7 +32,7 @@ public class Student implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name + " " + surname;
+        return email;
     }
 
     @Id

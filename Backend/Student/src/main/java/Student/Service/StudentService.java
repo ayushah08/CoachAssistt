@@ -58,12 +58,19 @@ public class StudentService {
             throw new GlobalExceptionHandler.BadRequestException("Invalid password");
         }
 
-        return new ResponseEntity<>(new AuthResponse("Login successful", tokens.issue(student.getEmail(), student.getStudentId()),
-                student.getStudentId(), "STUDENT"), HttpStatus.FOUND);
+        return new ResponseEntity<>(
+                new AuthResponse(
+                        "Login successful",
+                        tokens.issue(student.getEmail(), student.getStudentId()),
+                        student.getStudentId(),
+                        "STUDENT"
+                ),
+                HttpStatus.OK // <--- Use HttpStatus.OK (200)
+        );
     }
 
     @Transactional
-    public void removeStudent(Long studentId, String coachingName) {
+    public ResponseEntity<String> removeStudent(Long studentId, String coachingName) {
 
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new GlobalExceptionHandler.ResourceNotFoundException("Student not found with id " + studentId));
@@ -74,7 +81,7 @@ public class StudentService {
 
         studentRepository.delete(student);
 
-        new ResponseEntity<>("Student Deleted Successfully", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Student Deleted Successfully", HttpStatus.OK);
     }
 
     public boolean belongsToCoaching(Long studentId, String coachingName) {
