@@ -20,22 +20,34 @@ public class StudentService {
 
     @Value("${app.student-service-url}")
     private String studentServiceUrl;
+    public ResponseEntity<StudentResponse> createStudent(
+            StudentRequest request,
+            String authorization) {
 
-    public ResponseEntity<StudentResponse> createStudent(StudentRequest request, String authorization) {
+        try {
+            return restClient.post()
+                    .uri(studentServiceUrl + "/student/register")
+                    .header("Authorization", authorization)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(request)
+                    .retrieve()
+                    .toEntity(StudentResponse.class);
 
-        return restClient.post()
-                .uri(studentServiceUrl + "/student/register")
-                .header("Authorization", authorization)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(request)
-                .retrieve()
-                .onStatus(HttpStatusCode::isError, (req, resp) -> {
-                    String errorBody = new String(resp.getBody().readAllBytes());
-                    throw new HttpClientErrorException(resp.getStatusCode(), errorBody);
-                })
-                .toEntity(StudentResponse.class);
+        } catch (org.springframework.web.client.RestClientResponseException ex) {
+            System.err.println(
+                    "Student Service HTTP status: " + ex.getStatusCode());
+            System.err.println(
+                    "Student Service error body: "
+                            + ex.getResponseBodyAsString());
+            throw ex;
+
+        } catch (org.springframework.http.converter.HttpMessageConversionException ex) {
+            System.err.println(
+                    "Student Service response conversion failed: "
+                            + ex.getMessage());
+            throw ex;
+        }
     }
-
     public ResponseEntity<LoginResponse> login(CoachingLoginRequest request) {
         return restClient.post()
                 .uri(studentServiceUrl + "/student/login")
